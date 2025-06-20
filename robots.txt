@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Sitemap: https://viptransfer.com/sitemap.xml
+
+# Блокировка доступа к нежелательным файлам/директориям
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /*.zip$
+Disallow: /*.rar$
+Disallow: /*.tar.gz$
+Disallow: /wp-admin/ # Если используется WordPress
+Disallow: /wp-includes/ # Если используется WordPress
+
+# Правила для Googlebot-Image, если нужно исключить изображения из индекса
+# User-agent: Googlebot-Image
+# Disallow: /images/private/
+
+# Указывайте хост для предпочтительного домена (если у вас есть www и без www)
+# Host: https://viptransfer.com/

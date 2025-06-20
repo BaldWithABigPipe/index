@@ -1,0 +1,230 @@
+/* ==========================================================================
+   Стили для модального окна с галереей автомобилей
+   ========================================================================== */
+
+/* 
+ * 1. Основной контейнер модального окна (оверлей).
+ *    Занимает весь экран и плавно появляется/исчезает.
+ */
+.gallery-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(26, 26, 26, 0.9));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s, transform 0.5s;
+    transform: scale(0.9); /* Начальное состояние для анимации "всплывания" */
+}
+
+/* 
+ * Класс-модификатор для скрытия окна.
+ * Управляется через JavaScript.
+ */
+.gallery-modal--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9);
+}
+
+/* 
+ * Состояние, когда модальное окно видимо.
+ * Трансформация в scale(1) создает эффект плавного "всплывания".
+ */
+.gallery-modal:not(.gallery-modal--hidden) {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+/* 
+ * 2. Внутреннее содержимое модального окна
+ */
+.gallery-modal__content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Контейнер для основного изображения и кнопок навигации */
+.gallery-modal__image {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Основное (большое) изображение */
+.gallery-modal__main-image {
+    max-width: 90%;
+    max-height: 60vh; /* Ограничиваем высоту, чтобы осталось место для инфо-блока */
+    object-fit: contain; /* Изображение полностью помещается в контейнер без обрезки */
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s;
+}
+
+/* Кнопки "Вперед" и "Назад" */
+.gallery-modal__prev,
+.gallery-modal__next {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--color-text-light);
+    border: none;
+    padding: 10px 20px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2100;
+    opacity: 0; /* Появляются только при наведении на область изображения */
+    transition: opacity 0.3s;
+}
+
+.gallery-modal__image:hover .gallery-modal__prev,
+.gallery-modal__image:hover .gallery-modal__next {
+    opacity: 1;
+}
+
+.gallery-modal__prev {
+    left: 20px;
+}
+
+.gallery-modal__next {
+    right: 20px;
+}
+
+.gallery-modal__prev:hover,
+.gallery-modal__next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* 
+ * 3. Контейнер с миниатюрами
+ */
+.gallery-modal__thumbnail-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    overflow-x: auto; /* Горизонтальная прокрутка, если миниатюр много */
+    max-width: 90%;
+    padding: 5px;
+}
+
+.gallery-modal__thumbnail {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+/* Активная миниатюра выделяется рамкой */
+.gallery-modal__thumbnail--active {
+    border-color: var(--color-primary);
+}
+
+/* 
+ * 4. Информационный блок (название, описание)
+ */
+.gallery-modal__info {
+    background-color: var(--color-secondary);
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px; /* Скругляем, если он отдельно */
+    margin-top: 20px;
+}
+
+.gallery-modal__title {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: var(--color-primary);
+}
+
+.gallery-modal__description {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+}
+
+.gallery-modal__specs {
+    list-style: none;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-muted);
+}
+
+.gallery-modal__specs li {
+    margin-bottom: 10px;
+}
+
+/* 
+ * 5. Кнопка закрытия модального окна
+ */
+.gallery-modal__close {
+    position: fixed; /* Фиксируем относительно вьюпорта */
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+    color: var(--color-text-light);
+    cursor: pointer;
+    z-index: 2100;
+    transition: transform 0.3s;
+}
+
+.gallery-modal__close:hover {
+    transform: rotate(90deg); /* Эффект вращения при наведении */
+}
+
+
+/* ==========================================================================
+   Адаптивные стили для модального окна
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .gallery-modal__main-image {
+        max-height: 50vh; /* Уменьшаем высоту на мобильных */
+    }
+    .gallery-modal__info {
+        padding: 20px;
+    }
+    .gallery-modal__title {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-modal__thumbnail {
+        width: 80px;
+        height: 50px;
+    }
+    .gallery-modal__prev, .gallery-modal__next {
+        padding: 8px 15px;
+        font-size: 20px;
+    }
+}

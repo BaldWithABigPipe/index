@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://viptransfer.com/</loc>
+    <lastmod>2025-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://viptransfer.com/en/"/>
+  </url>
+
+  <url>
+    <loc>https://viptransfer.com/about</loc>
+    <lastmod>2025-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://viptransfer.com/en/about"/>
+  </url>
+
+  <url>
+    <loc>https://viptransfer.com/fleet</loc>
+    <lastmod>2025-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/fleet"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://viptransfer.com/en/fleet"/>
+  </url>
+
+  <url>
+    <loc>https://viptransfer.com/popular-transfers</loc>
+    <lastmod>2025-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/popular-transfers"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://viptransfer.com/en/popular-transfers"/>
+  </url>
+
+  <url>
+    <loc>https://viptransfer.com/reviews</loc>
+    <lastmod>2025-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/reviews"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://viptransfer.com/en/reviews"/>
+  </url>
+
+  <url>
+    <loc>https://viptransfer.com/faq</loc>
+    <lastmod>2025-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/faq"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://viptransfer.com/en/faq"/>
+  </url>
+
+  <url>
+    <loc>https://viptransfer.com/contacts</loc>
+    <lastmod>2025-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/contacts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://viptransfer.com/en/contacts"/>
+  </url>
+
+  <url>
+    <loc>https://viptransfer.com/privacy-policy</loc>
+    <lastmod>2025-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://viptransfer.com/en/privacy-policy"/>
+  </url>
+
+  <url>
+    <loc>https://viptransfer.com/terms-of-use</loc>
+    <lastmod>2025-06-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/terms-of-use"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://viptransfer.com/en/terms-of-use"/>
+  </url>
+
+</urlset>

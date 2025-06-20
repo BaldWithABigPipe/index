@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Базовые стили (Base)
+   ========================================================================== */
+
+/*
+ * 1. Переменные (CSS Custom Properties)
+ *    Определяют основные цвета, шрифты и другие константы для всего сайта.
+ *    Это упрощает поддержку и изменение дизайна.
+ */
+:root {
+    /* Цветовая палитра */
+    --color-primary: #C8A26A;        /* Золотой/бронзовый акцент */
+    --color-primary-dark: #b38f5a;  /* Затемненный основной цвет для hover-эффектов */
+    --color-secondary: #1A1A1A;       /* Темный фон / основной текст */
+    --color-tertiary: #333333;        /* Более светлый темный для фона, границ */
+    --color-light: #F8F8F8;           /* Светлый фон */
+    --color-text-light: #FFFFFF;      /* Светлый текст на темном фоне */
+    --color-text-dark: #333333;       /* Темный текст на светлом фоне */
+    --color-text-muted: #cccccc;      /* Приглушенный текст для описаний */
+    --color-border: #444444;          /* Цвет границ */
+
+    /* Типографика */
+    --font-heading: 'Playfair Display', serif; /* Шрифт для заголовков */
+    --font-body: 'Montserrat', sans-serif;    /* Шрифт для основного текста */
+
+    /* Прочее */
+    --transition-speed: 0.3s ease-in-out; /* Скорость анимаций */
+    --container-padding-desktop: 20px;
+    --container-padding-tablet: 15px;
+    --container-padding-mobile: 10px;
+}
+
+/*
+ * 2. Сброс стилей (Reset) и глобальные настройки
+ *    Убирают стандартные отступы и стили браузеров, задают общие правила.
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Всегда включаем padding и border в общую ширину/высоту */
+}
+
+html {
+    scroll-behavior: smooth; /* Плавный скролл к якорным ссылкам */
+    scrollbar-color: var(--color-primary) #333; /* Стилизация скроллбара для Firefox */
+    scrollbar-width: thin;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text-dark);
+    background-color: var(--color-light);
+    -webkit-font-smoothing: antialiased; /* Улучшение рендеринга шрифтов в Webkit */
+    -moz-osx-font-smoothing: grayscale; /* Улучшение рендеринга шрифтов в Firefox */
+    line-height: 1.6;
+    min-height: 100vh; /* Минимальная высота для flexbox-футера */
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color var(--transition-speed);
+}
+
+a:hover, a:focus {
+    color: var(--color-primary-dark); /* Используем переменную для затемненного цвета */
+    outline: none; /* Убираем стандартный outline, т.к. стилизуем фокус иначе */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Убирает лишний отступ под изображением */
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    font-family: inherit; /* Наследуем шрифт от родителя */
+}
+
+/*
+ * 3. Вспомогательные классы
+ */
+
+/* Скрытый класс для доступности (Accessibility) */
+/* Позволяет скрыть элемент визуально, но оставить его доступным для скринридеров */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/*
+ * 4. Стилизация скроллбара для Webkit-браузеров (Chrome, Safari, Edge)
+ */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+}

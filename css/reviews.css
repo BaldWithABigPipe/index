@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Стили для секции "Отзывы" (Reviews)
+   ========================================================================== */
+
+/* 
+ * 1. Общие стили для секции
+ */
+.reviews {
+    padding: 60px 0;
+    background-color: var(--color-tertiary); /* Темный фон */
+    color: var(--color-text-light); /* Светлый текст */
+}
+
+/* Переопределение цвета заголовков для темного фона */
+.reviews .section-title,
+.reviews .section-subtitle {
+    color: var(--color-text-light);
+}
+
+/* 
+ * 2. Адаптивная сетка для карточек отзывов
+ */
+.reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* 
+ * 3. Стили для отдельной карточки отзыва
+ */
+.review-card {
+    background-color: #2a2a2a; /* Фон карточки чуть светлее фона секции */
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Распределяет пространство между текстом и автором */
+}
+
+/* Текст отзыва */
+.review-card__text {
+    font-style: italic; /* Курсив для цитаты */
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-light);
+    line-height: 1.7;
+}
+
+/* Блок с автором и звездами */
+.review-card__author {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Выравнивание по левому краю */
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border); /* Разделительная линия */
+}
+
+/* Имя автора */
+.review-card__name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-primary); /* Акцентный цвет для имени */
+    margin-bottom: 0.5rem;
+}
+
+/* Контейнер для звезд рейтинга */
+.review-card__stars {
+    display: flex;
+    gap: 0.2rem;
+}
+
+.review-card__stars .star {
+    width: 18px;
+    height: 18px;
+    fill: #FFD700; /* Используем fill для SVG */
+}
+
+/* Кнопка "Все отзывы" (если будет добавлена) */
+.reviews__all-button {
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* ==========================================================================
+   Адаптивные стили
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .reviews__grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .review-card {
+        padding: 1.5rem;
+    }
+}

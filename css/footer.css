@@ -1,0 +1,140 @@
+/* ==========================================================================
+   Стили для подвала сайта (Footer)
+   ========================================================================== */
+
+/* 
+ * 1. Основной контейнер подвала
+ */
+.footer {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    padding: 3rem 0 1.5rem;
+    border-top: 1px solid var(--color-border);
+}
+
+/* 
+ * 2. Верхняя часть подвала с колонками
+ *    Используется адаптивная сетка, которая сама определяет количество колонок.
+ */
+.footer__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 1.5rem;
+}
+
+.footer__block {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Заголовок колонки */
+.footer__title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem; /* 21px */
+    color: var(--color-primary);
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+}
+
+/* Основной текст в подвале */
+.footer__text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый для лучшей читаемости */
+    margin-bottom: 1rem;
+}
+
+/* Списки (навигация, контакты и т.д.) */
+.footer__list {
+    list-style: none;
+}
+
+.footer__list li {
+    margin-bottom: 0.8rem;
+}
+
+.footer__link {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    transition: color var(--transition-speed);
+}
+
+.footer__link:hover, .footer__link:focus {
+    color: var(--color-primary);
+}
+
+/* 
+ * 3. Иконки социальных сетей
+ */
+.footer__socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.footer__social-link img {
+    width: 24px;
+    height: 24px;
+    /* 
+     * Хитрый способ перекрасить черные SVG-иконки в белый цвет с помощью фильтров.
+     * invert(1) делает иконку белой. Остальные параметры сбрасывают лишние эффекты.
+     */
+    filter: invert(1) brightness(1.5);
+    transition: filter var(--transition-speed);
+}
+
+.footer__social-link:hover img, .footer__social-link:focus img {
+    /* 
+     * При наведении перекрашиваем иконку в основной акцентный цвет (--color-primary).
+     * Это делается подбором значений hue-rotate и других параметров фильтра.
+     * Этот способ не идеален, но работает для монохромных иконок.
+     */
+    filter: invert(68%) sepia(28%) saturate(953%) hue-rotate(359deg) brightness(89%) contrast(86%);
+}
+
+/* 
+ * 4. Нижняя часть подвала (копирайт)
+ */
+.footer__bottom {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Контейнер для иконок платежных систем (если будет) */
+.footer__payment-methods {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.footer__payment-methods img {
+    height: 25px;
+    width: auto;
+    opacity: 0.7;
+}
+
+
+/* ==========================================================================
+   Адаптивные стили
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .footer__container {
+        /* Увеличиваем минимальную ширину колонки, чтобы они раньше перестраивались */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .footer__bottom {
+        flex-direction: column; /* Элементы в одну колонку */
+        gap: 0.8rem;
+    }
+}

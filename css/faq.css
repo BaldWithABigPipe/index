@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Стили для секции "Часто задаваемые вопросы" (FAQ)
+   ========================================================================== */
+
+/* 
+ * 1. Общие стили для секции
+ */
+.faq {
+    padding: 60px 0;
+    background-color: var(--color-light); /* Светлый фон */
+}
+
+/* 
+ * 2. Сетка для элементов FAQ
+ */
+.faq__grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Все элементы в одну колонку */
+    gap: 1.5rem;
+    max-width: 900px; /* Ограничиваем ширину для лучшей читаемости */
+    margin: 0 auto;
+}
+
+/* 
+ * 3. Стили для отдельного элемента FAQ (вопрос + ответ)
+ */
+.faq-item {
+    background-color: var(--color-text-light); /* Белый фон */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden; /* Скрываем выпадающий контент */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Стили для вопроса */
+.faq-item__question {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    padding: 1.2rem 2rem;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Псевдо-элемент для иконки "+"/"-" */
+.faq-item__question::after {
+    content: '+';
+    font-size: 1.8rem;
+    line-height: 1;
+    color: var(--color-primary);
+    transition: transform 0.3s ease;
+}
+
+/* Стили для активного (открытого) вопроса */
+.faq-item__question.active {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+.faq-item__question.active::after {
+    content: '−'; /* Меняем иконку на минус */
+    transform: rotate(180deg); /* Плавный поворот не нужен, т.к. сам символ меняется */
+    color: var(--color-text-light);
+}
+
+/* 
+ * 4. Стили для ответа
+ *    Эффект "аккордеона" достигается за счет анимированного изменения `max-height`.
+ */
+.faq-item__answer {
+    max-height: 0; /* В скрытом состоянии высота равна 0 */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    padding: 0 2rem; /* Убираем вертикальные отступы, когда блок скрыт */
+}
+
+.faq-item__answer p {
+    padding-bottom: 1.5rem;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    line-height: 1.7;
+}
+
+/* Когда ответ активен, устанавливаем ему `max-height` и возвращаем отступы */
+.faq-item.active .faq-item__answer {
+    max-height: 500px; /* Достаточно большое значение, чтобы вместить любой контент */
+    padding-top: 0.5rem; /* Добавляем отступ сверху, чтобы текст не прилипал к вопросу */
+}
+
+
+/* ==========================================================================
+   Адаптивные стили
+   ========================================================================== */
+@media (max-width: 768px) {
+    .faq-item__question {
+        font-size: 1.1rem;
+        padding: 1rem 1.5rem;
+    }
+    .faq-item__answer p {
+        font-size: 0.95rem;
+        padding-bottom: 1rem;
+    }
+}

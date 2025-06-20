@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Стили для секции автопарка (Fleet)
+   ========================================================================== */
+
+/* 
+ * 1. Общие стили для секции
+ */
+.fleet {
+    background-color: var(--color-tertiary); /* Темно-серый фон */
+    color: var(--color-text-light); /* Светлый текст */
+    padding: 60px 0;
+}
+
+/* Переопределение цвета заголовков для темного фона */
+.fleet .section-title,
+.fleet .section-subtitle {
+    color: var(--color-text-light);
+}
+
+/* 
+ * 2. Сетка для карточек автомобилей
+ */
+.vehicles__grid {
+    display: grid;
+    /* 3 колонки на десктопе */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto; /* Центрирование сетки */
+}
+
+/* 
+ * 3. Стили для отдельной карточки автомобиля
+ */
+.vehicles__card {
+    background-color: #2a2a2a; /* Чуть светлее фона секции */
+    border-radius: 10px;
+    overflow: hidden; /* Обрезаем все, что выходит за пределы карточки */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Эффект при наведении на карточку */
+.vehicles__card:hover {
+    transform: translateY(-8px); /* "Приподнимаем" карточку */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Усиливаем тень */
+}
+
+/* Изображение автомобиля */
+.vehicles__image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover; /* Изображение масштабируется, чтобы покрыть контейнер */
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Название автомобиля */
+.vehicles__name {
+    font-family: var(--font-heading);
+    font-size: 1.6rem; /* 26px */
+    margin: 1.5rem 0 0.5rem;
+    color: var(--color-primary); /* Золотой акцентный цвет */
+}
+
+/* Описание автомобиля */
+.vehicles__description {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    opacity: 0.8; /* Делаем текст менее контрастным */
+    padding: 0 1.5rem 1.5rem;
+}
+
+
+/* ==========================================================================
+   Адаптивные стили для секции автопарка
+   ========================================================================== */
+@media (max-width: 1200px) {
+    /* 2 колонки на планшетах */
+    .vehicles__grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 1 колонка на мобильных устройствах */
+    .vehicles__grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+    .vehicles__image {
+        height: 180px; /* Уменьшаем высоту изображения */
+    }
+    .vehicles__name {
+        font-size: 1.4rem; /* Уменьшаем шрифт названия */
+    }
+}
