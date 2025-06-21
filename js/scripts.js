@@ -11,9 +11,13 @@ import { initVehicleSelection } from './vehicle-selection.js';
 import { changeLanguage } from './language.js';
 import { initFAQ } from './faq.js';
 import { initGallery } from './gallery.js';
+import { insertStructuredData } from './structured-data.js';
 
 // 2. Основная логика, которая выполняется после полной загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- ИНИЦИАЛИЗАЦИЯ СТРУКТУРИРОВАННЫХ ДАННЫХ ---
+    insertStructuredData();
     
     // --- ИНИЦИАЛИЗАЦИЯ ЯЗЫКА ---
     const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
@@ -39,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Инициализация логики выбора автомобиля
     if (document.getElementById('vehicle-selection')) {
-        initVehicleSelection(vehicles);
+    initVehicleSelection(vehicles);
     }
 
     // Инициализация переключателя языка
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const newLang = e.target.value;
             localStorage.setItem('selectedLanguage', newLang);
             changeLanguage(newLang, translations);
-            if (gallery && gallery.updateLanguage) {
+        if (gallery && gallery.updateLanguage) {
                 gallery.updateLanguage(newLang);
             }
         });
@@ -70,5 +74,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- ГЛОБАЛЬНЫЕ ФУНКЦИИ ---
     window.showRoute = showRoute;
+
+    // --- ОБРАБОТЧИК КНОПКИ "ДОБАВИТЬ ОБРАТНЫЙ ТРАНСФЕР" ---
+    const addReturnTransferButton = document.getElementById('add-return-transfer');
+    if (addReturnTransferButton) {
+        let returnTransferAdded = false;
+        
+        addReturnTransferButton.addEventListener('click', () => {
+            const addText = addReturnTransferButton.getAttribute('data-add-text');
+            const removeText = addReturnTransferButton.getAttribute('data-remove-text');
+            
+            if (!returnTransferAdded) {
+                // Добавляем обратный трансфер
+                addReturnTransferButton.textContent = removeText;
+                addReturnTransferButton.querySelector('svg').style.transform = 'rotate(45deg)';
+                returnTransferAdded = true;
+                
+                // Здесь можно добавить логику для добавления поля обратного трансфера
+                console.log('Обратный трансфер добавлен');
+            } else {
+                // Убираем обратный трансфер
+                addReturnTransferButton.textContent = addText;
+                addReturnTransferButton.querySelector('svg').style.transform = 'rotate(0deg)';
+                returnTransferAdded = false;
+                
+                // Здесь можно добавить логику для удаления поля обратного трансфера
+                console.log('Обратный трансфер убран');
+            }
+        });
+    }
 
 });

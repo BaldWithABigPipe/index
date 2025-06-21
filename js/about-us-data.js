@@ -10,15 +10,20 @@
  */
 export const aboutUsTranslations = {
   ru: {
+    // Переводы для хедера
     'header.rating': '5.0 средний рейтинг наших клиентов',
-    'header.book': 'Забронировать премиальный трансфер',
+    'header.book.transfer': 'Забронировать премиальный трансфер',
     'header.phone': '+41 79 789 39 76',
+    
+    // Переводы для страницы "О нас"
     'about.title': 'О компании VIP Transfer Zurich',
     'about.desc': 'VIP Transfer Zurich — это премиальный сервис перевозок по Швейцарии и Европе. Мы предлагаем индивидуальный подход, современные автомобили представительского класса и профессиональных водителей для вашего максимального комфорта и безопасности.',
     'about.feature1': '• Персональный сервис 24/7',
     'about.feature2': '• Только новые автомобили премиум-класса',
     'about.feature3': '• Водители с многолетним опытом',
     'about.feature4': '• Конфиденциальность и пунктуальность',
+    
+    // Переводы для футера
     'footer.about.title': 'О VIP Transfer',
     'footer.about.text': 'VIP Transfer — ваш надежный партнер в мире премиальных перевозок. Мы предлагаем безупречный сервис, комфортабельные автомобили и профессиональных водителей для ваших поездок по Швейцарии и Европе.',
     'footer.contact.title': 'Свяжитесь с нами',
@@ -33,17 +38,22 @@ export const aboutUsTranslations = {
     'footer.copyright': '© 2025 VIP Transfer. Все права защищены.'
   },
   en: {
+    // Переводы для хедера
     'header.rating': '5.0 average rating from our clients',
-    'header.book': 'Book a Premium Transfer',
+    'header.book.transfer': 'Book Premium Transfer',
     'header.phone': '+41 79 789 39 76',
+    
+    // Переводы для страницы "О нас"
     'about.title': 'About VIP Transfer Zurich',
-    'about.desc': 'VIP Transfer Zurich is a premium transportation service in Switzerland and Europe. We offer a personalized approach, modern executive-class vehicles, and professional drivers for your maximum comfort and safety.',
+    'about.desc': 'VIP Transfer Zurich is a premium transportation service across Switzerland and Europe. We offer personalized approach, modern luxury vehicles and professional drivers for your maximum comfort and safety.',
     'about.feature1': '• Personal service 24/7',
-    'about.feature2': '• Only new premium-class vehicles',
-    'about.feature3': '• Experienced drivers',
+    'about.feature2': '• Only new premium class vehicles',
+    'about.feature3': '• Drivers with years of experience',
     'about.feature4': '• Confidentiality and punctuality',
+    
+    // Переводы для футера
     'footer.about.title': 'About VIP Transfer',
-    'footer.about.text': 'VIP Transfer is your reliable partner in the world of premium transportation. We offer impeccable service, comfortable vehicles, and professional drivers for your trips in Switzerland and Europe.',
+    'footer.about.text': 'VIP Transfer is your reliable partner in the world of premium transportation. We offer impeccable service, comfortable vehicles and professional drivers for your trips across Switzerland and Europe.',
     'footer.contact.title': 'Contact Us',
     'footer.address': 'Switzerland, Zurich, Bahnhofstrasse 123',
     'footer.phone': '+41 79 789 39 76',

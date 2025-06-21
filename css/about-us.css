@@ -27,13 +27,13 @@
 /* Стили отдельной карточки преимущества */
 .benefits__card {
   background-color: var(--color-secondary); /* Темный фон из переменных */
-  border-radius: 10px;
+    border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   padding: 30px;
-  text-align: center;
+    text-align: center;
   flex-basis: calc(25% - 30px); /* Расчет ширины для 4 карточек в ряду с учетом gap */
   max-width: calc(25% - 30px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,17 +47,17 @@
 
 /* Иконка в карточке */
 .benefits__icon {
-  width: 60px;
-  height: 60px;
+    width: 60px;
+    height: 60px;
   margin-bottom: 20px;
   fill: var(--color-primary); /* Золотой цвет из переменных */
 }
 
 /* Заголовок в карточке */
 .benefits__card-title {
-  font-family: var(--font-heading);
+    font-family: var(--font-heading);
   font-size: 1.5em;
-  color: var(--color-primary);
+    color: var(--color-primary);
   margin-bottom: 15px;
 }
 
@@ -73,24 +73,269 @@
 /* 
  * 2. Адаптивные стили для секции преимуществ
  */
-@media (max-width: 1200px) {
-  /* На планшетах отображаем по 2 карточки в ряду */
+
+/* Для экранов 2K и выше (2560px+) */
+@media (min-width: 2560px) {
+  .benefits {
+    padding: 80px 0;
+  }
+  .benefits__cards {
+    gap: 40px;
+  }
+  .benefits__card {
+    padding: 40px;
+    flex-basis: calc(25% - 40px);
+    max-width: calc(25% - 40px);
+  }
+  .benefits__icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 25px;
+  }
+  .benefits__card-title {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+  .benefits__card-description {
+    font-size: 1.1em;
+  }
+}
+
+/* Для экранов 1920px - 2559px */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .benefits {
+    padding: 70px 0;
+  }
+  .benefits__cards {
+    gap: 35px;
+  }
+  .benefits__card {
+    padding: 35px;
+    flex-basis: calc(25% - 35px);
+    max-width: calc(25% - 35px);
+  }
+  .benefits__icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 22px;
+  }
+  .benefits__card-title {
+    font-size: 1.6em;
+    margin-bottom: 18px;
+  }
+  .benefits__card-description {
+    font-size: 1.05em;
+  }
+}
+
+/* Для экранов 1600px - 1919px */
+@media (min-width: 1600px) and (max-width: 1919px) {
+  .benefits {
+    padding: 65px 0;
+  }
+  .benefits__cards {
+    gap: 32px;
+  }
+  .benefits__card {
+    padding: 32px;
+    flex-basis: calc(25% - 32px);
+    max-width: calc(25% - 32px);
+  }
+  .benefits__icon {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 20px;
+  }
+  .benefits__card-title {
+    font-size: 1.5em;
+    margin-bottom: 16px;
+  }
+  .benefits__card-description {
+    font-size: 1em;
+  }
+}
+
+/* Для экранов 1400px - 1599px */
+@media (min-width: 1400px) and (max-width: 1599px) {
+  .benefits {
+    padding: 60px 0;
+  }
+  .benefits__cards {
+    gap: 30px;
+  }
+  .benefits__card {
+    padding: 30px;
+    flex-basis: calc(25% - 30px);
+    max-width: calc(25% - 30px);
+  }
+  .benefits__icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+  .benefits__card-title {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+  }
+  .benefits__card-description {
+    font-size: 0.95em;
+  }
+}
+
+/* Для экранов 1200px - 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .benefits {
+    padding: 55px 0;
+  }
+  .benefits__cards {
+    gap: 28px;
+  }
+  .benefits__card {
+    padding: 28px;
+    flex-basis: calc(25% - 28px);
+    max-width: calc(25% - 28px);
+  }
+  .benefits__icon {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 18px;
+  }
+  .benefits__card-title {
+    font-size: 1.3em;
+    margin-bottom: 14px;
+  }
+  .benefits__card-description {
+    font-size: 0.9em;
+  }
+}
+
+/* Для экранов 1024px - 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .benefits {
+    padding: 50px 0;
+  }
+  .benefits__cards {
+    gap: 25px;
+  }
+  .benefits__card {
+    padding: 25px;
+    flex-basis: calc(25% - 25px);
+    max-width: calc(25% - 25px);
+  }
+  .benefits__icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 16px;
+  }
+  .benefits__card-title {
+    font-size: 1.2em;
+    margin-bottom: 12px;
+  }
+  .benefits__card-description {
+    font-size: 0.85em;
+  }
+}
+
+/* Для экранов меньше 1200px (планшеты) */
+@media (max-width: 1199px) {
   .benefits__card {
     flex-basis: calc(50% - 30px); 
     max-width: calc(50% - 30px);
   }
 }
 
-@media (max-width: 768px) {
-  /* На мобильных устройствах отображаем по 1 карточке в ряду */
+/* Для экранов меньше 768px (мобильные устройства) */
+@media (max-width: 767px) {
+  .benefits {
+    padding: 40px 0;
+  }
+  .benefits__cards {
+    gap: 20px;
+  }
   .benefits__card {
     flex-basis: 100%; 
     max-width: 100%;
+    padding: 25px;
+  }
+  .benefits__icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+  }
+  .benefits__card-title {
+    font-size: 1.3em;
+    margin-bottom: 12px;
+  }
+  .benefits__card-description {
+    font-size: 0.9em;
   }
 }
 
 /*
  * 3. Стили для страницы "О нас" (about-us.html)
- * Пока что здесь нет специфичных стилей, так как используются общие.
- * Этот раздел можно будет дополнить при необходимости.
  */
+.about-us {
+    padding: 60px 0;
+    background-color: var(--color-light);
+}
+
+.about-us__container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-us__title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.about-us__desc {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text-dark);
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-us__features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.about-us__feature {
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    padding: 0.5rem 0;
+}
+
+/* Адаптивные стили для страницы "О нас" */
+@media (max-width: 768px) {
+    .about-us {
+        padding: 40px 0;
+    }
+    .about-us__title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+    .about-us__desc {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .about-us__features {
+        gap: 0.8rem;
+    }
+    .about-us__feature {
+        font-size: 0.9rem;
+    }
+}

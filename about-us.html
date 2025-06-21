@@ -7,6 +7,7 @@
   <meta name="description" content="О компании VIP Transfer Zurich — премиальные перевозки по Швейцарии и Европе.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/about-us.css">
   <link rel="stylesheet" href="css/loading-overlay.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
@@ -28,18 +29,22 @@
           <div class="header__rating">
             <p class="header__rating-text" data-lang-key="header.rating">5.0 средний рейтинг наших клиентов</p>
             <div class="header__stars" aria-label="Рейтинг 5 из 5 звезд">
-              <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
-              <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
-              <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
-              <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
-              <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+              <svg class="header__star" viewBox="0 0 24 24" fill="#C8A26A" stroke="#C8A26A" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+              <svg class="header__star" viewBox="0 0 24 24" fill="#C8A26A" stroke="#C8A26A" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+              <svg class="header__star" viewBox="0 0 24 24" fill="#C8A26A" stroke="#C8A26A" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+              <svg class="header__star" viewBox="0 0 24 24" fill="#C8A26A" stroke="#C8A26A" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+              <svg class="header__star" viewBox="0 0 24 24" fill="#C8A26A" stroke="#C8A26A" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
             </div>
           </div>
         </div>
-        <!-- Центральная ссылка на главную страницу -->
-        <div class="header__center">
-          <a href="index.html" class="header__home-link" data-lang-key="header.book">Забронировать премиальный трансфер</a>
-        </div>
+
+        <!-- Навигационное меню -->
+        <nav class="header__nav" aria-label="Главная навигация">
+          <ul class="header__nav-list">
+            <li><a href="index.html" class="header__nav-link" data-lang-key="header.book.transfer">Забронировать премиальный трансфер</a></li>
+          </ul>
+        </nav>
+
         <!-- Настройки: язык и телефон -->
         <div class="header__settings">
           <div class="header__settings-language">
@@ -80,35 +85,37 @@
     <!-- ============================================= -->
     <footer class="footer">
       <div class="container footer__container">
-        <!-- Блок "О нас" в подвале -->
-        <div class="footer__block footer__block--about">
-          <h3 class="footer__title" data-lang-key="footer.about.title">О VIP Transfer</h3>
-          <p class="footer__text" data-lang-key="footer.about.text">VIP Transfer — ваш надежный партнер в мире премиальных перевозок. Мы предлагаем безупречный сервис, комфортабельные автомобили и профессиональных водителей для ваших поездок по Швейцарии и Европе.</p>
-          <div class="footer__socials">
-            <a href="#" class="footer__social-link" aria-label="VIP Transfer в Facebook"><img src="images/icon-facebook.svg" alt="Facebook" loading="lazy"></a>
-            <a href="#" class="footer__social-link" aria-label="VIP Transfer в Instagram"><img src="images/icon-instagram.svg" alt="Instagram" loading="lazy"></a>
-            <a href="#" class="footer__social-link" aria-label="VIP Transfer в Twitter"><img src="images/icon-twitter.svg" alt="Twitter" loading="lazy"></a>
-            <a href="#" class="footer__social-link" aria-label="VIP Transfer в LinkedIn"><img src="images/icon-linkedin.svg" alt="LinkedIn" loading="lazy"></a>
+        <div class="footer__main">
+          <!-- Блок "О нас" в подвале -->
+          <div class="footer__block footer__block--about">
+            <h3 class="footer__title" data-lang-key="footer.about.title">О VIP Transfer</h3>
+            <p class="footer__text" data-lang-key="footer.about.text">VIP Transfer — ваш надежный партнер в мире премиальных перевозок. Мы предлагаем безупречный сервис, комфортабельные автомобили и профессиональных водителей для ваших поездок по Швейцарии и Европе.</p>
+            <div class="footer__socials">
+              <a href="#" class="footer__social-link" aria-label="VIP Transfer в Facebook"><img src="images/icon-facebook.svg" alt="Facebook" loading="lazy"></a>
+              <a href="#" class="footer__social-link" aria-label="VIP Transfer в Instagram"><img src="images/icon-instagram.svg" alt="Instagram" loading="lazy"></a>
+              <a href="#" class="footer__social-link" aria-label="VIP Transfer в Twitter"><img src="images/icon-twitter.svg" alt="Twitter" loading="lazy"></a>
+              <a href="#" class="footer__social-link" aria-label="VIP Transfer в LinkedIn"><img src="images/icon-linkedin.svg" alt="LinkedIn" loading="lazy"></a>
+            </div>
           </div>
-        </div>
-        <!-- Блок с контактами -->
-        <div class="footer__block footer__block--contact">
-          <h3 class="footer__title" data-lang-key="footer.contact.title">Свяжитесь с нами</h3>
-          <ul class="footer__list">
-            <li><address class="footer__text" data-lang-key="footer.address">Швейцария, Цюрих, Bahnhofstrasse 123</address></li>
-            <li><a href="tel:+41797893976" class="footer__link" data-lang-key="footer.phone">+41 79 789 39 76</a></li>
-            <li><a href="mailto:info@viptransfer.com" class="footer__link" data-lang-key="footer.email">info@viptransfer.com</a></li>
-            <li class="footer__text" data-lang-key="footer.hours">Пн-Вс: Круглосуточно</li>
-          </ul>
-        </div>
-        <!-- Блок с юридической информацией -->
-        <div class="footer__block footer__block--legal">
-          <h3 class="footer__title" data-lang-key="footer.legal.title">Правовая информация</h3>
-          <ul class="footer__list">
-            <li><a href="#" class="footer__link" data-lang-key="footer.privacy">Политика конфиденциальности</a></li>
-            <li><a href="#" class="footer__link" data-lang-key="footer.terms">Условия использования</a></li>
-            <li><a href="#" class="footer__link" data-lang-key="footer.sitemap">Карта сайта</a></li>
-          </ul>
+          <!-- Блок с контактами -->
+          <div class="footer__block footer__block--contact">
+            <h3 class="footer__title" data-lang-key="footer.contact.title">Свяжитесь с нами</h3>
+            <ul class="footer__list">
+              <li><address class="footer__text" data-lang-key="footer.address">Швейцария, Цюрих, Bahnhofstrasse 123</address></li>
+              <li><a href="tel:+41797893976" class="footer__link" data-lang-key="footer.phone">+41 79 789 39 76</a></li>
+              <li><a href="mailto:info@viptransfer.com" class="footer__link" data-lang-key="footer.email">info@viptransfer.com</a></li>
+              <li class="footer__text" data-lang-key="footer.hours">Пн-Вс: Круглосуточно</li>
+            </ul>
+          </div>
+          <!-- Блок с юридической информацией -->
+          <div class="footer__block footer__block--legal">
+            <h3 class="footer__title" data-lang-key="footer.legal.title">Правовая информация</h3>
+            <ul class="footer__list">
+              <li><a href="#" class="footer__link" data-lang-key="footer.privacy">Политика конфиденциальности</a></li>
+              <li><a href="#" class="footer__link" data-lang-key="footer.terms">Условия использования</a></li>
+              <li><a href="#" class="footer__link" data-lang-key="footer.sitemap">Карта сайта</a></li>
+            </ul>
+          </div>
         </div>
       </div>
       <!-- Нижняя часть подвала с копирайтом -->
@@ -119,6 +126,8 @@
   </div>
 
   <!-- Подключение скриптов для страницы "О нас" -->
+  <script type="module" src="js/about-structured-data.js"></script>
   <script type="module" src="js/about-us.js"></script>
+  <script type="module" src="js/language.js"></script>
 </body>
 </html> 

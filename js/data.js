@@ -139,7 +139,41 @@ export const translations = {
         'vehicle.sprinter.name': 'Mercedes Sprinter',
         'vehicle.sprinter.description': 'Spacious minibus for group VIP transfers from Zurich.',
         'vehicle.v-class.name': 'Mercedes V-Class',
-        'vehicle.v-class.description': 'Comfortable minivan for VIP transfers from Zurich.'
+        'vehicle.v-class.description': 'Comfortable minivan for VIP transfers from Zurich.',
+        
+        // Дополнительные переводы для элементов, которые используются в HTML
+        'benefits.title': 'Почему выбирают VIP Transfer?',
+        'benefits.luxury.title': 'Элитный автопарк',
+        'benefits.luxury.description': 'Только новые автомобили представительского класса, обеспечивающие максимальный комфорт и безопасность.',
+        'benefits.drivers.title': 'Профессиональные водители',
+        'benefits.drivers.description': 'Опытные, вежливые и пунктуальные водители, знающие каждый маршрут.',
+        'benefits.punctuality.title': 'Гарантированная пунктуальность',
+        'benefits.punctuality.description': 'Мы ценим ваше время и всегда прибываем точно в срок.',
+        'benefits.privacy.title': 'Конфиденциальность',
+        'benefits.privacy.description': 'Полная конфиденциальность и безопасность ваших поездок.',
+        
+        // Переводы для блога
+        'blog.title': 'Блог VIP Transfer Zurich',
+        'blog.subtitle': 'Здесь будут публиковаться новости, советы по путешествиям и статьи о премиальных трансферах.',
+        
+        // Переводы для страницы "О нас"
+        'about.title': 'О компании VIP Transfer Zurich',
+        'about.desc': 'VIP Transfer Zurich — это премиальный сервис перевозок по Швейцарии и Европе. Мы предлагаем индивидуальный подход, современные автомобили представительского класса и профессиональных водителей для вашего максимального комфорта и безопасности.',
+        'about.feature1': '• Персональный сервис 24/7',
+        'about.feature2': '• Только новые автомобили премиум-класса',
+        'about.feature3': '• Водители с многолетним опытом',
+        'about.feature4': '• Конфиденциальность и пунктуальность',
+        
+        // Переводы для хедера
+        'header.book.transfer': 'Забронировать премиальный трансфер',
+        
+        // Переводы для отзывов
+        'reviews.review1.text': '"Поездка с VIP Transfer была безупречной. Водитель приехал вовремя, автомобиль был в идеальном состоянии, а сам путь прошел незаметно. Настоящий премиум-сервис!"',
+        'reviews.review1.name': 'Анна К.',
+        'reviews.review2.text': '"Заказывал трансфер из аэропорта Цюриха. Все было на высшем уровне: встреча, помощь с багажом, комфорт в пути. Очень рекомендую этот сервис!"',
+        'reviews.review2.name': 'Дмитрий М.',
+        'reviews.review3.text': '"Использовали VIP Transfer для поездки в горы. Машина очень комфортная, водитель аккуратный, а виды за окном просто завораживали. Обязательно воспользуемся снова!"',
+        'reviews.review3.name': 'Елена С.'
     },
     en: {
         'nav.home': 'Home',
@@ -249,7 +283,41 @@ export const translations = {
         'vehicle.sprinter.name': 'Mercedes Sprinter',
         'vehicle.sprinter.description': 'Spacious minibus for group VIP transfers from Zurich.',
         'vehicle.v-class.name': 'Mercedes V-Class',
-        'vehicle.v-class.description': 'Comfortable minivan for VIP transfers from Zurich.'
+        'vehicle.v-class.description': 'Comfortable minivan for VIP transfers from Zurich.',
+        
+        // Дополнительные переводы для элементов, которые используются в HTML
+        'benefits.title': 'Why Choose VIP Transfer?',
+        'benefits.luxury.title': 'Elite Fleet',
+        'benefits.luxury.description': 'Only new executive class vehicles ensuring maximum comfort and safety.',
+        'benefits.drivers.title': 'Professional Drivers',
+        'benefits.drivers.description': 'Experienced, polite and punctual drivers who know every route.',
+        'benefits.punctuality.title': 'Guaranteed Punctuality',
+        'benefits.punctuality.description': 'We value your time and always arrive exactly on time.',
+        'benefits.privacy.title': 'Confidentiality',
+        'benefits.privacy.description': 'Complete confidentiality and security of your trips.',
+        
+        // Переводы для блога
+        'blog.title': 'VIP Transfer Zurich Blog',
+        'blog.subtitle': 'Here will be published news, travel tips and articles about premium transfers.',
+        
+        // Переводы для страницы "О нас"
+        'about.title': 'About VIP Transfer Zurich Company',
+        'about.desc': 'VIP Transfer Zurich is a premium transportation service in Switzerland and Europe. We offer individual approach, modern executive class vehicles and professional drivers for your maximum comfort and safety.',
+        'about.feature1': '• Personal 24/7 service',
+        'about.feature2': '• Only new premium class vehicles',
+        'about.feature3': '• Drivers with years of experience',
+        'about.feature4': '• Confidentiality and punctuality',
+        
+        // Переводы для хедера
+        'header.book.transfer': 'Book Premium Transfer',
+        
+        // Переводы для отзывов
+        'reviews.review1.text': '"The trip with VIP Transfer was flawless. The driver arrived on time, the car was in perfect condition, and the journey itself went unnoticed. A real premium service!"',
+        'reviews.review1.name': 'Anna K.',
+        'reviews.review2.text': '"I ordered a transfer from Zurich airport. Everything was at the highest level: meeting, help with luggage, comfort on the way. I highly recommend this service!"',
+        'reviews.review2.name': 'Dmitry M.',
+        'reviews.review3.text': '"We used VIP Transfer for a trip to the mountains. The car is very comfortable, the driver is careful, and the views outside the window were simply mesmerizing. We will definitely use it again!"',
+        'reviews.review3.name': 'Elena S.'
     }
 };
 
@@ -398,7 +466,7 @@ export const reviews = {
     ],
     en: [
         {
-            text: '"The trip with VIP Transfer was impeccable. The driver arrived on time, the car was in perfect condition, and the journey itself went unnoticed. A real premium service!"',
+            text: '"The trip with VIP Transfer was flawless. The driver arrived on time, the car was in perfect condition, and the journey itself went unnoticed. A real premium service!"',
             name: 'Anna K.'
         },
         {
