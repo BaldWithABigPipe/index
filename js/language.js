@@ -46,9 +46,9 @@ export function changeLanguage(lang, translations) {
     // Это основной способ перевода статического текста на странице.
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-            element.textContent = translations[lang][key];
-        }
+            if (translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
     });
 
     // Обновляем placeholder'ы в полях ввода.

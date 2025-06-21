@@ -1,43 +1,3 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-</script>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -52,41 +12,17 @@
     <meta property="og:url" content="https://viptransfer.com/">
     <meta property="og:title" content="VIP Трансфер Цюрих - Премиальные перевозки по Швейцарии и Европе">
     <meta property="og:description" content="Премиальные VIP трансферы из Цюриха по Швейцарии, Франции и всей Европе. Забронируйте комфортабельный трансфер на автомобилях представительского класса с профессиональными водителями.">
-    <meta property="og:image" content="https://viptransfer.com/images/og-image.jpg"> <meta property="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://viptransfer.com/images/og-image.jpg">
+    <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://viptransfer.com/">
     <meta property="twitter:title" content="VIP Трансфер Цюрих - Премиальные перевозки по Швейцарии и Европе">
     <meta property="twitter:description" content="Премиальные VIP трансферы из Цюриха по Швейцарии, Франции и всей Европе. Забронируйте комфортабельный трансфер на автомобилях представительского класса с профессиональными водителями.">
-    <meta property="twitter:image" content="https://viptransfer.com/images/twitter-image.jpg"> <link rel="canonical" href="https://viptransfer.com/">
+    <meta property="twitter:image" content="https://viptransfer.com/images/twitter-image.jpg">
+    <link rel="canonical" href="https://viptransfer.com/">
     <link rel="alternate" hreflang="en" href="https://viptransfer.com/en/">
     <link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <link rel="stylesheet" href="css/styles.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "VIP Transfer Zurich",
-    "description": "Premium VIP transfer services from Zurich to hotels and resorts in Switzerland and France.",
-    "url": "https://viptransfer.com",
-    "telephone": "+123456789",
-    "email": "info@viptransfer.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Zurich",
-      "addressCountry": "Switzerland"
-    },
-    "availableLanguage": ["Russian", "English"],
-    "service": {
-      "@type": "Service",
-      "serviceType": "VIP Transfer",
-      "areaServed": ["Switzerland", "France"],
-      "provider": {
-        "@type": "Organization",
-        "name": "VIP Transfer Zurich"
-      }
-    }
-  }
-  </script>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -154,48 +90,48 @@
             <!-- ============================================= -->
             <!--        ГЛАВНЫЙ ЭКРАН (HERO) С ФОРМОЙ БРОНИРОВАНИЯ -->
             <!-- ============================================= -->
-            <section class="hero" id="hero" aria-labelledby="heroTitle">
+<section class="hero" id="hero" aria-labelledby="heroTitle">
                 <div class="hero__container">
-                    <h1 class="hero__title" data-i18n="hero.title">VIP Трансфер из Цюриха в Швейцарию и Францию</h1>
+      <h1 class="hero__title" data-i18n="hero.title">VIP Трансфер из Цюриха в Швейцарию и Францию</h1>
                     
                     <!-- Комплексный блок бронирования -->
-                    <div class="hero__booking-form">
+      <div class="hero__booking-form">
                         
                         <!-- Форма для ввода данных о поездке -->
-                        <form class="hero__form">
+        <form class="hero__form">
                             <h3 class="hero__form-title" data-i18n="hero.form.title">Забронируйте премиум трансфер</h3>
 
                             <div class="hero__form-row">
                                 <!-- Поле "Откуда" -->
-                                <div class="hero__form-group">
-                                    <label for="from" class="hero__form-label" data-i18n="hero.form.from">Откуда</label>
-                                    <div class="hero__form-input-wrapper">
+          <div class="hero__form-group">
+            <label for="from" class="hero__form-label" data-i18n="hero.form.from">Откуда</label>
+            <div class="hero__form-input-wrapper">
                                         <img src="img/icons/location-pin.svg" alt="Location Pin" class="hero__form-icon">
                                         <input type="text" id="from" class="hero__form-input" autocomplete="off">
                                     </div>
-                                    <div id="from-suggestions" class="hero__suggestions hero__suggestions--hidden"></div>
-                                </div>
+              <div id="from-suggestions" class="hero__suggestions hero__suggestions--hidden"></div>
+            </div>
 
                                 <!-- Поле "Куда" -->
-                                <div class="hero__form-group">
-                                    <label for="to" class="hero__form-label" data-i18n="hero.form.to">Куда</label>
-                                    <div class="hero__form-input-wrapper">
+          <div class="hero__form-group">
+            <label for="to" class="hero__form-label" data-i18n="hero.form.to">Куда</label>
+            <div class="hero__form-input-wrapper">
                                         <img src="img/icons/location-pin.svg" alt="Location Pin" class="hero__form-icon">
                                         <input type="text" id="to" class="hero__form-input" autocomplete="off">
                                     </div>
-                                    <div id="to-suggestions" class="hero__suggestions hero__suggestions--hidden"></div>
-                                </div>
-                            </div>
+              <div id="to-suggestions" class="hero__suggestions hero__suggestions--hidden"></div>
+            </div>
+          </div>
 
                             <div class="hero__form-row">
                                 <!-- Поле "Дата поездки" -->
-                                <div class="hero__form-group">
-                                    <label for="date" class="hero__form-label" data-i18n="hero.form.date">Дата поездки</label>
+          <div class="hero__form-group">
+            <label for="date" class="hero__form-label" data-i18n="hero.form.date">Дата поездки</label>
                                     <div class="hero__form-input-wrapper">
                                         <img src="img/icons/calendar.svg" alt="Calendar" class="hero__form-icon">
                                         <input type="text" id="date" class="hero__form-input" placeholder="Выберите дату">
-                                    </div>
-                                </div>
+          </div>
+          </div>
 
                                 <!-- Группа для кнопки, чтобы она была в том же ряду -->
                                 <div class="hero__form-group">
@@ -203,17 +139,17 @@
                                     <label class="hero__form-label" style="opacity: 0;">Действие</label>
                                     <button type="button" id="add-return-transfer" class="hero__form-button--inline" data-add-text="Добавить обратный трансфер" data-remove-text="Убрать обратный трансфер">
                                         <svg class="hero__form-button-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1V15M1 8H15" stroke="currentColor" stroke-width="2"></path></svg>
-                                        <span data-i18n="hero.form.addReturn">Добавить обратный трансфер</span>
-                                    </button>
-                                </div>
-                            </div>
+            <span data-i18n="hero.form.addReturn">Добавить обратный трансфер</span>
+          </button>
+                </div>
+                    </div>
 
-                            <!-- Поле "Количество пассажиров" на всю ширину -->
-                            <div class="hero__form-group hero__form-group--full-width">
+                            <!-- Поле "Количество пассажиров" слева -->
+                            <div class="hero__form-group hero__form-group--passengers">
                                 <label for="passengers" class="hero__form-label" data-i18n="hero.form.passengers">Количество пассажиров</label>
                                 <div class="hero__form-input-wrapper">
                                     <img src="img/icons/user.svg" alt="User" class="hero__form-icon">
-                                    <select id="passengers" class="hero__form-select">
+                                    <select id="passengers" class="hero__form-select hero__form-select--passengers">
                                         <option value="1" data-lang-key="hero.form.passenger1">1 пассажир</option>
                                         <option value="2" data-lang-key="hero.form.passenger2">2 пассажира</option>
                                         <option value="3" data-lang-key="hero.form.passenger3">3 пассажира</option>
@@ -227,58 +163,58 @@
                                 <button type="button" id="show-route-btn" class="hero__form-button">
                                     <span data-i18n="hero.form.showRoute">Показать маршрут</span>
                                 </button>
-                            </div>
+            </div>
 
                             <!-- Контейнер для карты, изначально скрыт -->
                             <div class="hero__map-container hero__map-container--hidden">
                                <div id="map" class="hero__map"></div>
-                            </div>
+              </div>
 
                             <!-- Блок выбора автомобиля (изначально скрыт) -->
                             <div class="hero__vehicle-selection hero__vehicle-selection--hidden" id="vehicle-selection">
                                <h3 class="hero__vehicle-selection-title" data-i18n="hero.vehicle.title">Выберите люксовый автомобиль</h3>
                                <div class="hero__vehicle-selection-grid">
                                   <!-- Карточки автомобилей будут вставлены сюда через JS -->
-                               </div>
-                            </div>
+            </div>
+          </div>
 
                         </form>
 
-                    </div>
-                 </div>
+      </div>
+    </div>
             </section>
 
             <!-- ============================================= -->
             <!--             СЕКЦИЯ ПРЕИМУЩЕСТВ (BENEFITS)     -->
             <!-- ============================================= -->
             <section class="benefits" id="benefits">
-              <div class="container">
-                <h2 class="section-title" data-lang-key="benefits.title">Почему выбирают VIP Transfer?</h2>
-                <div class="benefits__cards">
+                <div class="container">
+                    <h2 class="section-title" data-lang-key="benefits.title">Почему выбирают VIP Transfer?</h2>
+                    <div class="benefits__cards">
                   <!-- Карточка преимущества -->
-                  <div class="benefits__card">
-                    <img src="images/icon-luxury.svg" alt="Иконка роскоши" class="benefits__icon" loading="lazy">
-                    <h3 class="benefits__card-title" data-lang-key="benefits.luxury.title">Элитный автопарк</h3>
-                    <p class="benefits__card-description" data-lang-key="benefits.luxury.description">Только новые автомобили представительского класса, обеспечивающие максимальный комфорт и безопасность.</p>
-                  </div>
+                        <div class="benefits__card">
+                            <img src="images/icon-luxury.svg" alt="Иконка роскоши" class="benefits__icon" loading="lazy">
+                            <h3 class="benefits__card-title" data-lang-key="benefits.luxury.title">Элитный автопарк</h3>
+                            <p class="benefits__card-description" data-lang-key="benefits.luxury.description">Только новые автомобили представительского класса, обеспечивающие максимальный комфорт и безопасность.</p>
+                        </div>
                   <!-- Другие карточки -->
-                  <div class="benefits__card">
-                    <img src="images/icon-driver.svg" alt="Иконка водителя" class="benefits__icon" loading="lazy">
-                    <h3 class="benefits__card-title" data-lang-key="benefits.drivers.title">Профессиональные водители</h3>
-                    <p class="benefits__card-description" data-lang-key="benefits.drivers.description">Опытные, вежливые и пунктуальные водители, знающие каждый маршрут.</p>
-                  </div>
-                  <div class="benefits__card">
-                    <img src="images/icon-punctuality.svg" alt="Иконка пунктуальности" class="benefits__icon" loading="lazy">
-                    <h3 class="benefits__card-title" data-lang-key="benefits.punctuality.title">Гарантированная пунктуальность</h3>
-                    <p class="benefits__card-description" data-lang-key="benefits.punctuality.description">Мы ценим ваше время и всегда прибываем точно в срок.</p>
-                  </div>
-                  <div class="benefits__card">
-                    <img src="images/icon-privacy.svg" alt="Иконка конфиденциальности" class="benefits__icon" loading="lazy">
-                    <h3 class="benefits__card-title" data-lang-key="benefits.privacy.title">Конфиденциальность</h3>
-                    <p class="benefits__card-description" data-lang-key="benefits.privacy.description">Полная конфиденциальность и безопасность ваших поездок.</p>
-                  </div>
+                        <div class="benefits__card">
+                            <img src="images/icon-driver.svg" alt="Иконка водителя" class="benefits__icon" loading="lazy">
+                            <h3 class="benefits__card-title" data-lang-key="benefits.drivers.title">Профессиональные водители</h3>
+                            <p class="benefits__card-description" data-lang-key="benefits.drivers.description">Опытные, вежливые и пунктуальные водители, знающие каждый маршрут.</p>
+                        </div>
+                        <div class="benefits__card">
+                            <img src="images/icon-punctuality.svg" alt="Иконка пунктуальности" class="benefits__icon" loading="lazy">
+                            <h3 class="benefits__card-title" data-lang-key="benefits.punctuality.title">Гарантированная пунктуальность</h3>
+                            <p class="benefits__card-description" data-lang-key="benefits.punctuality.description">Мы ценим ваше время и всегда прибываем точно в срок.</p>
+                        </div>
+                        <div class="benefits__card">
+                            <img src="images/icon-privacy.svg" alt="Иконка конфиденциальности" class="benefits__icon" loading="lazy">
+                            <h3 class="benefits__card-title" data-lang-key="benefits.privacy.title">Конфиденциальность</h3>
+                            <p class="benefits__card-description" data-lang-key="benefits.privacy.description">Полная конфиденциальность и безопасность ваших поездок.</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </section>
 
             <!-- ============================================= -->
@@ -328,22 +264,22 @@
             <!-- ============================================= -->
             <!--       МОДАЛЬНОЕ ОКНО С ГАЛЕРЕЕЙ АВТОМОБИЛЕЙ   -->
             <!-- ============================================= -->
-            <div class="gallery-modal gallery-modal--hidden" id="gallery-modal">
-                <div class="gallery-modal__content">
-                    <span class="gallery-modal__close" data-lang-key="gallery.close">×</span>
-                    <div class="gallery-modal__image">
-                        <button class="gallery-modal__prev" data-lang-key="gallery.prev">←</button>
-                        <img class="gallery-modal__main-image" id="gallery-img" src="" alt="">
-                        <button class="gallery-modal__next" data-lang-key="gallery.next">→</button>
-                    </div>
-                    <div class="gallery-modal__thumbnail-container" id="thumbnail-container"></div>
-                    <div class="gallery-modal__info">
-                        <h2 class="gallery-modal__title" id="gallery-title"></h2>
-                        <p class="gallery-modal__description" id="gallery-description"></p>
-                        <ul class="gallery-modal__specs" id="gallery-specs"></ul>
-                    </div>
-                </div>
-            </div>
+  <div class="gallery-modal gallery-modal--hidden" id="gallery-modal">
+    <div class="gallery-modal__content">
+      <span class="gallery-modal__close" data-lang-key="gallery.close">×</span>
+      <div class="gallery-modal__image">
+        <button class="gallery-modal__prev" data-lang-key="gallery.prev">←</button>
+        <img class="gallery-modal__main-image" id="gallery-img" src="" alt="">
+        <button class="gallery-modal__next" data-lang-key="gallery.next">→</button>
+      </div>
+      <div class="gallery-modal__thumbnail-container" id="thumbnail-container"></div>
+      <div class="gallery-modal__info">
+        <h2 class="gallery-modal__title" id="gallery-title"></h2>
+        <p class="gallery-modal__description" id="gallery-description"></p>
+        <ul class="gallery-modal__specs" id="gallery-specs"></ul>
+      </div>
+    </div>
+  </div>
 
             <!-- ============================================= -->
             <!--   СЕКЦИЯ ПОПУЛЯРНЫХ МАРШРУТОВ (POPULAR TRANSFERS) -->
