@@ -49,15 +49,15 @@
  *    Занимает всю высоту экрана и центрирует контент.
  */
 .hero {
-    padding: 2rem 0 4rem 0; /* Увеличиваем отступ снизу */
+    padding: 2rem 0 4rem 0;
     background: #FFFFFF;
     text-align: center;
     animation: fadeIn 1s ease-out 0.2s both;
-    min-height: 85vh; /* Оставляем полную высоту экрана */
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Убираем центрирование по вертикали */
-    align-items: center; /* Оставляем центрирование по горизонтали */
+    justify-content: flex-start;
+    align-items: center;
     box-sizing: border-box; 
 }
 
@@ -74,7 +74,7 @@
 }
 
 .hero__title {
-    font-family: 'Playfair Display', serif; /* Используем переменную для шрифта */
+    font-family: 'Playfair Display', serif;
     font-size: 3rem;
     margin-bottom: 40px;
     color: var(--color-secondary);
@@ -85,19 +85,19 @@
  *    Использует Grid для создания сложной сетки: форма | карта | выбор авто.
  */
 .hero__booking-form {
-    background: rgba(0, 0, 0, 0.85); /* Более темный фон */
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(15px);
     border-radius: var(--border-radius-large);
-    padding: 1.5rem; /* Уменьшаем padding */
+    padding: 1.35rem;
     width: 100%;
-    max-width: 1200px; /* Увеличиваем максимальную ширину для больших экранов */
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4); /* Усиленная тень */
+    max-width: 900px; /* Уменьшаем максимальную ширину */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
     border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
-    flex-direction: column; /* Изменено на column */
-    gap: 0.8rem; /* Уменьшаем отступ между элементами */
-    justify-content: center; /* Центрируем содержимое по вертикали */
-    min-height: 400px; /* Уменьшаем минимальную высоту */
+    flex-direction: column;
+    gap: 0.72rem;
+    justify-content: center;
+    min-height: 320px; /* Уменьшаем минимальную высоту */
 }
 
 /* 
@@ -106,38 +106,38 @@
 .hero__form {
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Уменьшаем отступы */
-    width: 100%; /* Форма будет занимать всю ширину контейнера */
+    gap: 0.9rem;
+    width: 100%;
 }
 
 /* Стили для строки с инпутами */
 .hero__form-row {
     display: flex;
     justify-content: space-between;
-    gap: 1rem; /* Уменьшаем отступ между полями */
+    gap: 0.9rem;
 }
 
 .hero__form-title {
     font-family: var(--font-heading);
-    font-size: 5rem; /* Увеличиваем размер еще больше */
+    font-size: 4.5rem;
     color: var(--color-primary);
-    margin-bottom: 20px; /* Уменьшаем отступ снизу */
-    width: 100%; /* Заголовок занимает всю ширину */
+    margin-bottom: 18px;
+    width: 100%;
     text-align: center;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3); /* Усиленная многослойная тень */
-    font-weight: 700; /* Делаем жирнее */
-    letter-spacing: 1px; /* Увеличиваем межбуквенный интервал */
-    line-height: 1.2; /* Улучшаем межстрочный интервал */
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.2;
 }
 
 /* Стили для отдельной группы инпутов */
 .hero__form-group {
     position: relative;
     width: 100%;
-    flex: 1; /* Позволяем группам полей расти и занимать равное место */
-    display: flex; /* Добавляем flex для корректного отображения label */
+    flex: 1;
+    display: flex;
     flex-direction: column;
-    gap: 0.4rem; /* Уменьшаем отступ */
+    gap: 0.36rem;
 }
 
 /* Группа на всю ширину */
@@ -145,26 +145,44 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem; /* Уменьшаем отступ между label и select */
+    gap: 0.36rem;
+    align-items: flex-start; /* Выравниваем по левому краю */
+}
+
+/* Группа для поля пассажиров слева */
+.hero__form-group--passengers {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.36rem;
+    align-self: flex-start;
+}
+
+/* Стили для select пассажиров */
+.hero__form-select--passengers {
+    width: auto;
+    min-width: 120px;
+    padding-right: 20px;
 }
 
 /* Стили для поля выбора пассажиров */
 .hero__form-group--full-width .hero__form-input-wrapper {
     width: auto; /* Автоматическая ширина по содержимому */
-    max-width: none; /* Убираем ограничение */
-    display: inline-block; /* Блок по содержимому */
+    max-width: none;
+    display: inline-block;
 }
 
 /* Стили для label в поле пассажиров */
 .hero__form-group--full-width .hero__form-label {
-    margin-bottom: 0.4rem; /* Уменьшаем отступ между label и select */
-    width: auto; /* Автоматическая ширина */
-    display: inline-block; /* Блок по содержимому */
+    margin-bottom: 0.36rem;
+    width: auto;
+    display: inline-block;
+    font-size: 0.9rem; /* Размер как у текста */
 }
 
 .hero__form-label {
-    font-size: 1rem;
-    margin-bottom: 6px; /* Уменьшаем отступ */
+    font-size: 0.9rem;
+    margin-bottom: 5.4px;
     display: block;
     color: var(--color-text-light);
 }
@@ -173,17 +191,17 @@
     position: relative;
     cursor: pointer;
     background-color: var(--color-secondary-dark);
-    width: 100%; /* Убираем min-width */
+    width: 100%;
 }
 
 /* Иконки внутри полей ввода */
 .hero__form-icon {
     position: absolute;
     top: 50%;
-    left: 12px;
+    left: 11px;
     transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     cursor: pointer;
 }
 
@@ -191,16 +209,16 @@
 .hero__form-input,
 .hero__form-select {
     width: 100%;
-    padding: 14px 14px 14px 45px; /* Уменьшаем padding для компактности */
-    font-size: 1rem; /* Уменьшаем размер шрифта */
+    padding: 12.6px 12.6px 12.6px 40.5px;
+    font-size: 0.9rem;
     border: 1px solid var(--color-primary);
     border-radius: 8px;
     background-color: var(--color-secondary);
     color: var(--color-text-light);
     transition: all 0.3s ease;
-    min-width: 0; /* Убираем min-width */
-    height: 48px; /* Фиксированная высота для всех полей */
-    box-sizing: border-box; /* Учитываем border в общей высоте */
+    min-width: 0;
+    height: 43px;
+    box-sizing: border-box;
 }
 
 .hero__form-input:focus,
@@ -220,23 +238,23 @@
     appearance: none;
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%202L6%207L11%202%22%20stroke%3D%22%23C8A26A%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 30px;
+    background-position: right 11px center;
+    padding-right: 27px;
 }
 
 /* Кнопки внутри формы */
 .hero__form-button {
-    padding: 12px;
+    padding: 10.8px;
     background-color: var(--color-primary);
     color: var(--color-text-light);
     border: none;
     border-radius: 8px;
     font-family: var(--font-heading);
-    font-size: 1.125rem; /* 18px */
+    font-size: 1.0125rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    width: 100%; /* Растягиваем кнопку на всю ширину */
-    max-width: 300px; /* Но ограничиваем ее максимальную ширину */
+    width: 100%;
+    max-width: 270px;
 }
 
 .hero__form-button:hover {
@@ -249,37 +267,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
     width: 100%;
-    height: 48px; /* Точная высота как у полей ввода */
-    padding: 14px 12px; /* Приводим в соответствие с полями ввода */
-    font-size: 0.9rem; /* Уменьшаем размер текста */
+    height: 43px;
+    padding: 12.6px 10.8px;
+    font-size: 0.81rem;
     border: 1px solid var(--color-primary);
     border-radius: 8px;
     background-color: var(--color-secondary);
     color: var(--color-text-light);
     cursor: pointer;
     transition: all 0.3s ease;
-    white-space: nowrap; /* Запрещаем перенос текста */
-    min-width: 0; /* Убираем min-width */
-    box-sizing: border-box; /* Учитываем border в общей ширине */
+    white-space: nowrap;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 .hero__form-button--inline:hover {
     border-color: #FFFFFF;
-    background-color: var(--color-tertiary); /* Цвет как при ховере на подсказках */
+    background-color: var(--color-tertiary);
 }
 
 .hero__form-button--inline .hero__form-button-icon {
-    width: 12px; /* Уменьшаем размер иконки еще больше */
-    height: 12px; /* Уменьшаем размер иконки еще больше */
+    width: 11px;
+    height: 11px;
 }
 
 /* Контейнер для главной кнопки */
 .hero__form-footer {
     display: flex;
-    justify-content: center; /* Центрируем кнопку */
-    margin-top: 0.5rem; /* Уменьшаем отступ */
+    justify-content: center;
+    margin-top: 0.5rem;
 }
 
 /* 
@@ -588,406 +606,314 @@
  * 10. Адаптивные стили (Media Queries)
  */
 
-/* Базовые стили для экранов 1920px и шире */
-@media (min-width: 1920px) {
-    .hero__booking-form {
-        padding: 2rem;
-        gap: 1.2rem;
-        min-height: 450px;
-        max-width: 1400px; /* Большая ширина для очень больших экранов */
+/* Для экранов 2K и выше (2560px+) */
+@media (min-width: 2560px) {
+    .hero {
+        min-height: 100vh; /* Полная высота экрана */
+        padding: 1rem 0 2rem 0;
     }
-    .hero__form {
-        padding: 1.8rem;
-        gap: 1.2rem;
+    .hero__booking-form {
+        max-width: 1400px; /* Увеличиваем для 2K экранов */
+        min-height: 450px;
+        padding: 2rem;
+        gap: 1rem;
     }
     .hero__form-title {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
+        font-size: 5rem;
+        margin-bottom: 2rem;
     }
     .hero__form-input,
     .hero__form-select {
-        padding: 16px 16px 16px 45px;
-        font-size: 1.1rem;
-        height: 52px;
+        padding: 16px 16px 16px 50px;
+        font-size: 1rem;
+        height: 50px;
+    }
+    .hero__form-select--passengers {
+        min-width: 150px;
     }
     .hero__form-button--inline {
-        height: 52px;
-        padding: 16px 12px;
-        font-size: 1rem;
+        height: 50px;
+        padding: 16px 15px;
+        font-size: 0.9rem;
     }
     .hero__form-icon {
         width: 20px;
         height: 20px;
-        left: 13px;
+        left: 15px;
     }
-    .hero__map-container,
-    .hero__vehicle-selection {
-        height: 500px;
-        min-height: 500px;
-    }
-    .hero__vehicle-card {
-        padding: 16px;
-    }
-    .hero__vehicle-card-title {
-        font-size: 1.1rem;
-    }
-    .hero__vehicle-card-price {
+    .hero__form-label {
         font-size: 1rem;
+        margin-bottom: 6px;
     }
-    .hero__vehicle-card-description {
-        font-size: 0.9rem;
-    }
-    .hero__vehicle-image-container {
-        height: 130px;
+    .hero__form-group--full-width .hero__form-label {
+        font-size: 1rem;
     }
 }
 
-/* Очень широкие экраны */
-@media (max-width: 1919px) and (min-width: 1801px) {
-    .hero__booking-form {
-        grid-template-columns: minmax(300px, 1fr) 1.5fr; /* Убираем третью колонку, объединяем карту и авто */
-        grid-template-areas: 
-            "form map"
-            "form vehicle";
-        gap: 25px;
-        padding: 1.8rem;
-        min-height: 420px;
-        max-width: 1300px; /* Большая ширина */
+/* Для экранов 1920px - 2559px */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .hero {
+        min-height: 95vh;
+        padding: 1.5rem 0 3rem 0;
     }
-    .hero__form {
-        padding: 1.5rem;
-        gap: 1rem;
+    .hero__booking-form {
+        max-width: 1300px;
+        min-height: 420px;
+        padding: 1.8rem;
+        gap: 0.9rem;
     }
     .hero__form-title {
-        font-size: 1.6rem;
-        margin-bottom: 1.3rem;
+        font-size: 4.5rem;
+        margin-bottom: 1.8rem;
     }
     .hero__form-input,
     .hero__form-select {
-        padding: 15px 15px 15px 42px;
-        font-size: 1rem;
-        height: 50px;
+        padding: 15px 15px 15px 45px;
+        font-size: 0.95rem;
+        height: 48px;
+    }
+    .hero__form-select--passengers {
+        min-width: 140px;
     }
     .hero__form-button--inline {
-        height: 50px;
-        padding: 15px 12px;
-        font-size: 0.95rem;
+        height: 48px;
+        padding: 15px 14px;
+        font-size: 0.85rem;
+    }
+    .hero__form-icon {
+        width: 19px;
+        height: 19px;
+        left: 14px;
+    }
+}
+
+/* Для экранов 1600px - 1919px */
+@media (min-width: 1600px) and (max-width: 1919px) {
+    .hero {
+        min-height: 90vh;
+        padding: 1.3rem 0 2.8rem 0;
+    }
+    .hero__booking-form {
+        max-width: 1200px;
+        min-height: 400px;
+        padding: 1.6rem;
+        gap: 0.8rem;
+    }
+    .hero__form-title {
+        font-size: 4rem;
+        margin-bottom: 1.6rem;
+    }
+    .hero__form-input,
+    .hero__form-select {
+        padding: 14px 14px 14px 42px;
+        font-size: 0.9rem;
+        height: 46px;
+    }
+    .hero__form-select--passengers {
+        min-width: 130px;
+    }
+    .hero__form-button--inline {
+        height: 46px;
+        padding: 14px 13px;
+        font-size: 0.8rem;
     }
     .hero__form-icon {
         width: 18px;
         height: 18px;
-        left: 12px;
-    }
-    .hero__map-container,
-    .hero__vehicle-selection {
-        height: 480px;
-        min-height: 480px;
-    }
-    .hero__vehicle-card {
-        padding: 14px;
-    }
-    .hero__vehicle-card-title {
-        font-size: 1.05rem;
-    }
-    .hero__vehicle-card-price {
-        font-size: 0.95rem;
-    }
-    .hero__vehicle-card-description {
-        font-size: 0.85rem;
-    }
-    .hero__vehicle-image-container {
-        height: 110px;
+        left: 13px;
     }
 }
 
-@media (max-width: 1800px) and (min-width: 1601px) {
-    .hero__booking-form {
-        padding: 1.6rem;
-        min-height: 400px;
-        gap: 1rem;
-        max-width: 1200px; /* Большая ширина */
+/* Для экранов 1400px - 1599px */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .hero {
+        min-height: 85vh;
+        padding: 1.2rem 0 2.5rem 0;
     }
-    .hero__form {
-        padding: 1.3rem;
-        gap: 0.9rem;
+    .hero__booking-form {
+        max-width: 1100px;
+        min-height: 380px;
+        padding: 1.5rem;
+        gap: 0.7rem;
     }
     .hero__form-title {
-        font-size: 1.4rem;
-        margin-bottom: 1.1rem;
+        font-size: 3.5rem;
+        margin-bottom: 1.4rem;
     }
     .hero__form-input,
     .hero__form-select {
-        padding: 14px 14px 14px 40px;
-        font-size: 0.95rem;
-        height: 48px;
+        padding: 13px 13px 13px 40px;
+        font-size: 0.85rem;
+        height: 44px;
+    }
+    .hero__form-select--passengers {
+        min-width: 125px;
     }
     .hero__form-button--inline {
-        height: 48px;
-        padding: 14px 12px;
-        font-size: 0.9rem;
+        height: 44px;
+        padding: 13px 12px;
+        font-size: 0.75rem;
     }
     .hero__form-icon {
         width: 17px;
         height: 17px;
-        left: 11px;
-    }
-    .hero__map-container {
-        min-height: 420px;
-        height: 420px;
-    }
-    .hero__vehicle-selection {
-        height: 420px;
-        min-height: 420px;
-    }
-    .hero__vehicle-card {
-        padding: 12px;
-    }
-    .hero__vehicle-card-title {
-        font-size: 1rem;
-    }
-    .hero__vehicle-card-price {
-        font-size: 0.9rem;
-    }
-    .hero__vehicle-card-description {
-        font-size: 0.8rem;
-    }
-    .hero__vehicle-image-container {
-        height: 100px;
+        left: 12px;
     }
 }
 
-@media (max-width: 1600px) and (min-width: 1401px) {
-    .hero__booking-form {
-        grid-template-columns: minmax(280px, 0.8fr) 1.2fr;
-        gap: 18px;
-        padding: 1.4rem;
-        min-height: 380px;
-        max-width: 1100px; /* Большая ширина */
+/* Для экранов 1200px - 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .hero {
+        min-height: 80vh;
+        padding: 1rem 0 2.2rem 0;
     }
-    .hero__form {
-        padding: 1.1rem;
-        gap: 0.8rem;
+    .hero__booking-form {
+        max-width: 1000px;
+        min-height: 360px;
+        padding: 1.3rem;
+        gap: 0.6rem;
     }
     .hero__form-title {
-        font-size: 1.2rem;
-        margin-bottom: 0.9rem;
+        font-size: 3rem;
+        margin-bottom: 1.2rem;
     }
     .hero__form-input,
     .hero__form-select {
-        padding: 13px 13px 13px 38px;
-        font-size: 0.9rem;
-        height: 46px;
+        padding: 12px 12px 12px 38px;
+        font-size: 0.8rem;
+        height: 42px;
+    }
+    .hero__form-select--passengers {
+        min-width: 120px;
     }
     .hero__form-button--inline {
-        height: 46px;
-        padding: 13px 12px;
-        font-size: 0.85rem;
+        height: 42px;
+        padding: 12px 11px;
+        font-size: 0.7rem;
     }
     .hero__form-icon {
         width: 16px;
         height: 16px;
-        left: 10px;
-    }
-    .hero__vehicle-selection {
-        max-width: none;
-        height: 400px;
-        min-height: 400px;
-    }
-    .hero__form,
-    .hero__map-container,
-    .hero__vehicle-selection {
-        min-width: 0;
-    }
-    .hero__map-container {
-        height: 400px;
-        min-height: 400px;
-    }
-    .hero__vehicle-card {
-        padding: 10px;
-    }
-    .hero__vehicle-card-title {
-        font-size: 0.95rem;
-    }
-    .hero__vehicle-card-price {
-        font-size: 0.85rem;
-    }
-    .hero__vehicle-card-description {
-        font-size: 0.75rem;
-    }
-    .hero__vehicle-image-container {
-        height: 90px;
+        left: 11px;
     }
 }
 
-/* Средние экраны */
-@media (max-width: 1400px) and (min-width: 1201px) {
-    .hero__booking-form {
-        padding: 1.2rem;
-        min-height: 360px;
-        gap: 0.8rem;
-        max-width: 1000px; /* Большая ширина */
+/* Для экранов 1024px - 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .hero {
+        min-height: 75vh;
+        padding: 0.8rem 0 2rem 0;
     }
-    .hero__form {
-        padding: 0.9rem;
-        gap: 0.7rem;
+    .hero__booking-form {
+        max-width: 900px;
+        min-height: 340px;
+        padding: 1.2rem;
+        gap: 0.5rem;
     }
     .hero__form-title {
-        font-size: 1.1rem;
-        margin-bottom: 0.8rem;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
     }
     .hero__form-input,
     .hero__form-select {
-        padding: 12px 12px 12px 36px;
-        font-size: 0.85rem;
-        height: 44px;
+        padding: 11px 11px 11px 36px;
+        font-size: 0.75rem;
+        height: 40px;
+    }
+    .hero__form-select--passengers {
+        min-width: 115px;
     }
     .hero__form-button--inline {
-        height: 44px;
-        padding: 12px 12px;
-        font-size: 0.8rem;
+        height: 40px;
+        padding: 11px 10px;
+        font-size: 0.65rem;
     }
     .hero__form-icon {
         width: 15px;
         height: 15px;
-        left: 9px;
-    }
-    .hero__map-and-vehicle {
-        flex-direction: column; /* Карта и авто теперь друг под другом */
-        gap: 16px;
-    }
-    .hero__map-block, .hero__map-container {
-        min-width: 100%;
-        height: 380px;
-    }
-    .hero__vehicle-selection {
-        width: 100%;
-        max-width: 100%;
-        height: 380px;
-        min-height: 380px;
-    }
-    .hero__vehicle-card {
-        padding: 8px;
-    }
-    .hero__vehicle-card-title {
-        font-size: 0.9rem;
-    }
-    .hero__vehicle-card-price {
-        font-size: 0.8rem;
-    }
-    .hero__vehicle-card-description {
-        font-size: 0.7rem;
-    }
-    .hero__vehicle-image-container {
-        height: 80px;
+        left: 10px;
     }
 }
 
-/* Планшеты */
-@media (max-width: 1200px) and (min-width: 993px) {
+/* Для экранов меньше 1024px (планшеты) */
+@media (max-width: 1023px) {
     .hero__booking-form {
-        grid-template-columns: 1fr; /* Все в одну колонку */
-        grid-template-areas:
-            "form"
-            "map"
-            "vehicle";
-        width: 90%;
-        max-width: 800px; /* Средняя ширина для планшетов */
-        padding: 1rem;
-        min-height: auto;
-        gap: 0.7rem;
-    }
-    .hero__form {
-        min-width: 100%;
-        padding: 0.8rem;
-        gap: 0.6rem;
+        max-width: 700px;
+        min-height: 300px;
+        padding: 0.9rem;
+        gap: 0.4rem;
     }
     .hero__form-title {
-        font-size: 1rem;
-        margin-bottom: 0.7rem;
+        font-size: 2.5rem;
+        margin-bottom: 0.9rem;
     }
     .hero__form-input,
     .hero__form-select {
-        padding: 11px 11px 11px 34px;
-        font-size: 0.8rem;
-        height: 42px;
+        padding: 10px 10px 10px 34px;
+        font-size: 0.7rem;
+        height: 38px;
     }
     .hero__form-button--inline {
-        height: 42px;
-        padding: 11px 12px;
-        font-size: 0.75rem;
+        height: 38px;
+        padding: 10px 8px;
+        font-size: 0.6rem;
     }
     .hero__form-icon {
         width: 14px;
         height: 14px;
         left: 8px;
     }
-    .hero__map-container {
-        min-height: 350px;
-        height: 350px;
+    .hero__form-label {
+        font-size: 0.7rem;
+        margin-bottom: 4.2px;
     }
-    .hero__vehicle-selection {
-        height: auto;
-        max-height: 400px; /* Ограничиваем высоту, чтобы скролл появился */
-    }
-    .hero__vehicle-card {
-        padding: 6px;
-    }
-    .hero__vehicle-card-title {
-        font-size: 0.85rem;
-    }
-    .hero__vehicle-card-price {
-        font-size: 0.75rem;
-    }
-    .hero__vehicle-card-description {
-        font-size: 0.65rem;
-    }
-    .hero__vehicle-image-container {
-        height: 70px;
+    .hero__form-group--full-width .hero__form-label {
+        font-size: 0.7rem;
     }
 }
 
-/* Большие мобильные устройства */
-@media (max-width: 768px) {
+/* Для экранов меньше 768px (мобильные устройства) - оставляем без изменений */
+@media (max-width: 767px) {
     .hero {
-        padding: 1rem 1rem 3rem 1rem; /* Увеличиваем отступ снизу */
-        justify-content: flex-start; /* Убираем центрирование по вертикали */
-        min-height: 100vh; /* Обеспечиваем полную высоту экрана */
+        padding: 1rem 1rem 3rem 1rem;
+        justify-content: flex-start;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        align-items: center; /* Оставляем центрирование по горизонтали */
+        align-items: center;
     }
     .hero__booking-form {
-        padding: 1rem; /* Уменьшаем padding */
-        background: rgba(0, 0, 0, 0.9); /* Еще более темный фон для мобильных */
-        min-height: 350px; /* Уменьшаем минимальную высоту */
-        justify-content: center; /* Сохраняем центрирование формы */
-        gap: 0.6rem; /* Уменьшаем отступы */
-        max-width: 600px; /* Маленькая ширина только для мобильных */
-        width: 95%; /* Занимает почти всю ширину экрана */
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.9);
+        min-height: 350px;
+        justify-content: center;
+        gap: 0.6rem;
+        max-width: 600px;
+        width: 95%;
     }
     .hero__form {
-        padding: 0.6rem; /* Уменьшаем padding */
-        gap: 0.5rem; /* Уменьшаем отступы */
+        padding: 0.6rem;
+        gap: 0.5rem;
     }
     .hero__form-title {
-        font-size: 0.85rem; /* Уменьшаем размер */
-        margin-bottom: 0.5rem; /* Уменьшаем отступ */
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
     }
     .hero__form-row {
         flex-direction: column;
-        gap: 0.6rem; /* Уменьшаем отступ */
+        gap: 0.6rem;
     }
     .hero__title {
-        font-size: 1.4rem !important; /* Добавляем !important чтобы перебить конфликтующие стили */
-        margin-bottom: 15px; /* Уменьшаем отступ снизу */
-        line-height: 1.3; /* Улучшаем межстрочный интервал */
+        font-size: 1.4rem !important;
+        margin-bottom: 15px;
+        line-height: 1.3;
     }
     .hero__form-title {
-        font-size: 2rem; /* Увеличиваем для мобильных, но оставляем пропорционально большим */
+        font-size: 2rem;
         margin-bottom: 25px;
-        text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4); /* Усиленная тень для мобильных */
-        letter-spacing: 0.8px; /* Уменьшаем немного для мобильных */
-        line-height: 1.3; /* Улучшаем межстрочный интервал для мобильных */
+        text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.4);
+        letter-spacing: 0.8px;
+        line-height: 1.3;
     }
     .hero__form-input,
     .hero__form-select {
@@ -1013,23 +939,21 @@
         padding: 15px 5px;
     }
     .hero__vehicle-selection-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Адаптивная сетка для авто */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 10px;
     }
     .hero__vehicle-card {
         padding: 10px;
     }
     
-    /* Адаптация для поля пассажиров на мобильных */
     .hero__form-group--full-width .hero__form-input-wrapper {
-        max-width: 100%; /* На мобильных занимает всю ширину */
+        max-width: 100%;
     }
     
-    /* Стили для label в поле пассажиров на мобильных */
     .hero__form-group--full-width .hero__form-label {
         align-self: flex-start;
         margin-bottom: 0.5rem;
-        font-size: 0.9rem; /* Немного уменьшаем размер шрифта на мобильных */
+        font-size: 0.9rem;
     }
 }
 
@@ -1042,7 +966,7 @@
         border-radius: 0;
         padding: 0.8rem;
         min-height: 320px;
-        max-width: 100%; /* Полная ширина на очень маленьких экранах */
+        max-width: 100%;
     }
     .hero__form {
         padding: 0.5rem;
@@ -1073,9 +997,8 @@
         height: 250px;
     }
     
-    /* Стили для поля пассажиров на очень маленьких экранах */
     .hero__form-group--full-width .hero__form-label {
-        font-size: 0.85rem; /* Еще меньше размер шрифта для очень маленьких экранов */
+        font-size: 0.85rem;
         margin-bottom: 0.4rem;
     }
 }

@@ -35,7 +35,7 @@ export async function showRoute() {
     // Получаем элементы формы.
     const fromInput = document.getElementById('from');
     const toInput = document.getElementById('to');
-    
+
     // Простая валидация: проверяем, что ключевые поля заполнены.
     if (!fromInput.value || !toInput.value) {
         alert('Пожалуйста, выберите пункты отправления и назначения из списка.');
@@ -76,7 +76,7 @@ export async function showRoute() {
         if (data.code === 'Ok' && data.routes.length > 0) {
             const route = data.routes[0].geometry.coordinates;
             // OSRM возвращает координаты в формате [lng, lat], а Leaflet ожидает [lat, lng].
-            const latLngs = route.map(coord => [coord[1], coord[0]]); 
+            const latLngs = route.map(coord => [coord[1], coord[0]]);
             
             // Рисуем линию маршрута на карте.
             routeLine = L.polyline(latLngs, { color: '#8B6F47', weight: 5 })
