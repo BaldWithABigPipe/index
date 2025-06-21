@@ -42,11 +42,14 @@ export function changeLanguage(lang, translations) {
         return;
     }
 
-    // Обновляем текст всех элементов с атрибутом `data-i18n`.
+    // Обновляем текст всех элементов с атрибутом `data-i18n` и `data-lang-key`.
     // Это основной способ перевода статического текста на странице.
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (translations[lang][key]) {
+    document.querySelectorAll('[data-i18n], [data-lang-key]').forEach(element => {
+        const i18nKey = element.getAttribute('data-i18n');
+        const langKey = element.getAttribute('data-lang-key');
+        const key = i18nKey || langKey; // Используем любой из атрибутов
+        
+        if (key && translations[lang][key]) {
             element.textContent = translations[lang][key];
         }
     });
@@ -99,8 +102,7 @@ export function changeLanguage(lang, translations) {
  */
 function updateReviews(lang) {
     const reviewCards = document.querySelectorAll('.review-card');
-    // ВНИМАНИЕ: Логика ниже некорректна из-за структуры `reviews` в data.js.
-    // Оставлено для демонстрации, но требует исправления.
+    
     reviewCards.forEach((card, index) => {
         const reviewData = reviews[index]; // Получаем отзыв по индексу из единого массива
         if(reviewData) {
@@ -108,12 +110,33 @@ function updateReviews(lang) {
             const nameElement = card.querySelector('.review-card__name');
             const dateElement = card.querySelector('.review-card__date');
             
-            // Предполагается, что отзывы в data.js могут содержать переводы,
-            // или что текст должен быть переведен через основной объект translations.
-            // Текущая реализация просто вставляет текст как есть.
-            if (textElement) textElement.textContent = reviewData.text[lang] || reviewData.text['en']; // Пример, как это могло бы работать
-            if (nameElement) nameElement.textContent = reviewData.name;
-            if (dateElement) dateElement.textContent = reviewData.date[lang] || reviewData.date['ru'];
+            // Обновляем текст отзыва
+            if (textElement) {
+                // Проверяем, есть ли переводы в структуре отзыва
+                if (reviewData.text && typeof reviewData.text === 'object' && reviewData.text[lang]) {
+                    textElement.textContent = reviewData.text[lang];
+                } else if (typeof reviewData.text === 'string') {
+                    textElement.textContent = reviewData.text;
+                }
+            }
+            
+            // Обновляем имя автора
+            if (nameElement) {
+                if (reviewData.name && typeof reviewData.name === 'object' && reviewData.name[lang]) {
+                    nameElement.textContent = reviewData.name[lang];
+                } else if (typeof reviewData.name === 'string') {
+                    nameElement.textContent = reviewData.name;
+                }
+            }
+            
+            // Обновляем дату
+            if (dateElement) {
+                if (reviewData.date && typeof reviewData.date === 'object' && reviewData.date[lang]) {
+                    dateElement.textContent = reviewData.date[lang];
+                } else if (typeof reviewData.date === 'string') {
+                    dateElement.textContent = reviewData.date;
+                }
+            }
         }
     });
 }

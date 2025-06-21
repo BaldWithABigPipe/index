@@ -3,104 +3,101 @@
    ========================================================================== */
 
 /* 
- * Основной контейнер шапки.
- * Сделан "липким" (sticky), чтобы оставаться вверху экрана при прокрутке.
- * Имеет тень для визуального отделения от контента.
+ * 1. Основной контейнер шапки
  */
 .header {
     background-color: var(--color-secondary);
-    color: var(--color-text-light);
-    padding: 1.2rem 0;
-    border-bottom: 1px solid var(--color-border);
-    position: sticky; /* "Прилипание" к верху */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
     top: 0;
-    z-index: 1000; /* Высокий z-index, чтобы шапка была поверх других элементов */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для объема */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
 /* 
- * Внутренний контейнер шапки.
- * Использует Flexbox для распределения элементов по горизонтали.
+ * 2. Внутренний контейнер шапки
  */
 .header__container {
     display: flex;
-    justify-content: space-between; /* Элементы распределяются по краям */
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку на маленьких экранах */
-    gap: 1.5rem; /* Отступ между элементами */
+    padding: 1rem 0;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: var(--container-padding-desktop);
+    padding-right: var(--container-padding-desktop);
+    min-height: 80px; /* Фиксированная высота для выравнивания */
 }
 
-/* Группа с логотипом и рейтингом */
+/* 
+ * 3. Группа логотипа и рейтинга
+ */
 .header__logo-group {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-/* Логотип */
-.header__logo {
-    display: block;
-    width: 120px;
-    height: 60px;
-    flex-shrink: 0; /* Запрещаем сжиматься */
-}
-
-.header__logo svg {
-    display: block;
-    width: 100%;
+    align-items: center;
+    gap: 1rem;
     height: 100%;
 }
 
-/* Блок с рейтингом */
-.header__rating {
-    margin-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.header__rating-text {
-    font-size: 0.85rem;
+/* 
+ * 4. Логотип
+ */
+.header__logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
     color: var(--color-primary);
-    margin-bottom: 0.2rem;
-    text-align: center;
-}
-
-/* Звезды рейтинга */
-.header__stars {
+    text-decoration: none;
+    transition: color 0.3s ease;
     display: flex;
-    gap: 0.2rem;
-    margin: 0 auto;
+    align-items: center;
+    height: 100%;
 }
 
-.header__stars .star {
-    width: 16px;
-    height: 16px;
-    color: #FFD700;
+.header__logo:hover {
+    color: var(--color-secondary);
 }
 
 /* 
- * Навигационное меню 
+ * 5. Навигационное меню
  */
+.header__nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
 .header__nav-list {
     display: flex;
     list-style: none;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center; /* Центрирование на маленьких экранах */
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+    align-items: center;
+    height: 100%;
 }
 
-/* 
- * Ссылки в навигации с эффектом подчеркивания при наведении.
- */
 .header__nav-link {
-    color: var(--color-text-light);
-    font-weight: 500;
+    font-family: var(--font-body);
     font-size: 1rem;
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
     position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0.5rem 0;
 }
 
+.header__nav-link:hover {
+    color: var(--color-primary);
+}
+
+/* Подчеркивание при наведении */
 .header__nav-link::after {
     content: '';
     position: absolute;
@@ -109,141 +106,413 @@
     width: 0;
     height: 2px;
     background-color: var(--color-primary);
-    transition: width var(--transition-speed);
+    transition: width 0.3s ease;
 }
 
-.header__nav-link:hover::after, .header__nav-link:focus::after {
+.header__nav-link:hover::after {
     width: 100%;
 }
 
 /* 
- * Ссылка на главную в центре шапки (для внутренних страниц).
+ * 6. Блок с рейтингом и звездами
  */
-.header__home-link {
+.header__rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    height: 100%;
+}
+
+.header__rating-text {
+    font-size: 0.75rem;
     color: var(--color-text-light);
     font-weight: 500;
-    font-size: 1rem;
-    position: relative;
-    transition: color var(--transition-speed);
+    margin: 0;
+    text-align: center;
+    line-height: 1.1;
 }
 
-.header__home-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--color-primary);
-    transition: width var(--transition-speed);
+.header__stars {
+    display: flex;
+    gap: 0.1rem;
+    justify-content: center;
 }
 
-.header__home-link:hover::after, .header__home-link:focus::after {
-    width: 100%;
+.header__star {
+    width: 12px;
+    height: 12px;
+    fill: #C8A26A;
 }
 
 /* 
- * Блок с настройками (язык, телефон).
+ * 7. Блок настроек (язык и телефон)
  */
 .header__settings {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    flex-wrap: wrap; 
-    justify-content: center; 
+    height: 100%;
 }
 
 .header__settings-language {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    height: 100%;
 }
 
-/* 
- * Выпадающий список для выбора языка.
- * Стандартная стрелка убирается и заменяется своей SVG-иконкой.
- */
 .header__settings-language-select {
-    background-color: var(--color-tertiary);
-    color: var(--color-text-light);
+    padding: 0.5rem;
     border: 1px solid var(--color-border);
-    padding: 0.5rem 0.8rem;
-    border-radius: 5px;
+    border-radius: 4px;
+    background-color: var(--color-text-light);
     font-size: 0.9rem;
-    appearance: none; /* Убираем системные стили */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C8A26A'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Своя стрелка */
-    background-repeat: no-repeat;
-    background-position: right 0.8rem center;
-    background-size: 12px;
+    color: var(--color-text-dark);
     cursor: pointer;
-}
-
-.header__settings-language-select:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-}
-
-.header__settings-language-flags {
+    height: 40px;
     display: flex;
-    gap: 0.5rem;
+    align-items: center;
 }
 
-.header__settings-language-flag {
-    width: 28px;
-    height: 20px;
-    border-radius: 3px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: border-color var(--transition-speed);
-}
-
-.header__settings-language-flag:hover, .header__settings-language-flag:focus {
-    border-color: var(--color-primary);
-    outline: none;
-}
-
-/* 
- * Ссылка-кнопка с номером телефона.
- */
 .header__phone {
+    font-family: var(--font-body);
+    font-size: 1rem;
     color: var(--color-primary);
+    text-decoration: none;
     font-weight: 600;
-    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    height: 40px;
     padding: 0.5rem 1rem;
     border: 1px solid var(--color-primary);
-    border-radius: 5px;
-    transition: background-color var(--transition-speed), color var(--transition-speed);
+    border-radius: 4px;
+    background-color: transparent;
 }
 
-.header__phone:hover, .header__phone:focus {
+.header__phone:hover {
+    color: var(--color-text-light);
     background-color: var(--color-primary);
-    color: var(--color-secondary);
+    border-color: var(--color-primary);
 }
 
+/* 
+ * 8. Кнопка мобильного меню (скрыта на десктопе)
+ */
+.header__mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-text-dark);
+    cursor: pointer;
+    padding: 0.5rem;
+}
 
 /* ==========================================================================
-   Адаптивные стили для шапки
+   Адаптивные стили
    ========================================================================== */
 
-/* Для экранов меньше 1024px (планшеты) */
-@media (max-width: 1024px) {
+/* Для экранов 2K и выше (2560px+) */
+@media (min-width: 2560px) {
     .header__container {
-        flex-direction: column; /* Элементы выстраиваются в колонку */
-        gap: 1rem;
+        max-width: 2000px;
+        padding: 1.5rem 0;
+        min-height: 100px;
+    }
+    .header__logo {
+        font-size: 2.2rem;
     }
     .header__nav-list {
-        gap: 1rem;
+        gap: 3rem;
+    }
+    .header__nav-link {
+        font-size: 1.2rem;
+    }
+    .header__rating {
+        gap: 0.5rem;
+    }
+    .header__rating-text {
+        font-size: 0.9rem;
+    }
+    .header__star {
+        width: 16px;
+        height: 16px;
     }
     .header__settings {
-        flex-direction: column;
-        gap: 1rem;
+        gap: 2rem;
+    }
+    .header__phone {
+        font-size: 1.1rem;
+        height: 50px;
+        padding: 0.7rem 1.3rem;
+    }
+    .header__settings-language-select {
+        height: 50px;
+        font-size: 1rem;
     }
 }
 
-/* Для экранов меньше 480px (мобильные телефоны) */
-@media (max-width: 480px) {
+/* Для экранов 1920px - 2559px */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .header__container {
+        max-width: 1800px;
+        padding: 1.3rem 0;
+        min-height: 90px;
+    }
+    .header__logo {
+        font-size: 2rem;
+    }
     .header__nav-list {
-        flex-direction: column; /* Навигация тоже становится вертикальной */
-        text-align: center;
+        gap: 2.5rem;
+    }
+    .header__nav-link {
+        font-size: 1.1rem;
+    }
+    .header__rating {
+        gap: 0.4rem;
+    }
+    .header__rating-text {
+        font-size: 0.85rem;
+    }
+    .header__star {
+        width: 14px;
+        height: 14px;
+    }
+    .header__settings {
+        gap: 1.8rem;
+    }
+    .header__phone {
+        font-size: 1rem;
+        height: 45px;
+        padding: 0.6rem 1.2rem;
+    }
+    .header__settings-language-select {
+        height: 45px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Для экранов 1600px - 1919px */
+@media (min-width: 1600px) and (max-width: 1919px) {
+    .header__container {
+        max-width: 1600px;
+        padding: 1.2rem 0;
+        min-height: 85px;
+    }
+    .header__logo {
+        font-size: 1.9rem;
+    }
+    .header__nav-list {
+        gap: 2.2rem;
+    }
+    .header__nav-link {
+        font-size: 1.05rem;
+    }
+    .header__rating {
+        gap: 0.35rem;
+    }
+    .header__rating-text {
+        font-size: 0.8rem;
+    }
+    .header__star {
+        width: 13px;
+        height: 13px;
+    }
+    .header__settings {
+        gap: 1.6rem;
+    }
+    .header__phone {
+        font-size: 0.95rem;
+        height: 42px;
+        padding: 0.5rem 1.1rem;
+    }
+    .header__settings-language-select {
+        height: 42px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Для экранов 1400px - 1599px */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .header__container {
+        max-width: 1400px;
+        padding: 1.1rem 0;
+        min-height: 80px;
+    }
+    .header__logo {
+        font-size: 1.8rem;
+    }
+    .header__nav-list {
+        gap: 2rem;
+    }
+    .header__nav-link {
+        font-size: 1rem;
+    }
+    .header__rating {
+        gap: 0.3rem;
+    }
+    .header__rating-text {
+        font-size: 0.75rem;
+    }
+    .header__star {
+        width: 12px;
+        height: 12px;
+    }
+    .header__settings {
+        gap: 1.5rem;
+    }
+    .header__phone {
+        font-size: 0.9rem;
+        height: 40px;
+        padding: 0.5rem 1rem;
+    }
+    .header__settings-language-select {
+        height: 40px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Для экранов 1200px - 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .header__container {
+        max-width: 1200px;
+        padding: 1rem 0;
+        min-height: 75px;
+    }
+    .header__logo {
+        font-size: 1.7rem;
+    }
+    .header__nav-list {
+        gap: 1.8rem;
+    }
+    .header__nav-link {
+        font-size: 0.95rem;
+    }
+    .header__rating {
+        gap: 0.25rem;
+    }
+    .header__rating-text {
+        font-size: 0.7rem;
+    }
+    .header__star {
+        width: 11px;
+        height: 11px;
+    }
+    .header__settings {
+        gap: 1.3rem;
+    }
+    .header__phone {
+        font-size: 0.85rem;
+        height: 38px;
+        padding: 0.4rem 0.9rem;
+    }
+    .header__settings-language-select {
+        height: 38px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Для экранов 1024px - 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .header__container {
+        max-width: 1024px;
+        padding: 0.9rem 0;
+        min-height: 70px;
+    }
+    .header__logo {
+        font-size: 1.6rem;
+    }
+    .header__nav-list {
+        gap: 1.6rem;
+    }
+    .header__nav-link {
+        font-size: 0.9rem;
+    }
+    .header__rating {
+        gap: 0.2rem;
+    }
+    .header__rating-text {
+        font-size: 0.65rem;
+    }
+    .header__star {
+        width: 10px;
+        height: 10px;
+    }
+    .header__settings {
+        gap: 1.2rem;
+    }
+    .header__phone {
+        font-size: 0.8rem;
+        height: 36px;
+        padding: 0.4rem 0.8rem;
+    }
+    .header__settings-language-select {
+        height: 36px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Для экранов меньше 1024px (планшеты) */
+@media (max-width: 1023px) {
+    .header__container {
+        max-width: 1024px;
+        padding: 0.8rem 0;
+        min-height: 65px;
+    }
+    .header__logo {
+        font-size: 1.5rem;
+    }
+    .header__nav-list {
+        gap: 1.4rem;
+    }
+    .header__nav-link {
+        font-size: 0.85rem;
+    }
+    .header__rating {
+        gap: 0.2rem;
+    }
+    .header__rating-text {
+        font-size: 0.6rem;
+    }
+    .header__star {
+        width: 9px;
+        height: 9px;
+    }
+    .header__settings {
+        gap: 1rem;
+    }
+    .header__phone {
+        font-size: 0.75rem;
+        height: 34px;
+        padding: 0.3rem 0.7rem;
+    }
+    .header__settings-language-select {
+        height: 34px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Для экранов меньше 768px (мобильные устройства) */
+@media (max-width: 767px) {
+    .header__container {
+        max-width: 100%;
+        padding: 0.7rem 0;
+        min-height: 60px;
+    }
+    .header__logo {
+        font-size: 1.4rem;
+    }
+    .header__nav {
+        display: none; /* Скрываем навигацию на мобильных */
+    }
+    .header__rating {
+        display: none; /* Скрываем рейтинг на мобильных */
+    }
+    .header__settings {
+        display: none; /* Скрываем настройки на мобильных */
+    }
+    .header__mobile-toggle {
+        display: block; /* Показываем кнопку мобильного меню */
     }
 }
