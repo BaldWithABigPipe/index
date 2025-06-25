@@ -3,9 +3,9 @@
    ========================================================================== */
 
 /* 
- * Основной контейнер, который центрирует контент по горизонтали.
- * Его максимальная ширина ограничена для больших экранов.
- * Боковые отступы (padding) задаются через переменные для адаптивности.
+ * 1. Основной контейнер
+ *    Центрирует контент по горизонтали и ограничивает максимальную ширину.
+ *    Боковые отступы адаптируются под размер экрана.
  */
 .container {
     max-width: 1440px; /* Максимальная ширина контентной части */
@@ -14,42 +14,50 @@
 }
 
 /* 
- * Общая обертка для всего сайта (`<div class="site-wrapper">`).
- * Используется для реализации "прилипающего" подвала (sticky footer).
+ * 2. Общая обертка сайта
+ *    Используется для реализации "прилипающего" подвала (sticky footer).
+ *    Обеспечивает правильное распределение пространства между секциями.
  */
 .site-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Минимальная высота равна высоте экрана */
+    width: 100%;
+    position: relative; /* Добавлено для корректного sticky */
+    max-width: 100vw; /* Ограничиваем максимальную ширину */
 }
 
 /*
- * Основной контент страницы (`<main>`).
- * Растягивается, чтобы занять все доступное пространство между шапкой и подвалом.
+ * 3. Основной контент страницы
+ *    Растягивается, чтобы занять все доступное пространство между шапкой и подвалом.
+ *    Это обеспечивает правильное позиционирование sticky footer.
  */
 main {
     flex-grow: 1; 
 }
 
 /* 
- * Общие стили для заголовков секций.
- * Обеспечивают единообразный вид заголовков на всем сайте.
+ * 4. Общие стили для заголовков секций
+ *    Обеспечивают единообразный вид заголовков на всем сайте.
+ *    Используются во всех основных секциях.
  */
 .section-title {
     font-family: var(--font-heading);
     font-size: 2.8rem; /* 45px */
-    color: var(--color-secondary);
+    color: var(--color-text-light);
     text-align: center;
     margin-bottom: 1rem;
     font-weight: 700;
 }
 
 /* 
- * Общие стили для подзаголовков секций.
+ * 5. Общие стили для подзаголовков секций
+ *    Дополнительная информация под основными заголовками.
+ *    Ограничивается по ширине для лучшей читаемости.
  */
 .section-subtitle {
     font-size: 1.1rem; /* 18px */
-    color: var(--color-text-dark);
+    color: var(--color-text-light);
     text-align: center;
     margin-bottom: 3rem;
     max-width: 800px; /* Ограничиваем ширину для лучшей читаемости */
@@ -62,30 +70,163 @@ main {
    Адаптивные стили (Media Queries)
    ========================================================================== */
 
-/* Для экранов меньше 1200px (ноутбуки) */
-@media (max-width: 1200px) {
-    .section-title {
-        font-size: 2.5rem;
-    }
-}
-
-/* Для экранов меньше 1024px (планшеты) */
-@media (max-width: 1024px) {
+/* 
+ * 6. Для экранов 2K и выше (2560px+)
+ *    Увеличенные размеры для очень больших экранов
+ */
+@media (min-width: 2560px) {
     .container {
-        padding: 0 var(--container-padding-tablet); /* Уменьшаем боковые отступы */
-    }
-}
-
-/* Для экранов меньше 768px (мобильные устройства) */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 var(--container-padding-mobile); /* Еще больше уменьшаем отступы */
+        max-width: 2000px;
+        padding: 0 40px;
     }
     .section-title {
-        font-size: 2rem; /* Уменьшаем шрифт заголовков */
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
     }
     .section-subtitle {
-        font-size: 1rem; /* Уменьшаем шрифт подзаголовков */
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+        max-width: 1000px;
+    }
+}
+
+/* 
+ * 7. Для экранов 1920px - 2559px
+ *    Оптимизация для Full HD и 2K экранов
+ */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .container {
+        max-width: 1800px;
+        padding: 0 30px;
+    }
+    .section-title {
+        font-size: 3.2rem;
+        margin-bottom: 1.3rem;
+    }
+    .section-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 3.5rem;
+        max-width: 900px;
+    }
+}
+
+/* 
+ * 8. Для экранов 1600px - 1919px
+ *    Оптимизация для больших мониторов
+ */
+@media (min-width: 1600px) and (max-width: 1919px) {
+    .container {
+        max-width: 1600px;
+        padding: 0 25px;
+    }
+    .section-title {
+        font-size: 3rem;
+        margin-bottom: 1.2rem;
+    }
+    .section-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 3.2rem;
+        max-width: 850px;
+    }
+}
+
+/* 
+ * 9. Для экранов 1400px - 1599px
+ *    Оптимизация для средних мониторов
+ */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .container {
+        max-width: 1400px;
+        padding: 0 20px;
+    }
+    .section-title {
+        font-size: 2.8rem;
+        margin-bottom: 1.1rem;
+    }
+    .section-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
+        max-width: 800px;
+    }
+}
+
+/* 
+ * 10. Для экранов 1200px - 1399px
+ *     Оптимизация для ноутбуков
+ */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .container {
+        max-width: 1200px;
+        padding: 0 20px;
+    }
+    .section-title {
+        font-size: 2.6rem;
+        margin-bottom: 1rem;
+    }
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2.8rem;
+        max-width: 750px;
+    }
+}
+
+/* 
+ * 11. Для экранов 1024px - 1199px
+ *     Оптимизация для планшетов в альбомной ориентации
+ */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .container {
+        max-width: 1024px;
+        padding: 0 15px;
+    }
+    .section-title {
+        font-size: 2.4rem;
+        margin-bottom: 0.9rem;
+    }
+    .section-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 2.5rem;
+        max-width: 700px;
+    }
+}
+
+/* 
+ * 12. Для экранов меньше 1024px (планшеты)
+ *     Адаптация для планшетов в портретной ориентации
+ */
+@media (max-width: 1023px) {
+    .container {
+        padding: 0 var(--container-padding-tablet);
+    }
+    .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+    }
+    .section-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 2.2rem;
+        max-width: 650px;
+    }
+}
+
+/* 
+ * 13. Для экранов меньше 768px (мобильные устройства)
+ *     Адаптация для смартфонов
+ */
+@media (max-width: 767px) {
+    .container {
+        padding: 0 var(--container-padding-mobile);
+    }
+    .site-wrapper {
+        overflow-x: hidden; /* Предотвращаем горизонтальный скроллинг только на мобильных */
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 0.7rem;
+    }
+    .section-subtitle {
+        font-size: 0.85rem;
         margin-bottom: 2rem;
+        max-width: 600px;
     }
 }

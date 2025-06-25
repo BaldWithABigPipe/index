@@ -18,7 +18,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2000;
+    z-index: 30000; /* Увеличиваю z-index, чтобы прелоадер был выше хедера (10000) и мобильного меню (9999) */
     opacity: 1; /* Видим по умолчанию */
     visibility: visible; /* Видим по умолчанию */
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;

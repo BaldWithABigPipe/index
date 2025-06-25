@@ -1,0 +1,344 @@
+/* ==========================================================================
+   Стили для страницы блога (blog.html)
+   ========================================================================== */
+
+/* 
+ * 1. Общие стили для секции блога
+ */
+.blog {
+    padding: 60px 0;
+    background-color: var(--color-light);
+}
+
+.blog__container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.blog__title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    color: var(--color-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.blog__subtitle {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text-dark);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 
+ * 2. Сетка для статей блога (будущие статьи)
+ */
+.blog__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.blog__article {
+    background-color: var(--color-text-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog__article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.blog__article-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog__article-content {
+    padding: 1.5rem;
+}
+
+.blog__article-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.blog__article-excerpt {
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.blog__article-date {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+.blog__article-link {
+    display: inline-block;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: color 0.3s ease;
+}
+
+.blog__article-link:hover {
+    color: var(--color-primary-dark);
+}
+
+/* 
+ * 3. Заглушка для будущего контента
+ */
+.blog__placeholder {
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+/* ==========================================================================
+   Адаптивные стили
+   ========================================================================== */
+
+/* Для экранов 2K и выше (2560px+) */
+@media (min-width: 2560px) {
+    .blog {
+        padding: 80px 0;
+    }
+    .blog__title {
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+    }
+    .blog__subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 3rem;
+    }
+    .blog__grid {
+        gap: 3rem;
+        margin-top: 4rem;
+    }
+    .blog__article-content {
+        padding: 2rem;
+    }
+    .blog__article-title {
+        font-size: 1.6rem;
+    }
+    .blog__article-excerpt {
+        font-size: 1.1rem;
+    }
+}
+
+/* Для экранов 1920px - 2559px */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .blog {
+        padding: 70px 0;
+    }
+    .blog__title {
+        font-size: 3.2rem;
+        margin-bottom: 1.8rem;
+    }
+    .blog__subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 2.5rem;
+    }
+    .blog__grid {
+        gap: 2.5rem;
+        margin-top: 3.5rem;
+    }
+    .blog__article-content {
+        padding: 1.8rem;
+    }
+    .blog__article-title {
+        font-size: 1.5rem;
+    }
+    .blog__article-excerpt {
+        font-size: 1rem;
+    }
+}
+
+/* Для экранов 1600px - 1919px */
+@media (min-width: 1600px) and (max-width: 1919px) {
+    .blog {
+        padding: 65px 0;
+    }
+    .blog__title {
+        font-size: 3rem;
+        margin-bottom: 1.6rem;
+    }
+    .blog__subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2.2rem;
+    }
+    .blog__grid {
+        gap: 2.2rem;
+        margin-top: 3.2rem;
+    }
+    .blog__article-content {
+        padding: 1.6rem;
+    }
+    .blog__article-title {
+        font-size: 1.4rem;
+    }
+    .blog__article-excerpt {
+        font-size: 0.95rem;
+    }
+}
+
+/* Для экранов 1400px - 1599px */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .blog {
+        padding: 60px 0;
+    }
+    .blog__title {
+        font-size: 2.8rem;
+        margin-bottom: 1.4rem;
+    }
+    .blog__subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    .blog__grid {
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    .blog__article-content {
+        padding: 1.5rem;
+    }
+    .blog__article-title {
+        font-size: 1.3rem;
+    }
+    .blog__article-excerpt {
+        font-size: 0.9rem;
+    }
+}
+
+/* Для экранов 1200px - 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .blog {
+        padding: 55px 0;
+    }
+    .blog__title {
+        font-size: 2.6rem;
+        margin-bottom: 1.2rem;
+    }
+    .blog__subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.8rem;
+    }
+    .blog__grid {
+        gap: 1.8rem;
+        margin-top: 2.8rem;
+    }
+    .blog__article-content {
+        padding: 1.4rem;
+    }
+    .blog__article-title {
+        font-size: 1.2rem;
+    }
+    .blog__article-excerpt {
+        font-size: 0.85rem;
+    }
+}
+
+/* Для экранов 1024px - 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .blog {
+        padding: 50px 0;
+    }
+    .blog__title {
+        font-size: 2.4rem;
+        margin-bottom: 1rem;
+    }
+    .blog__subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.6rem;
+    }
+    .blog__grid {
+        gap: 1.6rem;
+        margin-top: 2.5rem;
+    }
+    .blog__article-content {
+        padding: 1.3rem;
+    }
+    .blog__article-title {
+        font-size: 1.1rem;
+    }
+    .blog__article-excerpt {
+        font-size: 0.8rem;
+    }
+}
+
+/* Для экранов меньше 1024px (планшеты) */
+@media (max-width: 1023px) {
+    .blog {
+        padding: 45px 0;
+    }
+    .blog__title {
+        font-size: 2.2rem;
+        margin-bottom: 0.9rem;
+    }
+    .blog__subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    .blog__grid {
+        gap: 1.5rem;
+        margin-top: 2.2rem;
+    }
+    .blog__article-content {
+        padding: 1.2rem;
+    }
+    .blog__article-title {
+        font-size: 1rem;
+    }
+    .blog__article-excerpt {
+        font-size: 0.75rem;
+    }
+}
+
+/* Для экранов меньше 768px (мобильные устройства) */
+@media (max-width: 767px) {
+    .blog {
+        padding: 40px 0;
+    }
+    .blog__title {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+    .blog__subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 1.2rem;
+    }
+    .blog__grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        margin-top: 2rem;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .blog__article-content {
+        padding: 1rem;
+    }
+    .blog__article-title {
+        font-size: 0.95rem;
+    }
+    .blog__article-excerpt {
+        font-size: 0.7rem;
+    }
+} 

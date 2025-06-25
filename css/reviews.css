@@ -7,7 +7,7 @@
  */
 .reviews {
     padding: 60px 0;
-    background-color: var(--color-tertiary); /* Темный фон */
+    background: var(--color-secondary); /* Темный фон */
     color: var(--color-text-light); /* Светлый текст */
 }
 
@@ -15,6 +15,14 @@
 .reviews .section-title,
 .reviews .section-subtitle {
     color: var(--color-text-light);
+}
+
+/* Подчеркивание подзаголовка цветом primary */
+.reviews .section-subtitle {
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary);
+    text-underline-offset: 8px; /* Отступ подчеркивания от текста */
+    text-decoration-thickness: 2px; /* Толщина подчеркивания */
 }
 
 /* 
@@ -31,7 +39,7 @@
  * 3. Стили для отдельной карточки отзыва
  */
 .review-card {
-    background-color: #2a2a2a; /* Фон карточки чуть светлее фона секции */
+    background: linear-gradient(90deg, #b3b3b3, #b0b0b1); /* Фон карточки чуть светлее фона секции */
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -45,7 +53,7 @@
     font-style: italic; /* Курсив для цитаты */
     font-size: 1rem;
     margin-bottom: 1.5rem;
-    color: var(--color-text-light);
+    color: var(--color-secondary);
     line-height: 1.7;
 }
 
@@ -62,7 +70,7 @@
 .review-card__name {
     font-weight: 600;
     font-size: 1.1rem;
-    color: var(--color-primary); /* Акцентный цвет для имени */
+    color: var(--color-secondary); /* Акцентный цвет для имени */
     margin-bottom: 0.5rem;
 }
 
@@ -84,18 +92,233 @@
     margin: 0 auto;
 }
 
-
 /* ==========================================================================
    Адаптивные стили
    ========================================================================== */
-@media (max-width: 1024px) {
+
+/* Для экранов 2K и выше (2560px+) */
+@media (min-width: 2560px) {
+    .reviews {
+        padding: 80px 0;
+    }
     .reviews__grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 3rem;
+        margin-bottom: 4rem;
+    }
+    .review-card {
+        padding: 3rem;
+    }
+    .review-card__text {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        line-height: 1.8;
+    }
+    .review-card__name {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+    .review-card__stars .star {
+        width: 22px;
+        height: 22px;
     }
 }
 
-@media (max-width: 768px) {
+/* Для экранов 1920px - 2559px */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .reviews {
+        padding: 70px 0;
+    }
+    .reviews__grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 3.5rem;
+    }
+    .review-card {
+        padding: 2.5rem;
+    }
+    .review-card__text {
+        font-size: 1.1rem;
+        margin-bottom: 1.8rem;
+        line-height: 1.75;
+    }
+    .review-card__name {
+        font-size: 1.2rem;
+        margin-bottom: 0.7rem;
+    }
+    .review-card__stars .star {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Для экранов 1600px - 1919px */
+@media (min-width: 1600px) and (max-width: 1919px) {
+    .reviews {
+        padding: 65px 0;
+    }
+    .reviews__grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.2rem;
+        margin-bottom: 3.2rem;
+    }
+    .review-card {
+        padding: 2.2rem;
+    }
+    .review-card__text {
+        font-size: 1.05rem;
+        margin-bottom: 1.6rem;
+        line-height: 1.7;
+    }
+    .review-card__name {
+        font-size: 1.15rem;
+        margin-bottom: 0.6rem;
+    }
+    .review-card__stars .star {
+        width: 19px;
+        height: 19px;
+    }
+}
+
+/* Для экранов 1400px - 1599px */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .reviews {
+        padding: 60px 0;
+    }
+    .reviews__grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+    .review-card {
+        padding: 2rem;
+    }
+    .review-card__text {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+    }
+    .review-card__name {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    .review-card__stars .star {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Для экранов 1200px - 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .reviews {
+        padding: 55px 0;
+    }
+    .reviews__grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.8rem;
+        margin-bottom: 2.8rem;
+    }
+    .review-card {
+        padding: 1.8rem;
+    }
+    .review-card__text {
+        font-size: 0.95rem;
+        margin-bottom: 1.4rem;
+        line-height: 1.65;
+    }
+    .review-card__name {
+        font-size: 1.05rem;
+        margin-bottom: 0.4rem;
+    }
+    .review-card__stars .star {
+        width: 17px;
+        height: 17px;
+    }
+}
+
+/* Для экранов 1024px - 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .reviews {
+        padding: 50px 0;
+    }
+    .reviews__grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.6rem;
+        margin-bottom: 2.5rem;
+    }
+    .review-card {
+        padding: 1.6rem;
+    }
+    .review-card__text {
+        font-size: 0.9rem;
+        margin-bottom: 1.3rem;
+        line-height: 1.6;
+    }
+    .review-card__name {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+    }
+    .review-card__stars .star {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Для экранов меньше 1024px (планшеты) */
+@media (max-width: 1023px) {
+    .reviews {
+        padding: 45px 0;
+    }
+    .reviews__grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2.2rem;
+    }
     .review-card {
         padding: 1.5rem;
+    }
+    .review-card__text {
+        font-size: 0.85rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.55;
+    }
+    .review-card__name {
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+    }
+    .review-card__stars .star {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+/* Для экранов меньше 768px (мобильные устройства) */
+@media (max-width: 767px) {
+    .reviews {
+        padding: 40px 0;
+    }
+    .reviews__grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .review-card {
+        padding: 1.5rem;
+    }
+    .review-card__text {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+    .review-card__name {
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+    }
+    .review-card__stars .star {
+        width: 14px;
+        height: 14px;
     }
 }

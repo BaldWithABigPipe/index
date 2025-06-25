@@ -8,133 +8,745 @@
 .footer {
     background-color: var(--color-secondary);
     color: var(--color-text-light);
-    padding: 3rem 0 1.5rem;
-    border-top: 1px solid var(--color-border);
+    padding: 60px 0 20px;
+    margin-top: auto; /* Для sticky footer */
 }
 
 /* 
- * 2. Верхняя часть подвала с колонками
- *    Используется адаптивная сетка, которая сама определяет количество колонок.
+ * 2. Внутренний контейнер подвала
  */
 .footer__container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--color-border);
-    margin-bottom: 1.5rem;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: var(--container-padding-desktop);
+    padding-right: var(--container-padding-desktop);
 }
 
+/* 
+ * 3. Сетка для блоков подвала
+ */
+.footer__main {
+    display: grid;
+    grid-template-columns: 2fr 3fr; /* Левая и правая части */
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* 
+ * 4. Блоки подвала
+ */
 .footer__block {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
-/* Заголовок колонки */
-.footer__title {
+.footer__block--about {
+    grid-column: 1;
+}
+
+.footer__block--right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2.5rem;
+}
+
+.footer__block--navigation,
+.footer__block--contact {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* 
+ * 5. Секция с логотипом и описанием
+ */
+.footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer__logo {
     font-family: var(--font-heading);
-    font-size: 1.3rem; /* 21px */
+    font-size: 2rem;
+    font-weight: 700;
     color: var(--color-primary);
-    margin-bottom: 1.2rem;
-    font-weight: 600;
+    text-decoration: none;
 }
 
-/* Основной текст в подвале */
-.footer__text {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый для лучшей читаемости */
+.footer__description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    opacity: 0.9;
+}
+
+/* 
+ * 6. Секция с контактами
+ */
+.footer__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer__contacts-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.footer__contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--color-text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer__contact-item:hover {
+    color: var(--color-primary);
+}
+
+.footer__contact-icon {
+    width: 20px;
+    height: 20px;
+    fill: var(--color-primary);
+}
+
+/* 
+ * 7. Секция с навигацией
+ */
+.footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer__nav-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    text-align: center; /* Центрируем заголовок навигации */
+}
+
+.footer__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 колонки */
+    gap: 0.5rem 1rem; /* Вертикальный и горизонтальный отступы */
+    margin: 0;
+    padding: 0;
+}
+
+.footer__nav-link {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer__nav-link:hover {
+    color: var(--color-primary);
+}
+
+/* 
+ * 8. Стили для контактной информации с подзаголовками
+ */
+.footer__contact-group {
     margin-bottom: 1rem;
 }
 
-/* Списки (навигация, контакты и т.д.) */
-.footer__list {
-    list-style: none;
+.footer__contact-label {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
 }
 
-.footer__list li {
-    margin-bottom: 0.8rem;
+.footer__contact-item {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    margin-bottom: 0.2rem;
 }
 
-.footer__link {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
-    transition: color var(--transition-speed);
-}
-
-.footer__link:hover, .footer__link:focus {
+.footer__contact-item:hover {
     color: var(--color-primary);
 }
 
 /* 
- * 3. Иконки социальных сетей
+ * 9. Нижняя часть подвала
  */
-.footer__socials {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.footer__social-link img {
-    width: 24px;
-    height: 24px;
-    /* 
-     * Хитрый способ перекрасить черные SVG-иконки в белый цвет с помощью фильтров.
-     * invert(1) делает иконку белой. Остальные параметры сбрасывают лишние эффекты.
-     */
-    filter: invert(1) brightness(1.5);
-    transition: filter var(--transition-speed);
-}
-
-.footer__social-link:hover img, .footer__social-link:focus img {
-    /* 
-     * При наведении перекрашиваем иконку в основной акцентный цвет (--color-primary).
-     * Это делается подбором значений hue-rotate и других параметров фильтра.
-     * Этот способ не идеален, но работает для монохромных иконок.
-     */
-    filter: invert(68%) sepia(28%) saturate(953%) hue-rotate(359deg) brightness(89%) contrast(86%);
+.footer__bottom {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    opacity: 0.8;
 }
 
 /* 
- * 4. Нижняя часть подвала (копирайт)
+ * 10. Дополнительные стили для footer элементов
  */
-.footer__bottom {
-    text-align: center;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.85rem;
+.footer__title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.footer__text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.footer__link {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer__link:hover {
+    color: var(--color-primary);
+}
+
+.footer__socials {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-direction: row;
+    gap: 18px;
+    margin-top: 1.2rem;
 }
 
-/* Контейнер для иконок платежных систем (если будет) */
-.footer__payment-methods {
-    display: flex;
-    gap: 0.8rem;
+.footer__social-link img {
+    width: 40px;
+    height: 40px;
+    display: block;
 }
 
-.footer__payment-methods img {
-    height: 25px;
-    width: auto;
-    opacity: 0.7;
+.footer__copyright {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    opacity: 0.8;
 }
-
 
 /* ==========================================================================
    Адаптивные стили
    ========================================================================== */
-@media (max-width: 1024px) {
+
+/* Для экранов 2K и выше (2560px+) */
+@media (min-width: 2560px) {
+    .footer {
+        padding: 80px 0 30px;
+    }
     .footer__container {
-        /* Увеличиваем минимальную ширину колонки, чтобы они раньше перестраивались */
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        max-width: 2000px;
+    }
+    .footer__main {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 4rem;
+        margin-bottom: 3rem;
+    }
+    .footer__logo {
+        font-size: 2.5rem;
+    }
+    .footer__description {
+        font-size: 1.2rem;
+    }
+    .footer__contacts-title,
+    .footer__nav-title {
+        font-size: 1.6rem;
+    }
+    .footer__contact-item {
+        font-size: 1.1rem;
+    }
+    .footer__contact-icon {
+        width: 24px;
+        height: 24px;
+    }
+    .footer__nav-link {
+        font-size: 1.1rem;
+    }
+    .footer__bottom {
+        padding-top: 2rem;
+        font-size: 1rem;
     }
 }
 
-@media (max-width: 768px) {
-    .footer__bottom {
-        flex-direction: column; /* Элементы в одну колонку */
-        gap: 0.8rem;
+/* Для экранов 1920px - 2559px */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .footer {
+        padding: 70px 0 25px;
     }
+    .footer__container {
+        max-width: 1800px;
+    }
+    .footer__main {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3.5rem;
+        margin-bottom: 2.5rem;
+    }
+    .footer__logo {
+        font-size: 2.3rem;
+    }
+    .footer__description {
+        font-size: 1.1rem;
+    }
+    .footer__contacts-title,
+    .footer__nav-title {
+        font-size: 1.5rem;
+    }
+    .footer__contact-item {
+        font-size: 1.05rem;
+    }
+    .footer__contact-icon {
+        width: 22px;
+        height: 22px;
+    }
+    .footer__nav-link {
+        font-size: 1.05rem;
+    }
+    .footer__bottom {
+        padding-top: 1.8rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Для экранов 1600px - 1919px */
+@media (min-width: 1600px) and (max-width: 1919px) {
+    .footer {
+        padding: 65px 0 22px;
+    }
+    .footer__container {
+        max-width: 1600px;
+    }
+    .footer__main {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3.2rem;
+        margin-bottom: 2.2rem;
+    }
+    .footer__logo {
+        font-size: 2.1rem;
+    }
+    .footer__description {
+        font-size: 1.05rem;
+    }
+    .footer__contacts-title,
+    .footer__nav-title {
+        font-size: 1.4rem;
+    }
+    .footer__contact-item {
+        font-size: 1rem;
+    }
+    .footer__contact-icon {
+        width: 21px;
+        height: 21px;
+    }
+    .footer__nav-link {
+        font-size: 1rem;
+    }
+    .footer__bottom {
+        padding-top: 1.6rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Для экранов 1400px - 1599px */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .footer {
+        padding: 60px 0 20px;
+    }
+    .footer__container {
+        max-width: 1400px;
+    }
+    .footer__main {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-bottom: 2rem;
+    }
+    .footer__logo {
+        font-size: 2rem;
+    }
+    .footer__description {
+        font-size: 1rem;
+    }
+    .footer__contacts-title,
+    .footer__nav-title {
+        font-size: 1.3rem;
+    }
+    .footer__contact-item {
+        font-size: 0.95rem;
+    }
+    .footer__contact-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .footer__nav-link {
+        font-size: 0.95rem;
+    }
+    .footer__bottom {
+        padding-top: 1.5rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Для экранов 1200px - 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .footer {
+        padding: 55px 0 18px;
+    }
+    .footer__container {
+        max-width: 1200px;
+    }
+    .footer__main {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2.8rem;
+        margin-bottom: 1.8rem;
+    }
+    .footer__logo {
+        font-size: 1.9rem;
+    }
+    .footer__description {
+        font-size: 0.95rem;
+    }
+    .footer__contacts-title,
+    .footer__nav-title {
+        font-size: 1.2rem;
+    }
+    .footer__contact-item {
+        font-size: 0.9rem;
+    }
+    .footer__contact-icon {
+        width: 19px;
+        height: 19px;
+    }
+    .footer__nav-link {
+        font-size: 0.9rem;
+    }
+    .footer__bottom {
+        padding-top: 1.4rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Для экранов 1024px - 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .footer {
+        padding: 50px 0 16px;
+    }
+    .footer__container {
+        max-width: 1024px;
+    }
+    .footer__main {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 1.6rem;
+    }
+    .footer__logo {
+        font-size: 1.8rem;
+    }
+    .footer__description {
+        font-size: 0.9rem;
+    }
+    .footer__contacts-title,
+    .footer__nav-title {
+        font-size: 1.1rem;
+    }
+    .footer__contact-item {
+        font-size: 0.85rem;
+    }
+    .footer__contact-icon {
+        width: 18px;
+        height: 18px;
+    }
+    .footer__nav-link {
+        font-size: 0.85rem;
+    }
+    .footer__bottom {
+        padding-top: 1.3rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Для экранов меньше 1024px (планшеты) */
+@media (max-width: 1023px) {
+    .footer {
+        padding: 45px 0 15px;
+    }
+    .footer__container {
+        max-width: 1024px;
+    }
+    .footer__main {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .footer__block--right {
+        align-items: center;
+    }
+    .footer__block--navigation,
+    .footer__block--contact {
+        max-width: 100%;
+    }
+    .footer__logo {
+        font-size: 1.7rem;
+    }
+    .footer__description {
+        font-size: 0.85rem;
+    }
+    .footer__contacts-title,
+    .footer__nav-title {
+        font-size: 1rem;
+    }
+    .footer__contact-item {
+        font-size: 0.8rem;
+    }
+    .footer__contact-icon {
+        width: 17px;
+        height: 17px;
+    }
+    .footer__nav-link {
+        font-size: 0.8rem;
+    }
+    .footer__bottom {
+        padding-top: 1.2rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* Для экранов меньше 768px (мобильные устройства) */
+@media (max-width: 767px) {
+    .footer {
+        padding: 40px 0 12px;
+    }
+    .footer__container {
+        max-width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        overflow-x: hidden; /* Предотвращаем горизонтальный скроллинг */
+    }
+    .footer__main {
+        grid-template-columns: 1fr; /* Одна колонка на мобильных */
+        gap: 2rem;
+        margin-bottom: 1.2rem;
+        text-align: left; /* Выравниваем по левому краю */
+    }
+    .footer__list {
+        grid-template-columns: 1fr 1fr; /* Оставляем 2 колонки для навигации */
+        gap: 0.5rem 1rem;
+        justify-items: center; /* Центрируем элементы */
+    }
+    .footer__logo {
+        font-size: 1.6rem;
+    }
+    .footer__description {
+        font-size: 0.8rem;
+    }
+    .footer__contacts-title,
+    .footer__nav-title {
+        font-size: 0.95rem;
+    }
+    .footer__contact-item {
+        font-size: 0.75rem;
+        justify-content: center;
+    }
+    .footer__contact-icon {
+        width: 16px;
+        height: 16px;
+    }
+    .footer__nav-link {
+        font-size: 0.75rem;
+    }
+    .footer__bottom {
+        padding-top: 1rem;
+        font-size: 0.65rem;
+    }
+    
+    /* Исправляем выравнивание контактов на мобильных */
+    .footer__block--contact {
+        text-align: left;
+    }
+    
+    .footer__block--contact .footer__title {
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+    
+    .footer__contacts-row {
+        flex-direction: column;
+        gap: 0.7rem;
+        align-items: flex-start; /* Выравниваем по левому краю */
+    }
+    
+    .footer__contact-item-col {
+        align-items: flex-start; /* Выравниваем по левому краю */
+        width: 100%;
+    }
+    
+    .footer__contact-label {
+        text-align: left;
+        margin-bottom: 0.2rem;
+    }
+    
+    .footer__link {
+        text-align: left;
+        display: inline-block;
+    }
+    
+    .footer__socials {
+        justify-content: flex-start; /* Выравниваем соцсети по левому краю */
+        margin-top: 1rem;
+    }
+}
+
+/* Для экранов меньше 480px (маленькие мобильные) */
+@media (max-width: 480px) {
+    .footer__container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    .footer__main {
+        gap: 1.5rem;
+    }
+    
+    .footer__contacts-row {
+        gap: 0.5rem;
+    }
+    
+    .footer__contact-label {
+        font-size: 0.85rem;
+    }
+    
+    .footer__link {
+        font-size: 0.75rem;
+    }
+}
+
+.footer__block--navigation .footer__title {
+    text-align: center;
+    margin-bottom: 0.7rem;
+}
+
+.footer__block--navigation .footer__nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.footer__block--navigation .footer__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.footer__block--navigation .footer__list li {
+    margin: 0 8px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer__block--navigation .footer__list li:last-child {
+    margin-right: 0;
+}
+
+.footer__contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer__contacts-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (max-width: 767px) {
+    .footer__contacts-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .footer__contacts-col {
+        align-items: center;
+    }
+}
+
+.footer__right-row {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+@media (max-width: 1023px) {
+    .footer__right-row {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+}
+
+.footer__block--contact .footer__title {
+    text-align: left;
+}
+
+.footer__contact-item-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+}
+
+.footer__contact-label {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    margin-bottom: 0.1rem;
+    font-weight: 600;
+}
+
+.footer__contacts-row {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+@media (max-width: 767px) {
+    .footer__contacts-row {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+}
+
+/* Удаляем лишние стили для навигации и сетки контактов */
+.footer__block--navigation,
+.footer__right-row,
+.footer__contacts-grid,
+.footer__contacts-col {
+    display: none !important;
 }
