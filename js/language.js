@@ -42,12 +42,29 @@ export function changeLanguage(lang, translations) {
         return;
     }
 
-    // Обновляем текст всех элементов с атрибутом `data-i18n`.
+    // Обновляем текст всех элементов с атрибутом `data-i18n` и `data-lang-key`.
     // Это основной способ перевода статического текста на странице.
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-            element.textContent = translations[lang][key];
+    document.querySelectorAll('[data-i18n], [data-lang-key]').forEach(element => {
+        const i18nKey = element.getAttribute('data-i18n');
+        const langKey = element.getAttribute('data-lang-key');
+        const key = i18nKey || langKey; // Используем любой из атрибутов
+        
+        if (key && translations[lang][key]) {
+            // Специальная обработка для FAQ ответов - сохраняем HTML структуру
+            if (element.classList.contains('faq-item__answer')) {
+                let pElement = element.querySelector('p');
+                if (!pElement) {
+                    pElement = document.createElement('p');
+                    element.appendChild(pElement);
+                }
+                pElement.textContent = translations[lang][key];
+            } else if (element.classList.contains('hero__subtitle')) {
+                // Для hero__subtitle используем innerHTML, чтобы поддерживать HTML-теги
+                element.innerHTML = translations[lang][key];
+            } else {
+                // Для всех остальных элементов, включая hero__title, обновляем текст
+                element.textContent = translations[lang][key];
+            }
         }
     });
 
@@ -99,8 +116,7 @@ export function changeLanguage(lang, translations) {
  */
 function updateReviews(lang) {
     const reviewCards = document.querySelectorAll('.review-card');
-    // ВНИМАНИЕ: Логика ниже некорректна из-за структуры `reviews` в data.js.
-    // Оставлено для демонстрации, но требует исправления.
+    
     reviewCards.forEach((card, index) => {
         const reviewData = reviews[index]; // Получаем отзыв по индексу из единого массива
         if(reviewData) {
@@ -108,12 +124,33 @@ function updateReviews(lang) {
             const nameElement = card.querySelector('.review-card__name');
             const dateElement = card.querySelector('.review-card__date');
             
-            // Предполагается, что отзывы в data.js могут содержать переводы,
-            // или что текст должен быть переведен через основной объект translations.
-            // Текущая реализация просто вставляет текст как есть.
-            if (textElement) textElement.textContent = reviewData.text[lang] || reviewData.text['en']; // Пример, как это могло бы работать
-            if (nameElement) nameElement.textContent = reviewData.name;
-            if (dateElement) dateElement.textContent = reviewData.date[lang] || reviewData.date['ru'];
+            // Обновляем текст отзыва
+            if (textElement) {
+                // Проверяем, есть ли переводы в структуре отзыва
+                if (reviewData.text && typeof reviewData.text === 'object' && reviewData.text[lang]) {
+                    textElement.textContent = reviewData.text[lang];
+                } else if (typeof reviewData.text === 'string') {
+                    textElement.textContent = reviewData.text;
+                }
+            }
+            
+            // Обновляем имя автора
+            if (nameElement) {
+                if (reviewData.name && typeof reviewData.name === 'object' && reviewData.name[lang]) {
+                    nameElement.textContent = reviewData.name[lang];
+                } else if (typeof reviewData.name === 'string') {
+                    nameElement.textContent = reviewData.name;
+                }
+            }
+            
+            // Обновляем дату
+            if (dateElement) {
+                if (reviewData.date && typeof reviewData.date === 'object' && reviewData.date[lang]) {
+                    dateElement.textContent = reviewData.date[lang];
+                } else if (typeof reviewData.date === 'string') {
+                    dateElement.textContent = reviewData.date;
+                }
+            }
         }
     });
 }
@@ -161,15 +198,90 @@ function updateImageAltAttributes(lang) {
         }
     };
 
-    // Находим все изображения на странице.
-    document.querySelectorAll('img').forEach(img => {
-        const src = img.getAttribute('src');
-        if (!src) return;
+    // Обновляем alt атрибуты для всех изображений
+    document.querySelectorAll('img[src*=".webp"], img[src*=".jpg"], img[src*=".png"]').forEach(img => {
+        const src = img.src;
+        const filename = src.split('/').pop(); // Получаем имя файла из пути
         
-        // Извлекаем имя файла из пути.
-        const filename = src.split('/').pop().split('?')[0]; // Удаляем query params, если есть
         if (altTranslations[lang] && altTranslations[lang][filename]) {
             img.alt = altTranslations[lang][filename];
         }
     });
+}
+
+/**
+ * Инициализирует кастомный селектор языка
+ * @param {object} translations - Объект с переводами
+ */
+export function initLanguageSelector(translations) {
+    const languageButton = document.querySelector('.header__language-button');
+    const languageDropdown = document.querySelector('.header__language-dropdown');
+    const currentLanguageFlag = document.getElementById('current-language-flag');
+    const languageOptions = document.querySelectorAll('.header__language-option');
+    
+    if (!languageButton || !languageDropdown || !currentLanguageFlag) {
+        console.warn('Language selector elements not found');
+        return;
+    }
+    
+    // Текущий язык (из localStorage или по умолчанию русский)
+    let currentLang = localStorage.getItem('selectedLanguage') || 'ru';
+    
+    // Функция для обновления флага текущего языка
+    function updateCurrentFlag(lang) {
+        const flagSrc = lang === 'ru' ? 'img/icons/ru.svg' : 'img/icons/us.svg';
+        currentLanguageFlag.src = flagSrc;
+        currentLanguageFlag.alt = lang === 'ru' ? 'Русский' : 'English';
+    }
+    
+    // Обработчик клика по кнопке селектора
+    languageButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        languageDropdown.classList.toggle('active');
+        languageButton.classList.toggle('active');
+    });
+    
+    // Обработчик клика по опциям языка
+    languageOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const selectedLang = this.getAttribute('data-lang');
+            
+            if (selectedLang !== currentLang) {
+                currentLang = selectedLang;
+                localStorage.setItem('selectedLanguage', currentLang);
+                updateCurrentFlag(currentLang);
+                changeLanguage(currentLang, translations);
+                
+                // Обновляем галерею, если она существует
+                const gallery = window.gallery;
+                if (gallery && gallery.updateLanguage) {
+                    gallery.updateLanguage(currentLang);
+                }
+            }
+            
+            // Закрываем dropdown
+            languageDropdown.classList.remove('active');
+            languageButton.classList.remove('active');
+        });
+    });
+    
+    // Закрытие dropdown при клике вне его
+    document.addEventListener('click', function(e) {
+        if (!languageButton.contains(e.target) && !languageDropdown.contains(e.target)) {
+            languageDropdown.classList.remove('active');
+            languageButton.classList.remove('active');
+        }
+    });
+    
+    // Закрытие dropdown при нажатии Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            languageDropdown.classList.remove('active');
+            languageButton.classList.remove('active');
+        }
+    });
+    
+    // Инициализация с текущим языком
+    updateCurrentFlag(currentLang);
 }

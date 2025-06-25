@@ -7,7 +7,18 @@
  */
 .faq {
     padding: 60px 0;
-    background-color: var(--color-light); /* Светлый фон */
+    background: #f4f4f4;
+    border-top: 2px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-primary); 
+}
+
+/* Заголовок внутри секции */
+.faq .section-title {
+    color: var(--color-text-dark);
+  }
+
+.faq .section-subtitle {
+    color: var(--color-text-dark);
 }
 
 /* 
@@ -25,9 +36,7 @@
  * 3. Стили для отдельного элемента FAQ (вопрос + ответ)
  */
 .faq-item {
-    background-color: var(--color-text-light); /* Белый фон */
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    background: linear-gradient(171deg, #2d2d2d, #181818); /* Белый фон */
     overflow: hidden; /* Скрываем выпадающий контент */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -37,7 +46,7 @@
     font-family: var(--font-body);
     font-size: 1.2rem;
     font-weight: 600;
-    color: var(--color-secondary);
+    color: var(--color-text-light);
     padding: 1.2rem 2rem;
     cursor: pointer;
     position: relative;
@@ -58,14 +67,14 @@
 
 /* Стили для активного (открытого) вопроса */
 .faq-item__question.active {
-    background-color: var(--color-primary);
+    background: linear-gradient(to right, #bda534, #b9a85a);
     color: var(--color-text-light);
 }
 
 .faq-item__question.active::after {
     content: '−'; /* Меняем иконку на минус */
     transform: rotate(180deg); /* Плавный поворот не нужен, т.к. сам символ меняется */
-    color: var(--color-text-light);
+    color: var(--color-text-dark);
 }
 
 /* 
@@ -82,7 +91,7 @@
 .faq-item__answer p {
     padding-bottom: 1.5rem;
     font-size: 1rem;
-    color: var(--color-text-dark);
+    color: var(--color-text-muted);
     line-height: 1.7;
 }
 
@@ -96,13 +105,187 @@
 /* ==========================================================================
    Адаптивные стили
    ========================================================================== */
-@media (max-width: 768px) {
+
+/* Для экранов 2K и выше (2560px+) */
+@media (min-width: 2560px) {
+    .faq {
+        padding: 80px 0;
+    }
+    .faq__grid {
+        max-width: 1200px;
+        gap: 2rem;
+    }
     .faq-item__question {
+        font-size: 1.4rem;
+        padding: 1.6rem 2.5rem;
+    }
+    .faq-item__question::after {
+        font-size: 2.2rem;
+    }
+    .faq-item__answer p {
+        font-size: 1.2rem;
+        padding-bottom: 2rem;
+        line-height: 1.8;
+    }
+}
+
+/* Для экранов 1920px - 2559px */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .faq {
+        padding: 70px 0;
+    }
+    .faq__grid {
+        max-width: 1100px;
+        gap: 1.8rem;
+    }
+    .faq-item__question {
+        font-size: 1.3rem;
+        padding: 1.5rem 2.2rem;
+    }
+    .faq-item__question::after {
+        font-size: 2rem;
+    }
+    .faq-item__answer p {
         font-size: 1.1rem;
-        padding: 1rem 1.5rem;
+        padding-bottom: 1.8rem;
+        line-height: 1.75;
+    }
+}
+
+/* Для экранов 1600px - 1919px */
+@media (min-width: 1600px) and (max-width: 1919px) {
+    .faq {
+        padding: 65px 0;
+    }
+    .faq__grid {
+        max-width: 1000px;
+        gap: 1.6rem;
+    }
+    .faq-item__question {
+        font-size: 1.25rem;
+        padding: 1.4rem 2rem;
+    }
+    .faq-item__question::after {
+        font-size: 1.9rem;
+    }
+    .faq-item__answer p {
+        font-size: 1.05rem;
+        padding-bottom: 1.6rem;
+        line-height: 1.7;
+    }
+}
+
+/* Для экранов 1400px - 1599px */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .faq {
+        padding: 60px 0;
+    }
+    .faq__grid {
+        max-width: 900px;
+        gap: 1.5rem;
+    }
+    .faq-item__question {
+        font-size: 1.2rem;
+        padding: 1.2rem 2rem;
+    }
+    .faq-item__question::after {
+        font-size: 1.8rem;
+    }
+    .faq-item__answer p {
+        font-size: 1rem;
+        padding-bottom: 1.5rem;
+        line-height: 1.7;
+    }
+}
+
+/* Для экранов 1200px - 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .faq {
+        padding: 55px 0;
+    }
+    .faq__grid {
+        max-width: 850px;
+        gap: 1.4rem;
+    }
+    .faq-item__question {
+        font-size: 1.15rem;
+        padding: 1.1rem 1.8rem;
+    }
+    .faq-item__question::after {
+        font-size: 1.7rem;
     }
     .faq-item__answer p {
         font-size: 0.95rem;
+        padding-bottom: 1.4rem;
+        line-height: 1.65;
+    }
+}
+
+/* Для экранов 1024px - 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .faq {
+        padding: 50px 0;
+    }
+    .faq__grid {
+        max-width: 800px;
+        gap: 1.3rem;
+    }
+    .faq-item__question {
+        font-size: 1.1rem;
+        padding: 1rem 1.6rem;
+    }
+    .faq-item__question::after {
+        font-size: 1.6rem;
+    }
+    .faq-item__answer p {
+        font-size: 0.9rem;
+        padding-bottom: 1.3rem;
+        line-height: 1.6;
+    }
+}
+
+/* Для экранов меньше 1024px (планшеты) */
+@media (max-width: 1023px) {
+    .faq {
+        padding: 45px 0;
+    }
+    .faq__grid {
+        max-width: 750px;
+        gap: 1.2rem;
+    }
+    .faq-item__question {
+        font-size: 1.05rem;
+        padding: 0.9rem 1.4rem;
+    }
+    .faq-item__question::after {
+        font-size: 1.5rem;
+    }
+    .faq-item__answer p {
+        font-size: 0.85rem;
+        padding-bottom: 1.2rem;
+        line-height: 1.55;
+    }
+}
+
+/* Для экранов меньше 768px (мобильные устройства) */
+@media (max-width: 767px) {
+    .faq {
+        padding: 40px 0;
+    }
+    .faq__grid {
+        max-width: 600px;
+        gap: 1rem;
+    }
+    .faq-item__question {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+    }
+    .faq-item__question::after {
+        font-size: 1.4rem;
+    }
+    .faq-item__answer p {
+        font-size: 0.8rem;
         padding-bottom: 1rem;
+        line-height: 1.5;
     }
 }

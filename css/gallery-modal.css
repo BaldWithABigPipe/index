@@ -17,7 +17,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 2000;
+    z-index: 15000; /* Выше хедера (10000), но ниже loading overlay (30000) */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s, visibility 0.5s, transform 0.5s;
@@ -87,16 +87,20 @@
     background-color: rgba(0, 0, 0, 0.5);
     color: var(--color-text-light);
     border: none;
-    padding: 10px 20px;
-    font-size: 24px;
+    padding: 15px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 50%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 2100;
+    z-index: 15100; /* Выше основного модального окна (15000) */
     opacity: 0; /* Появляются только при наведении на область изображения */
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
 }
 
 .gallery-modal__image:hover .gallery-modal__prev,
@@ -115,6 +119,15 @@
 .gallery-modal__prev:hover,
 .gallery-modal__next:hover {
     background-color: rgba(0, 0, 0, 0.7);
+}
+
+.gallery-modal__prev svg,
+.gallery-modal__next svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
 }
 
 /* 
@@ -190,15 +203,32 @@
     position: fixed; /* Фиксируем относительно вьюпорта */
     top: 20px;
     right: 20px;
-    font-size: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
     color: var(--color-text-light);
     cursor: pointer;
-    z-index: 2100;
-    transition: transform 0.3s;
+    z-index: 15100; /* Выше основного модального окна (15000) */
+    transition: transform 0.3s, background-color 0.3s;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 .gallery-modal__close:hover {
     transform: rotate(90deg); /* Эффект вращения при наведении */
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.gallery-modal__close svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
 }
 
 
@@ -216,6 +246,25 @@
     .gallery-modal__title {
         font-size: 22px;
     }
+    .gallery-modal__prev,
+    .gallery-modal__next {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+    .gallery-modal__prev svg,
+    .gallery-modal__next svg {
+        width: 20px;
+        height: 20px;
+    }
+    .gallery-modal__close {
+        width: 40px;
+        height: 40px;
+    }
+    .gallery-modal__close svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -223,8 +272,23 @@
         width: 80px;
         height: 50px;
     }
-    .gallery-modal__prev, .gallery-modal__next {
-        padding: 8px 15px;
-        font-size: 20px;
+    .gallery-modal__prev, 
+    .gallery-modal__next {
+        width: 35px;
+        height: 35px;
+        padding: 8px;
+    }
+    .gallery-modal__prev svg,
+    .gallery-modal__next svg {
+        width: 18px;
+        height: 18px;
+    }
+    .gallery-modal__close {
+        width: 35px;
+        height: 35px;
+    }
+    .gallery-modal__close svg {
+        width: 18px;
+        height: 18px;
     }
 }

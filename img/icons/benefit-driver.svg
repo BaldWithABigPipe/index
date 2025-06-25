@@ -1,0 +1,12 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Голова -->
+  <circle cx="30" cy="15" r="10" fill="#a78d45"/>
+  <!-- Очки -->
+  <ellipse cx="25.5" cy="17" rx="3" ry="1.5" fill="#111"/>
+  <ellipse cx="34.5" cy="17" rx="3" ry="1.5" fill="#111"/>
+  <rect x="28.5" y="16.5" width="3" height="1" fill="#111"/>
+  <!-- Треугольное туловище -->
+  <polygon points="30,25 16,54 44,54" fill="#a78d45"/>
+  <!-- Галстук -->
+  <polygon points="30,28 27,50 33,50" fill="#000000"/>
+</svg> 

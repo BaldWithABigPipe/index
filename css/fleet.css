@@ -6,7 +6,7 @@
  * 1. Общие стили для секции
  */
 .fleet {
-    background-color: var(--color-tertiary); /* Темно-серый фон */
+    background-color: var(--color-secondary); /* Изменено с var(--color-tertiary) на var(--color-secondary) */
     color: var(--color-text-light); /* Светлый текст */
     padding: 60px 0;
 }
@@ -17,13 +17,21 @@
     color: var(--color-text-light);
 }
 
+/* Подчеркивание подзаголовка цветом primary */
+.fleet .section-subtitle {
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary);
+    text-underline-offset: 8px; /* Отступ подчеркивания от текста */
+    text-decoration-thickness: 2px; /* Толщина подчеркивания */
+}
+
 /* 
  * 2. Сетка для карточек автомобилей
  */
 .vehicles__grid {
     display: grid;
     /* 3 колонки на десктопе */
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto; /* Центрирование сетки */
@@ -33,7 +41,7 @@
  * 3. Стили для отдельной карточки автомобиля
  */
 .vehicles__card {
-    background-color: #2a2a2a; /* Чуть светлее фона секции */
+    background: #f4f4f4;
     border-radius: 10px;
     overflow: hidden; /* Обрезаем все, что выходит за пределы карточки */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
@@ -63,39 +71,192 @@
     font-family: var(--font-heading);
     font-size: 1.6rem; /* 26px */
     margin: 1.5rem 0 0.5rem;
-    color: var(--color-primary); /* Золотой акцентный цвет */
+    color: #000000;
 }
 
 /* Описание автомобиля */
 .vehicles__description {
     font-size: 0.95rem;
-    color: var(--color-text-light);
+    color: #000000;
     opacity: 0.8; /* Делаем текст менее контрастным */
     padding: 0 1.5rem 1.5rem;
 }
 
-
 /* ==========================================================================
    Адаптивные стили для секции автопарка
    ========================================================================== */
-@media (max-width: 1200px) {
-    /* 2 колонки на планшетах */
+
+/* Для экранов 2K и выше (2560px+) */
+@media (min-width: 2560px) {
+    .fleet {
+        padding: 80px 0;
+    }
     .vehicles__grid {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 800px;
+        max-width: 1800px;
+        gap: 3rem;
+    }
+    .vehicles__image {
+        height: 280px;
+    }
+    .vehicles__name {
+        font-size: 2rem;
+        margin: 2rem 0 0.8rem;
+    }
+    .vehicles__description {
+        font-size: 1.1rem;
+        padding: 0 2rem 2rem;
     }
 }
 
-@media (max-width: 768px) {
-    /* 1 колонка на мобильных устройствах */
+/* Для экранов 1920px - 2559px */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .fleet {
+        padding: 70px 0;
+    }
+    .vehicles__grid {
+        max-width: 1600px;
+        gap: 2.5rem;
+    }
+    .vehicles__image {
+        height: 260px;
+    }
+    .vehicles__name {
+        font-size: 1.8rem;
+        margin: 1.8rem 0 0.7rem;
+    }
+    .vehicles__description {
+        font-size: 1rem;
+        padding: 0 1.8rem 1.8rem;
+    }
+}
+
+/* Для экранов 1600px - 1919px */
+@media (min-width: 1600px) and (max-width: 1919px) {
+    .fleet {
+        padding: 65px 0;
+    }
+    .vehicles__grid {
+        max-width: 1400px;
+        gap: 2.2rem;
+    }
+    .vehicles__image {
+        height: 240px;
+    }
+    .vehicles__name {
+        font-size: 1.7rem;
+        margin: 1.6rem 0 0.6rem;
+    }
+    .vehicles__description {
+        font-size: 0.95rem;
+        padding: 0 1.6rem 1.6rem;
+    }
+}
+
+/* Для экранов 1400px - 1599px */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .fleet {
+        padding: 60px 0;
+    }
+    .vehicles__grid {
+        max-width: 1200px;
+        gap: 2rem;
+    }
+    .vehicles__image {
+        height: 220px;
+    }
+    .vehicles__name {
+        font-size: 1.6rem;
+        margin: 1.5rem 0 0.5rem;
+    }
+    .vehicles__description {
+        font-size: 0.9rem;
+        padding: 0 1.5rem 1.5rem;
+    }
+}
+
+/* Для экранов 1200px - 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .fleet {
+        padding: 55px 0;
+    }
+    .vehicles__grid {
+        max-width: 1100px;
+        gap: 1.8rem;
+    }
+    .vehicles__image {
+        height: 200px;
+    }
+    .vehicles__name {
+        font-size: 1.5rem;
+        margin: 1.4rem 0 0.4rem;
+    }
+    .vehicles__description {
+        font-size: 0.85rem;
+        padding: 0 1.4rem 1.4rem;
+    }
+}
+
+/* Для экранов 1024px - 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .fleet {
+        padding: 50px 0;
+    }
+    .vehicles__grid {
+        max-width: 1000px;
+        gap: 1.6rem;
+    }
+    .vehicles__image {
+        height: 180px;
+    }
+    .vehicles__name {
+        font-size: 1.4rem;
+        margin: 1.3rem 0 0.3rem;
+    }
+    .vehicles__description {
+        font-size: 0.8rem;
+        padding: 0 1.3rem 1.3rem;
+    }
+}
+
+/* Для экранов меньше 1200px (планшеты) */
+@media (max-width: 1199px) {
+    .vehicles__grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+        gap: 1.5rem;
+    }
+    .vehicles__image {
+        height: 160px;
+    }
+    .vehicles__name {
+        font-size: 1.3rem;
+        margin: 1.2rem 0 0.3rem;
+    }
+    .vehicles__description {
+        font-size: 0.75rem;
+        padding: 0 1.2rem 1.2rem;
+    }
+}
+
+/* Для экранов меньше 768px (мобильные устройства) */
+@media (max-width: 767px) {
+    .fleet {
+        padding: 40px 0;
+    }
     .vehicles__grid {
         grid-template-columns: 1fr;
         max-width: 400px;
+        gap: 1.2rem;
     }
     .vehicles__image {
-        height: 180px; /* Уменьшаем высоту изображения */
+        height: 180px;
     }
     .vehicles__name {
-        font-size: 1.4rem; /* Уменьшаем шрифт названия */
+        font-size: 1.4rem;
+        margin: 1.2rem 0 0.4rem;
+    }
+    .vehicles__description {
+        font-size: 0.8rem;
+        padding: 0 1.2rem 1.2rem;
     }
 }

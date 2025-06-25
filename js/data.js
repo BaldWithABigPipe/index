@@ -36,7 +36,8 @@ export const translations = {
         'nav.about': 'О нас',
         'nav.blog': 'Блог',
         'nav.contacts': 'Контакты',
-        'hero.title': 'VIP Трансфер из Цюриха в Швейцарию и Францию',
+        'hero.title': 'Комфортные поездки, конфиденциальное обслуживание, первоклассный опыт',
+        'hero.subtitle': 'Наслаждайтесь премиальным комфортом и полной надежностью в каждой поездке с <span class="hero__brand-accent">ROYALTRANFER</span>.',
         'hero.form.title': 'Забронируйте премиум трансфер',
         'hero.form.from': 'Откуда',
         'hero.form.to': 'Куда',
@@ -51,7 +52,7 @@ export const translations = {
         'hero.form.showRoute': 'Показать маршрут',
         'hero.vehicle.title': 'Выберите люксовый автомобиль',
         'hero.vehicle.select': 'Выбрать',
-        'benefits.exclusive.title': 'Эксклюзивный VIP трансфер',
+        'benefits.exclusive.title': 'Эксклюзивный ROYALTRANFER',
         'benefits.exclusive.text': 'Персональный водитель и люксовые автомобили из Цюриха',
         'benefits.privacy.title': 'Конфиденциальность',
         'benefits.privacy.text': 'Гарантированная приватность для поездок в Швейцарию и Францию',
@@ -64,7 +65,7 @@ export const translations = {
         'howItWorks.step2.text': 'Укажите детали поездки',
         'howItWorks.step3.title': 'Наслаждайтесь',
         'howItWorks.step3.text': 'Комфортная поездка на премиум автомобиле',
-        'vehicles.title': 'Наш автопарк для VIP трансферов',
+        'vehicles.title': 'Наш автопарк для ROYALTRANFER',
         'footer.about': 'О нас',
         'footer.contacts': 'Контакты',
         'nav.fleet': 'Автопарк',
@@ -82,11 +83,11 @@ export const translations = {
         'hero.vehicle.mercedes-e.name': 'Mercedes-Benz E-Class',
         'hero.vehicle.mercedes-e.description': 'Элегантность и практичность для деловых поездок.',
         'hero.vehicle.bmw-7.name': 'BMW 7 Series',
-        'hero.vehicle.bmw-7.description': 'Combination of sporty dynamics and impeccable comfort.',
+        'hero.vehicle.bmw-7.description': 'Сочетание спортивной динамики и безупречного комфорта.',
         'hero.vehicle.audi-a8.name': 'Audi A8',
-        'hero.vehicle.audi-a8.description': 'Innovation and minimalist design for connoisseurs.',
+        'hero.vehicle.audi-a8.description': 'Инновации и минималистичный дизайн для ценителей.',
         'hero.vehicle.rolls-royce.name': 'Rolls-Royce Phantom',
-        'hero.vehicle.rolls-royce.description': 'The pinnacle of automotive art and unsurpassed luxury.',
+        'hero.vehicle.rolls-royce.description': 'Вершина автомобильного искусства и непревзойденной роскоши.',
         'popular.title': 'Наши самые популярные маршруты',
         'popular.subtitle': 'Откройте для себя самые востребованные направления среди наших клиентов.',
         'popular.zurich-zermatt.title': 'Цюрих - Церматт (Маттерхорн)',
@@ -112,19 +113,19 @@ export const translations = {
         'faq.a4': 'Да, мы можем предоставить детские автокресла и бустеры по предварительному запросу. Пожалуйста, укажите возраст ребенка при бронировании, чтобы мы могли подобрать подходящее кресло.',
         'faq.q5': 'Как узнать стоимость трансфера?',
         'faq.a5': 'Используйте нашу форму бронирования: введите точки отправления и назначения, и система автоматически рассчитает предварительную стоимость. Для индивидуальных запросов или длительных поездок свяжитесь с нами напрямую для получения точной цены.',
-        'footer.about.title': 'О VIP Transfer',
-        'footer.about.text': 'VIP Transfer — ваш надежный партнер в мире премиальных перевозок. Мы предлагаем безупречный сервис, комфортабельные автомобили и профессиональных водителей для ваших поездок по Швейцарии и Европе.',
+        'footer.about.title': 'О ROYALTRANFER',
+        'footer.about.text': 'ROYALTRANFER — ваш надежный партнер в мире премиальных перевозок. Мы предлагаем безупречный сервис, комфортабельные автомобили и профессиональных водителей для ваших поездок по Швейцарии и Европе.',
         'footer.navigation.title': 'Навигация',
         'footer.contact.title': 'Свяжитесь с нами',
         'footer.legal.title': 'Правовая информация',
         'footer.address': 'Швейцария, Цюрих, Bahnhofstrasse 123',
         'footer.phone': '+41 79 789 39 76',
-        'footer.email': 'info@viptransfer.com',
+        'footer.email': 'info@royaltransfer.com',
         'footer.hours': 'Пн-Вс: Круглосуточно',
         'footer.privacy': 'Политика конфиденциальности',
         'footer.terms': 'Условия использования',
         'footer.sitemap': 'Карта сайта',
-        'footer.copyright': '© 2025 VIP Transfer. Все права защищены.',
+        'footer.copyright': '© 2025 ROYALTRANFER. Все права защищены.',
         
         // Модальное окно галереи
         'gallery.close': 'Закрыть',
@@ -139,14 +140,51 @@ export const translations = {
         'vehicle.sprinter.name': 'Mercedes Sprinter',
         'vehicle.sprinter.description': 'Spacious minibus for group VIP transfers from Zurich.',
         'vehicle.v-class.name': 'Mercedes V-Class',
-        'vehicle.v-class.description': 'Comfortable minivan for VIP transfers from Zurich.'
+        'vehicle.v-class.description': 'Comfortable minivan for VIP transfers from Zurich.',
+        
+        // Дополнительные переводы для элементов, которые используются в HTML
+        'benefits.title': 'Почему выбирают ROYALTRANFER?',
+        'benefits.luxury.title': 'Элитный автопарк',
+        'benefits.luxury.description': 'Только новые автомобили представительского класса, обеспечивающие максимальный комфорт и безопасность.',
+        'benefits.drivers.title': 'Профессиональные водители',
+        'benefits.drivers.description': 'Опытные, вежливые и пунктуальные водители, знающие каждый маршрут.',
+        'benefits.punctuality.title': 'Гарантированная пунктуальность',
+        'benefits.punctuality.description': 'Мы ценим ваше время и всегда прибываем точно в срок.',
+        'benefits.privacy.title': 'Конфиденциальность',
+        'benefits.privacy.description': 'Полная конфиденциальность и безопасность ваших поездок.',
+        
+        // Переводы для блога
+        'blog.title': 'Блог ROYALTRANFER Zurich',
+        'blog.subtitle': 'Здесь будут публиковаться новости, советы по путешествиям и статьи о премиальных трансферах.',
+        
+        // Переводы для страницы "О нас"
+        'about.title': 'О компании ROYALTRANFER Zurich',
+        'about.desc': 'ROYALTRANFER Zurich — это премиальный сервис перевозок по Швейцарии и Европе. Мы предлагаем индивидуальный подход, современные автомобили представительского класса и профессиональных водителей для вашего максимального комфорта и безопасности.',
+        'about.feature1': '• Персональный сервис 24/7',
+        'about.feature2': '• Только новые автомобили премиум-класса',
+        'about.feature3': '• Водители с многолетним опытом',
+        'about.feature4': '• Конфиденциальность и пунктуальность',
+        
+        // Переводы для хедера
+        'header.book.transfer': 'Забронировать премиальный трансфер',
+        
+        // Переводы для отзывов
+        'reviews.review1.text': '"Поездка с ROYALTRANFER была безупречной. Водитель приехал вовремя, автомобиль был в идеальном состоянии, а сам путь прошел незаметно. Настоящий премиум-сервис!"',
+        'reviews.review1.name': 'Анна К.',
+        'reviews.review2.text': '"Заказывал трансфер из аэропорта Цюриха. Все было на высшем уровне: встреча, помощь с багажом, комфорт в пути. Очень рекомендую этот сервис!"',
+        'reviews.review2.name': 'Дмитрий М.',
+        'reviews.review3.text': '"Использовали ROYALTRANFER для поездки в горы. Машина очень комфортная, водитель аккуратный, а виды за окном просто завораживали. Обязательно воспользуемся снова!"',
+        'reviews.review3.name': 'Елена С.',
+        'hero.form.headline': 'Частный премиум трансфер',
+        'hero.form.subheadline': 'Сделайте онлайн бронирование'
     },
     en: {
         'nav.home': 'Home',
         'nav.about': 'About Us',
         'nav.blog': 'Blog',
         'nav.contacts': 'Contacts',
-        'hero.title': 'VIP Transfer from Zurich to Switzerland and France',
+        'hero.title': 'Comfortable rides, confidential service, first-class experience',
+        'hero.subtitle': 'Enjoy premium comfort and complete reliability on every trip with <span class="hero__brand-accent">ROYALTRANFER</span>.',
         'hero.form.title': 'Book a Premium Transfer',
         'hero.form.from': 'From',
         'hero.form.to': 'To',
@@ -249,7 +287,43 @@ export const translations = {
         'vehicle.sprinter.name': 'Mercedes Sprinter',
         'vehicle.sprinter.description': 'Spacious minibus for group VIP transfers from Zurich.',
         'vehicle.v-class.name': 'Mercedes V-Class',
-        'vehicle.v-class.description': 'Comfortable minivan for VIP transfers from Zurich.'
+        'vehicle.v-class.description': 'Comfortable minivan for VIP transfers from Zurich.',
+        
+        // Дополнительные переводы для элементов, которые используются в HTML
+        'benefits.title': 'Why Choose VIP Transfer?',
+        'benefits.luxury.title': 'Elite Fleet',
+        'benefits.luxury.description': 'Only new executive class vehicles ensuring maximum comfort and safety.',
+        'benefits.drivers.title': 'Professional Drivers',
+        'benefits.drivers.description': 'Experienced, polite and punctual drivers who know every route.',
+        'benefits.punctuality.title': 'Guaranteed Punctuality',
+        'benefits.punctuality.description': 'We value your time and always arrive exactly on time.',
+        'benefits.privacy.title': 'Confidentiality',
+        'benefits.privacy.description': 'Complete confidentiality and security of your trips.',
+        
+        // Переводы для блога
+        'blog.title': 'VIP Transfer Zurich Blog',
+        'blog.subtitle': 'Here will be published news, travel tips and articles about premium transfers.',
+        
+        // Переводы для страницы "О нас"
+        'about.title': 'About VIP Transfer Zurich Company',
+        'about.desc': 'VIP Transfer Zurich is a premium transportation service in Switzerland and Europe. We offer individual approach, modern executive class vehicles and professional drivers for your maximum comfort and safety.',
+        'about.feature1': '• Personal 24/7 service',
+        'about.feature2': '• Only new premium class vehicles',
+        'about.feature3': '• Drivers with years of experience',
+        'about.feature4': '• Confidentiality and punctuality',
+        
+        // Переводы для хедера
+        'header.book.transfer': 'Book Premium Transfer',
+        
+        // Переводы для отзывов
+        'reviews.review1.text': '"The trip with VIP Transfer was flawless. The driver arrived on time, the car was in perfect condition, and the journey itself went unnoticed. A real premium service!"',
+        'reviews.review1.name': 'Anna K.',
+        'reviews.review2.text': '"I ordered a transfer from Zurich airport. Everything was at the highest level: meeting, help with luggage, comfort on the way. I highly recommend this service!"',
+        'reviews.review2.name': 'Dmitry M.',
+        'reviews.review3.text': '"We used VIP Transfer for a trip to the mountains. The car is very comfortable, the driver is careful, and the views outside the window were simply mesmerizing. We will definitely use it again!"',
+        'reviews.review3.name': 'Elena S.',
+        'hero.form.headline': 'Private Premium Transfer',
+        'hero.form.subheadline': 'Book online now'
     }
 };
 
@@ -278,8 +352,8 @@ export const vehicles = {
         ],
         images: [
             "img/mers.webp",
-            "img/mers.webp",
-            "img/mers.webp"
+            "img/car2.jpg",
+            "img/car3.jpg"
         ]
     },
     'maybach-gls': {
@@ -293,8 +367,8 @@ export const vehicles = {
         ],
         images: [
             "img/mers.webp",
-            "img/mers.webp",
-            "img/mers.webp"
+            "img/car2.jpg",
+            "img/car3.jpg"
         ]
     },
     sprinter: {
@@ -308,8 +382,8 @@ export const vehicles = {
         ],
         images: [
             "img/mers.webp",
-            "img/mers.webp",
-            "img/mers.webp"
+            "img/car2.jpg",
+            "img/car3.jpg"
         ]
     },
     'v-class': {
@@ -323,8 +397,8 @@ export const vehicles = {
         ],
         images: [
             "img/mers.webp",
-            "img/mers.webp",
-            "img/mers.webp"
+            "img/car2.jpg",
+            "img/car3.jpg"
         ]
     }
 };
@@ -398,7 +472,7 @@ export const reviews = {
     ],
     en: [
         {
-            text: '"The trip with VIP Transfer was impeccable. The driver arrived on time, the car was in perfect condition, and the journey itself went unnoticed. A real premium service!"',
+            text: '"The trip with VIP Transfer was flawless. The driver arrived on time, the car was in perfect condition, and the journey itself went unnoticed. A real premium service!"',
             name: 'Anna K.'
         },
         {

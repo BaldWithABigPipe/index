@@ -1,0 +1,176 @@
+/* ==========================================================================
+   Стили для CTA кнопок (Call-to-Action)
+   ========================================================================== */
+
+/* 
+ * 1. CTA язычок под хедером (десктопная версия)
+ *    Часть скрыта за хедером для создания эффекта "язычка"
+ */
+.cta-book-transfer {
+    position: fixed;
+    left: 50%;
+    top: 105px; /* Базовая позиция */
+    transform: translateX(-50%);
+    margin-top: -35px; /* Отрицательный margin для скрытия за хедером */
+    z-index: 9999; /* Под хедером (10000) */
+    background: var(--color-primary);
+    color: var(--color-text-light);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.85em 2.2em;
+    border-radius: 0 0 36px 36px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 -4px 12px rgba(0,0,0,0.10);
+    border: none;
+    cursor: pointer;
+    opacity: 0.97;
+    transition: opacity 0.3s, box-shadow 0.3s, background 0.3s;
+    outline: none;
+    letter-spacing: 0.04em;
+    display: block;
+    min-width: 220px;
+    max-width: 90vw;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: auto;
+}
+
+/* Эффект при наведении и фокусе */
+.cta-book-transfer:hover, 
+.cta-book-transfer:focus {
+    background: var(--color-primary-dark);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.22), 0 -4px 12px rgba(0,0,0,0.10);
+    opacity: 1;
+}
+
+/* Скрываем на мобильных устройствах */
+@media (max-width: 767px) {
+    .cta-book-transfer {
+        display: none !important;
+    }
+}
+
+/* 
+ * 2. Мобильная кнопка CTA внизу экрана
+ *    Прямоугольная, на всю ширину экрана
+ */
+.cta-book-transfer-mobile {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    z-index: 10001; /* Выше всех элементов */
+    background: var(--color-primary);
+    color: var(--color-text-light);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 1.1em 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 -4px 18px rgba(0,0,0,0.13);
+    cursor: pointer;
+    opacity: 0.98;
+    transition: opacity 0.3s, background 0.3s;
+    outline: none;
+    letter-spacing: 0.04em;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: auto;
+}
+
+/* Эффект при наведении и фокусе */
+.cta-book-transfer-mobile:hover, 
+.cta-book-transfer-mobile:focus {
+    background: var(--color-primary-dark);
+    opacity: 1;
+}
+
+/* Показываем только на мобильных устройствах */
+@media (max-width: 767px) {
+    .cta-book-transfer-mobile {
+        display: block;
+        font-size: 1.05rem;
+        padding: 1em 0;
+        border-radius: 0;
+        min-width: 100vw;
+        max-width: 100vw;
+        left: 0;
+        right: 0;
+        transform: none;
+    }
+    .cta-book-transfer {
+        display: none !important;
+    }
+}
+
+/* Скрываем мобильную кнопку на десктопе */
+@media (min-width: 768px) {
+    .cta-book-transfer-mobile {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   Адаптивные стили для CTA кнопок в зависимости от высоты хедера
+   ========================================================================== */
+
+/* Для экранов 2K и выше (2560px+) */
+@media (min-width: 2560px) {
+    .cta-book-transfer {
+        top: 135px;
+        margin-top: -45px;
+    }
+}
+
+/* Для экранов 1920px - 2559px */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    .cta-book-transfer {
+        top: 115px;
+        margin-top: -40px;
+    }
+}
+
+/* Для экранов 1600px - 1919px */
+@media (min-width: 1600px) and (max-width: 1919px) {
+    .cta-book-transfer {
+        top: 110px;
+        margin-top: -38px;
+    }
+}
+
+/* Для экранов 1400px - 1599px */
+@media (min-width: 1400px) and (max-width: 1599px) {
+    .cta-book-transfer {
+        top: 105px;
+        margin-top: -35px;
+    }
+}
+
+/* Для экранов 1200px - 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .cta-book-transfer {
+        top: 100px;
+        margin-top: -32px;
+    }
+}
+
+/* Для экранов 1024px - 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .cta-book-transfer {
+        top: 95px;
+        margin-top: -30px;
+    }
+}
+
+/* Для экранов 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .cta-book-transfer {
+        top: 90px;
+        margin-top: -28px;
+    }
+} 

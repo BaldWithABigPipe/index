@@ -1,0 +1,533 @@
+/* ==========================================================================
+   Стили для секции "Почему выбирают нас" (Benefits)
+   ========================================================================== */
+
+/* background: linear-gradient(90deg, #b3b3b3, #b0b0b1);
+ * 1. Стили для секции преимуществ (используется на главной странице)
+ */
+.benefits {
+  padding: 60px 0; 
+  background: #f4f4f4;
+  border-top: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+/* Заголовок внутри секции */
+.benefits .section-title {
+  text-align: center;
+  color: var(--color-text-dark); /* Белый цвет для основного заголовка */
+  margin-bottom: 50px;
+}
+
+/* Контейнер для карточек преимуществ */
+.benefits__cards {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет карточкам переноситься на новую строку */
+  justify-content: center;
+  gap: 30px; /* Расстояние между карточками */
+}
+
+/* Стили отдельной карточки преимущества */
+.benefits__card {
+  background: linear-gradient(171deg, #2d2d2d, #181818);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  text-align: center;
+  flex-basis: calc(25% - 30px); /* Расчет ширины для 4 карточек в ряду с учетом gap */
+  max-width: calc(25% - 30px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Выравниваем по верхнему краю */
+  min-height: 280px; /* Фиксированная минимальная высота для всех карточек */
+}
+
+/* Эффект при наведении на карточку */
+.benefits__card:hover {
+  transform: translateY(-10px); /* Карточка "приподнимается" */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Тень становится более выраженной */
+}
+
+/* Обертка для иконки */
+.benefits__icon-wrapper {
+  width: 100%;
+  height: 120px; /* Фиксированная высота для всех иконок */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px; /* Уменьшаем отступ с 20px до 15px */
+  flex-shrink: 0; /* Предотвращаем сжатие обертки */
+}
+
+/* Иконка в карточке (стандартный размер) */
+.benefits__icon {
+    width: 120px; /* Увеличиваем с 70px до 120px */
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    flex-shrink: 0; /* Предотвращаем сжатие иконки */
+}
+
+/* Специальный класс для иконки автомобиля (больший размер) */
+.benefits__icon--car {
+    width: 200px; /* Увеличиваем с 100px до 200px */
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    flex-shrink: 0; /* Предотвращаем сжатие иконки */
+}
+
+/* Специальный класс для иконки замка конфиденциальности (180px) */
+.benefits__icon--privacy {
+    width: 180px; /* Увеличиваем с 100px до 180px */
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    flex-shrink: 0; /* Предотвращаем сжатие иконки */
+}
+
+/* Обертка для заголовка */
+.benefits__title-wrapper {
+  width: 100%;
+  height: 100px; /* Увеличиваем высоту с 80px до 100px для 2 строк */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px; /* Уменьшаем отступ с 15px до 10px */
+}
+
+/* Заголовок в карточке */
+.benefits__card-title {
+    font-family: var(--font-heading);
+  font-size: 1.5em;
+    color: var(--color-text-light); /* Белый цвет для заголовков в карточках */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  margin: 0; /* Убираем стандартные отступы */
+  width: 100%; /* Занимает всю ширину обертки */
+  height: 100%; /* Занимает всю высоту обертки */
+}
+
+/* Специальный класс для заголовка в карточке с автомобилем */
+.benefits__card-title--car {
+    margin: 0; /* Убираем отступ для выравнивания с другими карточками */
+}
+
+/* Специальные классы для заголовков "Элитный автопарк" и "Конфиденциальность" */
+.benefits__card-title--fleet,
+.benefits__card-title--privacy {
+    margin: 0; /* Убираем отступы */
+}
+
+/* Обертка для описания */
+.benefits__description-wrapper {
+  width: 100%;
+  flex-grow: 1; /* Описание занимает оставшееся пространство */
+  display: flex;
+  align-items: flex-start; /* Выравниваем текст по верхнему краю */
+  justify-content: center;
+  flex-shrink: 0; /* Предотвращаем сжатие обертки */
+}
+
+/* Описание в карточке */
+.benefits__card-description {
+  font-family: var(--font-body);
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--color-text-muted); /* Приглушенный светлый цвет для читаемости */
+  display: flex;
+  align-items: flex-start; /* Выравниваем текст по верхнему краю */
+  justify-content: center;
+  margin: 0; /* Убираем стандартные отступы */
+  text-align: center;
+}
+
+/* 
+ * 2. Адаптивные стили для секции преимуществ
+ */
+
+/* Для экранов 2K и выше (2560px+) */
+@media (min-width: 2560px) {
+  .benefits {
+    padding: 80px 0;
+  }
+  .benefits__cards {
+    gap: 40px;
+  }
+  .benefits__card {
+    padding: 40px;
+    flex-basis: calc(25% - 40px);
+    max-width: calc(25% - 40px);
+    min-height: 350px;
+  }
+  .benefits__icon-wrapper {
+    height: 150px;
+    margin-bottom: 20px;
+  }
+  .benefits__icon {
+    width: 150px; /* Увеличиваем пропорционально */
+    height: auto;
+  }
+  .benefits__icon--car {
+    width: 250px; /* Увеличиваем пропорционально */
+    height: auto;
+  }
+  .benefits__icon--privacy {
+    width: 230px; /* Увеличиваем пропорционально */
+    height: auto;
+  }
+  .benefits__title-wrapper {
+    height: 125px; /* Увеличиваем для 2K экранов */
+    margin-bottom: 15px;
+  }
+  .benefits__card-title {
+    font-size: 1.8em;
+  }
+  .benefits__card-title--car {
+    margin: 0;
+  }
+  .benefits__card-title--fleet,
+  .benefits__card-title--privacy {
+    margin: 0;
+  }
+  .benefits__card-description {
+    font-size: 1.1em;
+  }
+}
+
+/* Для экранов 1920px - 2559px */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .benefits {
+    padding: 70px 0;
+  }
+  .benefits__cards {
+    gap: 35px;
+  }
+  .benefits__card {
+    padding: 35px;
+    flex-basis: calc(25% - 35px);
+    max-width: calc(25% - 35px);
+    min-height: 320px;
+  }
+  .benefits__icon-wrapper {
+    height: 140px;
+    margin-bottom: 18px;
+  }
+  .benefits__icon {
+    width: 140px; /* Увеличиваем пропорционально */
+    height: auto;
+  }
+  .benefits__icon--car {
+    width: 230px; /* Увеличиваем пропорционально */
+    height: auto;
+  }
+  .benefits__icon--privacy {
+    width: 210px; /* Увеличиваем пропорционально */
+    height: auto;
+  }
+  .benefits__title-wrapper {
+    height: 115px; /* Увеличиваем для больших экранов */
+    margin-bottom: 13px;
+  }
+  .benefits__card-title {
+    font-size: 1.6em;
+  }
+  .benefits__card-title--car {
+    margin: 0;
+  }
+  .benefits__card-title--fleet,
+  .benefits__card-title--privacy {
+    margin: 0;
+  }
+  .benefits__card-description {
+    font-size: 1.05em;
+  }
+}
+
+/* Для экранов 1600px - 1919px */
+@media (min-width: 1600px) and (max-width: 1919px) {
+  .benefits {
+    padding: 65px 0;
+  }
+  .benefits__cards {
+    gap: 32px;
+  }
+  .benefits__card {
+    padding: 32px;
+    flex-basis: calc(25% - 32px);
+    max-width: calc(25% - 32px);
+    min-height: 300px;
+  }
+  .benefits__icon-wrapper {
+    height: 130px;
+    margin-bottom: 16px;
+  }
+  .benefits__icon {
+    width: 130px; /* Увеличиваем пропорционально */
+    height: auto;
+  }
+  .benefits__icon--car {
+    width: 220px; /* Увеличиваем пропорционально */
+    height: auto;
+  }
+  .benefits__icon--privacy {
+    width: 200px; /* Увеличиваем пропорционально */
+    height: auto;
+  }
+  .benefits__title-wrapper {
+    height: 110px; /* Увеличиваем для средних экранов */
+    margin-bottom: 12px;
+  }
+  .benefits__card-title {
+    font-size: 1.5em;
+  }
+  .benefits__card-title--car {
+    margin: 0;
+  }
+  .benefits__card-description {
+    font-size: 1em;
+  }
+}
+
+/* Для экранов 1400px - 1599px */
+@media (min-width: 1400px) and (max-width: 1599px) {
+  .benefits {
+    padding: 60px 0;
+  }
+  .benefits__cards {
+    gap: 30px;
+  }
+  .benefits__card {
+    padding: 30px;
+    flex-basis: calc(25% - 30px);
+    max-width: calc(25% - 30px);
+    min-height: 280px;
+  }
+  .benefits__icon-wrapper {
+    height: 120px;
+    margin-bottom: 15px;
+  }
+  .benefits__icon {
+    width: 120px; /* Базовая высота для 2 строк */
+    height: auto;
+  }
+  .benefits__icon--car {
+    width: 200px; /* Базовая высота для 2 строк */
+    height: auto;
+  }
+  .benefits__icon--privacy {
+    width: 180px; /* Базовая высота для 2 строк */
+    height: auto;
+  }
+  .benefits__title-wrapper {
+    height: 100px; /* Базовая высота для 2 строк */
+    margin-bottom: 10px;
+  }
+  .benefits__card-title {
+    font-size: 1.4em;
+  }
+  .benefits__card-title--car {
+    margin: 0;
+  }
+  .benefits__card-title--fleet,
+  .benefits__card-title--privacy {
+    margin: 0;
+  }
+  .benefits__card-description {
+    font-size: 0.95em;
+  }
+}
+
+/* Для экранов 1200px - 1399px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .benefits {
+    padding: 55px 0;
+  }
+  .benefits__cards {
+    gap: 28px;
+  }
+  .benefits__card {
+    padding: 28px;
+    flex-basis: calc(25% - 28px);
+    max-width: calc(25% - 28px);
+    min-height: 260px;
+  }
+  .benefits__icon-wrapper {
+    height: 110px;
+    margin-bottom: 13px;
+  }
+  .benefits__icon {
+    width: 110px; /* Уменьшаем пропорционально */
+    height: auto;
+  }
+  .benefits__icon--car {
+    width: 180px; /* Уменьшаем пропорционально */
+    height: auto;
+  }
+  .benefits__icon--privacy {
+    width: 160px; /* Уменьшаем пропорционально */
+    height: auto;
+  }
+  .benefits__title-wrapper {
+    height: 90px; /* Уменьшаем пропорционально */
+    margin-bottom: 8px;
+  }
+  .benefits__card-title {
+    font-size: 1.3em;
+  }
+  .benefits__card-title--car {
+    margin: 0;
+  }
+  .benefits__card-description {
+    font-size: 0.9em;
+  }
+}
+
+/* Для экранов 1024px - 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .benefits {
+    padding: 50px 0;
+  }
+  .benefits__cards {
+    gap: 25px;
+  }
+  .benefits__card {
+    padding: 25px;
+    flex-basis: calc(25% - 25px);
+    max-width: calc(25% - 25px);
+    min-height: 240px;
+  }
+  .benefits__icon-wrapper {
+    height: 100px;
+    margin-bottom: 12px;
+  }
+  .benefits__icon {
+    width: 100px; /* Уменьшаем пропорционально */
+    height: auto;
+  }
+  .benefits__icon--car {
+    width: 170px; /* Уменьшаем пропорционально */
+    height: auto;
+  }
+  .benefits__icon--privacy {
+    width: 150px; /* Уменьшаем пропорционально */
+    height: auto;
+  }
+  .benefits__title-wrapper {
+    height: 85px; /* Уменьшаем пропорционально */
+    margin-bottom: 7px;
+  }
+  .benefits__card-title {
+    font-size: 1.2em;
+  }
+  .benefits__card-title--car {
+    margin: 0;
+  }
+  .benefits__card-description {
+    font-size: 0.85em;
+  }
+}
+
+/* Для экранов меньше 1200px (планшеты) */
+@media (max-width: 1199px) {
+  .benefits__cards {
+    margin-top: 25px;
+  }
+  .benefits__card {
+    flex-basis: calc(50% - 30px); 
+    max-width: calc(50% - 30px);
+    min-height: 220px;
+  }
+  .benefits__icon-wrapper {
+    height: 90px;
+    margin-bottom: 12px;
+  }
+  .benefits__icon {
+    width: 90px; /* Уменьшаем для планшетов */
+    height: auto;
+  }
+  .benefits__icon--car {
+    width: 150px; /* Уменьшаем для планшетов */
+    height: auto;
+  }
+  .benefits__icon--privacy {
+    width: 130px; /* Уменьшаем для планшетов */
+    height: auto;
+  }
+  .benefits__title-wrapper {
+    height: 80px; /* Уменьшаем для планшетов */
+    margin-bottom: 8px;
+  }
+  .benefits__card-title--car {
+    margin: 0;
+  }
+  .benefits__card-description {
+    font-size: 0.8em;
+  }
+}
+
+/* Для экранов меньше 768px (мобильные устройства) */
+@media (max-width: 767px) {
+  .benefits {
+    padding: 40px 0;
+  }
+  .benefits .section-title {
+    font-size: 1.8rem; /* Уменьшаем размер для мобильных */
+  }
+  .benefits__cards {
+    gap: 20px;
+  }
+  .benefits__card {
+    flex-basis: 100%; 
+    max-width: 100%;
+    padding: 25px;
+    min-height: 200px;
+  }
+  .benefits__icon-wrapper {
+    height: 80px;
+    margin-bottom: 12px;
+  }
+  .benefits__icon {
+    width: 80px; /* Уменьшаем для мобильных */
+    height: auto;
+  }
+  .benefits__icon--car {
+    width: 130px; /* Уменьшаем для мобильных */
+    height: auto;
+  }
+  .benefits__icon--privacy {
+    width: 110px; /* Уменьшаем для мобильных */
+    height: auto;
+  }
+  .benefits__title-wrapper {
+    height: 70px; /* Уменьшаем для мобильных */
+    margin-bottom: 8px;
+  }
+  .benefits__card-title {
+    font-size: 1.3em;
+  }
+  .benefits__card-title--car {
+    margin: 0;
+  }
+  .benefits__card-title--fleet,
+  .benefits__card-title--privacy {
+    margin: 0;
+  }
+  .benefits__card-description {
+    font-size: 0.9em;
+  }
+} 

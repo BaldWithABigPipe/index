@@ -1,43 +1,3 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-</script>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -48,49 +8,15 @@
     <meta name="keywords" content="VIP трансфер Цюрих, премиум такси Швейцария, трансфер аэропорт Цюрих, шофер сервис Цюрих, люкс такси Женева, трансфер в Альпы, персональный водитель Швейцария, бизнес трансфер, междугородний трансфер">
     <meta name="robots" content="index, follow">
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://viptransfer.com/">
-    <meta property="og:title" content="VIP Трансфер Цюрих - Премиальные перевозки по Швейцарии и Европе">
-    <meta property="og:description" content="Премиальные VIP трансферы из Цюриха по Швейцарии, Франции и всей Европе. Забронируйте комфортабельный трансфер на автомобилях представительского класса с профессиональными водителями.">
-    <meta property="og:image" content="https://viptransfer.com/images/og-image.jpg"> <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://viptransfer.com/">
-    <meta property="twitter:title" content="VIP Трансфер Цюрих - Премиальные перевозки по Швейцарии и Европе">
-    <meta property="twitter:description" content="Премиальные VIP трансферы из Цюриха по Швейцарии, Франции и всей Европе. Забронируйте комфортабельный трансфер на автомобилях представительского класса с профессиональными водителями.">
-    <meta property="twitter:image" content="https://viptransfer.com/images/twitter-image.jpg"> <link rel="canonical" href="https://viptransfer.com/">
+    <link rel="canonical" href="https://viptransfer.com/">
     <link rel="alternate" hreflang="en" href="https://viptransfer.com/en/">
     <link rel="alternate" hreflang="ru" href="https://viptransfer.com/ru/">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-    <link rel="stylesheet" href="css/styles.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "VIP Transfer Zurich",
-    "description": "Premium VIP transfer services from Zurich to hotels and resorts in Switzerland and France.",
-    "url": "https://viptransfer.com",
-    "telephone": "+123456789",
-    "email": "info@viptransfer.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Zurich",
-      "addressCountry": "Switzerland"
-    },
-    "availableLanguage": ["Russian", "English"],
-    "service": {
-      "@type": "Service",
-      "serviceType": "VIP Transfer",
-      "areaServed": ["Switzerland", "France"],
-      "provider": {
-        "@type": "Organization",
-        "name": "VIP Transfer Zurich"
-      }
-    }
-  }
-  </script>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body class="page">
@@ -99,53 +25,84 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Общая обертка сайта -->
-    <div class="site-wrapper">
-        <!-- ============================================= -->
-        <!--                   ШАПКА САЙТА (HEADER)        -->
-        <!-- ============================================= -->
-        <header class="header">
-            <div class="container header__container">
-                <!-- Блок с рейтингом -->
-                <div class="header__logo-group">
-                    <div class="header__rating">
-                        <p class="header__rating-text" data-lang-key="header.rating">5.0 средний рейтинг наших клиентов</p>
-                        <div class="header__stars" aria-label="Рейтинг 5 из 5 звезд">
-                            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
-                            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
-                            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
-                            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
-                            <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+    <!-- ============================================= -->
+    <!--                   ШАПКА САЙТА (HEADER)        -->
+    <!-- ============================================= -->
+    <header class="header">
+        <div class="container header__container">
+            <!-- Блок с логотипом -->
+            <div class="header__logo-group">
+                <span class="header__logo">ROYALTRANSFER</span>
+            </div>
+            <!-- Навигационное меню -->
+            <nav class="header__nav" aria-label="Главная навигация">
+                <ul class="header__nav-list">
+                    <li><a href="about-us.html" class="header__nav-link" data-lang-key="nav.about">О нас</a></li>
+                    <li><a href="#fleet" class="header__nav-link" data-lang-key="nav.fleet">Автопарк</a></li>
+                    <li><a href="#popular-transfers" class="header__nav-link" data-lang-key="nav.popular">Популярные трансферы</a></li>
+                    <li><a href="#reviews" class="header__nav-link" data-lang-key="nav.reviews">Отзывы</a></li>
+                    <li><a href="#faq" class="header__nav-link" data-lang-key="nav.faq">FAQ</a></li>
+                    <li><a href="blog.html" class="header__nav-link" data-lang-key="nav.blog">Блог</a></li>
+                </ul>
+            </nav>
+            <!-- Настройки: язык и телефон -->
+            <div class="header__settings">
+                <a href="tel:+41797893976" class="header__phone" data-lang-key="header.phone">+41 79 789 39 76</a>
+                <div class="header__settings-language">
+                    <div class="header__language-selector">
+                        <button class="header__language-button" type="button" aria-label="Выберите язык">
+                            <img src="img/icons/ru.svg" alt="Русский" class="header__language-flag" id="current-language-flag">
+                            <svg class="header__language-arrow" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 2L6 7L11 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="header__language-dropdown" id="language-dropdown">
+                            <div class="header__language-option" data-lang="ru">
+                                <img src="img/icons/ru.svg" alt="Русский" class="header__language-flag">
+                                <span>Русский</span>
+                            </div>
+                            <div class="header__language-option" data-lang="en">
+                                <img src="img/icons/us.svg" alt="English" class="header__language-flag">
+                                <span>English</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Навигационное меню -->
-                <nav class="header__nav" aria-label="Главная навигация">
-                    <ul class="header__nav-list">
-                        <li><a href="#hero" class="header__nav-link" data-lang-key="nav.home">Главная</a></li>
-                        <li><a href="about-us.html" class="header__nav-link" data-lang-key="nav.about">О нас</a></li>
-                        <li><a href="#fleet" class="header__nav-link" data-lang-key="nav.fleet">Автопарк</a></li>
-                        <li><a href="#popular-transfers" class="header__nav-link" data-lang-key="nav.popular">Популярные трансферы</a></li>
-                        <li><a href="#reviews" class="header__nav-link" data-lang-key="nav.reviews">Отзывы</a></li>
-                        <li><a href="#faq" class="header__nav-link" data-lang-key="nav.faq">FAQ</a></li>
-                        <li><a href="blog.html" class="header__nav-link" data-lang-key="nav.blog">Блог</a></li>
-                    </ul>
-                </nav>
-
-                <!-- Настройки: язык и телефон -->
-                <div class="header__settings">
-                    <div class="header__settings-language">
-                        <select class="header__settings-language-select" aria-label="Выберите язык">
-                            <option value="ru">Русский</option>
-                            <option value="en">English</option>
-                        </select>
-                    </div>
-                    <a href="tel:+41797893976" class="header__phone" data-lang-key="header.phone">+41 79 789 39 76</a>
-                </div>
             </div>
-        </header>
+            
+            <!-- Кнопка мобильного меню -->
+            <button class="header__mobile-toggle" type="button" aria-label="Открыть меню">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </header>
 
+    <!-- Мобильное меню -->
+    <div class="header__mobile-menu" id="mobile-menu">
+        <nav class="header__mobile-nav">
+            <ul class="header__mobile-nav-list">
+                <li><a href="about-us.html" class="header__mobile-nav-link" data-lang-key="nav.about">О нас</a></li>
+                <li><a href="#fleet" class="header__mobile-nav-link" data-lang-key="nav.fleet">Автопарк</a></li>
+                <li><a href="#popular-transfers" class="header__mobile-nav-link" data-lang-key="nav.popular">Популярные трансферы</a></li>
+                <li><a href="#reviews" class="header__mobile-nav-link" data-lang-key="nav.reviews">Отзывы</a></li>
+                <li><a href="#faq" class="header__mobile-nav-link" data-lang-key="nav.faq">FAQ</a></li>
+                <li><a href="blog.html" class="header__mobile-nav-link" data-lang-key="nav.blog">Блог</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- CTA кнопки (перемещены из хедера) -->
+    <button id="cta-book-transfer" class="cta-book-transfer" type="button" data-i18n="cta.book" style="display:none;">
+        Забронировать трансфер
+    </button>
+    <button id="cta-book-transfer-mobile" class="cta-book-transfer-mobile" type="button" data-i18n="cta.book" style="display:none;">
+        Забронировать трансфер
+    </button>
+
+    <!-- Общая обертка сайта -->
+    <div class="site-wrapper">
         <!-- ============================================= -->
         <!--                   ОСНОВНОЕ СОДЕРЖИМОЕ (MAIN)  -->
         <!-- ============================================= -->
@@ -154,18 +111,34 @@
             <!-- ============================================= -->
             <!--        ГЛАВНЫЙ ЭКРАН (HERO) С ФОРМОЙ БРОНИРОВАНИЯ -->
             <!-- ============================================= -->
-            <section class="hero" id="hero" aria-labelledby="heroTitle">
+<section class="hero" id="hero" aria-labelledby="heroTitle">
                 <div class="hero__container">
-                    <h1 class="hero__title" data-i18n="hero.title">VIP Трансфер из Цюриха в Швейцарию и Францию</h1>
+                    <div class="hero__content">
+                        <div class="hero__text-block">
+                            <h1 class="hero__title" data-i18n="hero.title">Комфортные поездки, конфиденциальное обслуживание, первоклассный опыт</h1>
+                            <p class="hero__subtitle" data-i18n="hero.subtitle">Наслаждайтесь премиальным комфортом и полной надежностью в каждой поездке с <span class="hero__brand-accent">ROYALTRANFER</span>.</p>
+                            <div class="hero__google-rating">
+                                <div class="hero__google-row">
+                                    <span class="hero__google-text">Google</span>
+                                    <span class="hero__google-stars">
+                                        <svg class="header__star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+                                        <svg class="header__star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+                                        <svg class="header__star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+                                        <svg class="header__star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+                                        <svg class="header__star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
+                                    </span>
+                                </div>
+                                <div class="hero__google-caption">5.0 средний рейтинг наших клиентов</div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- Комплексный блок бронирования -->
                     <div class="hero__booking-form">
-                        
-                        <!-- Форма для ввода данных о поездке -->
-                        <form class="hero__form">
-                            <h3 class="hero__form-title" data-i18n="hero.form.title">Забронируйте премиум трансфер</h3>
-
-                            <div class="hero__form-row">
+                        <div class="hero__form-wrapper">
+                            <div class="hero__form-headline" data-i18n="hero.form.headline">Частный премиум трансфер</div>
+                            <div class="hero__form-subheadline" data-i18n="hero.form.subheadline">Сделайте онлайн бронирование</div>
+                            <form class="hero__form">
                                 <!-- Поле "Откуда" -->
                                 <div class="hero__form-group">
                                     <label for="from" class="hero__form-label" data-i18n="hero.form.from">Откуда</label>
@@ -175,7 +148,6 @@
                                     </div>
                                     <div id="from-suggestions" class="hero__suggestions hero__suggestions--hidden"></div>
                                 </div>
-
                                 <!-- Поле "Куда" -->
                                 <div class="hero__form-group">
                                     <label for="to" class="hero__form-label" data-i18n="hero.form.to">Куда</label>
@@ -185,101 +157,123 @@
                                     </div>
                                     <div id="to-suggestions" class="hero__suggestions hero__suggestions--hidden"></div>
                                 </div>
-                            </div>
-
-                            <div class="hero__form-row">
-                                <!-- Поле "Дата поездки" -->
-                                <div class="hero__form-group">
-                                    <label for="date" class="hero__form-label" data-i18n="hero.form.date">Дата поездки</label>
-                                    <div class="hero__form-input-wrapper">
-                                        <img src="img/icons/calendar.svg" alt="Calendar" class="hero__form-icon">
-                                        <input type="text" id="date" class="hero__form-input" placeholder="Выберите дату">
+                                <!-- Новая строка: дата поездки и обратный трансфер -->
+                                <div class="hero__form-row hero__form-row--wide">
+                                    <div class="hero__form-group">
+                                        <label for="date" class="hero__form-label" data-i18n="hero.form.date">Дата поездки</label>
+                                        <div class="hero__form-input-wrapper">
+                                            <img src="img/icons/calendar.svg" alt="Calendar" class="hero__form-icon">
+                                            <input type="text" id="date" class="hero__form-input" placeholder="Выберите дату">
+                                        </div>
+                                    </div>
+                                    <div class="hero__form-group">
+                                        <label class="hero__form-label" style="opacity: 0;">Действие</label>
+                                        <button type="button" id="add-return-transfer" class="hero__form-button--inline" data-add-text="Добавить обратный трансфер" data-remove-text="Убрать обратный трансфер">
+                                            <svg class="hero__form-button-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 1V15M1 8H15" stroke="currentColor" stroke-width="2"></path>
+                                            </svg>
+                                            <span data-i18n="hero.form.addReturn">Добавить обратный трансфер</span>
+                                        </button>
                                     </div>
                                 </div>
-
-                                <!-- Группа для кнопки, чтобы она была в том же ряду -->
-                                <div class="hero__form-group">
-                                    <!-- Пустой лейбл для выравнивания по высоте с другими полями -->
-                                    <label class="hero__form-label" style="opacity: 0;">Действие</label>
-                                    <button type="button" id="add-return-transfer" class="hero__form-button--inline" data-add-text="Добавить обратный трансфер" data-remove-text="Убрать обратный трансфер">
-                                        <svg class="hero__form-button-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1V15M1 8H15" stroke="currentColor" stroke-width="2"></path></svg>
-                                        <span data-i18n="hero.form.addReturn">Добавить обратный трансфер</span>
+                                <!-- Поле "Дата возвращения" (скрыто по умолчанию) -->
+                                <div class="hero__form-group hero__form-group--return-date" style="display: none;">
+                                    <label for="return-date" class="hero__form-label" data-i18n="hero.form.returnDate">Дата возвращения</label>
+                                    <div class="hero__form-input-wrapper">
+                                        <img src="img/icons/calendar.svg" alt="Calendar" class="hero__form-icon">
+                                        <input type="text" id="return-date" class="hero__form-input" placeholder="Выберите дату возвращения">
+                                    </div>
+                                </div>
+                                <!-- Поле "Количество пассажиров" слева -->
+                                <div class="hero__form-group hero__form-group--passengers">
+                                    <label for="passengers" class="hero__form-label" data-i18n="hero.form.passengers">Количество пассажиров</label>
+                                    <div class="hero__form-input-wrapper">
+                                        <img src="img/icons/user.svg" alt="User" class="hero__form-icon">
+                                        <select id="passengers" class="hero__form-select hero__form-select--passengers">
+                                            <option value="1" data-lang-key="hero.form.passenger1">1 пассажир</option>
+                                            <option value="2" data-lang-key="hero.form.passenger2">2 пассажира</option>
+                                            <option value="3" data-lang-key="hero.form.passenger3">3 пассажира</option>
+                                            <option value="4" data-lang-key="hero.form.passenger4">4 пассажира</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="hero__form-footer">
+                                    <button type="button" id="show-route-bt" class="hero__form-button">
+                                        <span data-i18n="hero.form.showRoute">Показать маршрут</span>
                                     </button>
                                 </div>
-                            </div>
-
-                            <!-- Поле "Количество пассажиров" на всю ширину -->
-                            <div class="hero__form-group hero__form-group--full-width">
-                                <label for="passengers" class="hero__form-label" data-i18n="hero.form.passengers">Количество пассажиров</label>
-                                <div class="hero__form-input-wrapper">
-                                    <img src="img/icons/user.svg" alt="User" class="hero__form-icon">
-                                    <select id="passengers" class="hero__form-select">
-                                        <option value="1" data-lang-key="hero.form.passenger1">1 пассажир</option>
-                                        <option value="2" data-lang-key="hero.form.passenger2">2 пассажира</option>
-                                        <option value="3" data-lang-key="hero.form.passenger3">3 пассажира</option>
-                                        <option value="4" data-lang-key="hero.form.passenger4">4 пассажира</option>
-                                    </select>
+                                <div class="hero__map-container hero__map-container--hidden">
+                                    <div id="map" class="hero__map"></div>
                                 </div>
-                            </div>
-                            
-                            <div class="hero__form-footer">
-                                <!-- Кнопка "Показать маршрут" -->
-                                <button type="button" id="show-route-btn" class="hero__form-button">
-                                    <span data-i18n="hero.form.showRoute">Показать маршрут</span>
-                                </button>
-                            </div>
-
-                            <!-- Контейнер для карты, изначально скрыт -->
-                            <div class="hero__map-container hero__map-container--hidden">
-                               <div id="map" class="hero__map"></div>
-                            </div>
-
-                            <!-- Блок выбора автомобиля (изначально скрыт) -->
-                            <div class="hero__vehicle-selection hero__vehicle-selection--hidden" id="vehicle-selection">
-                               <h3 class="hero__vehicle-selection-title" data-i18n="hero.vehicle.title">Выберите люксовый автомобиль</h3>
-                               <div class="hero__vehicle-selection-grid">
-                                  <!-- Карточки автомобилей будут вставлены сюда через JS -->
-                               </div>
-                            </div>
-
-                        </form>
-
+                                <div class="hero__vehicle-selection hero__vehicle-selection--hidden" id="vehicle-selection">
+                                    <h3 class="hero__vehicle-selection-title" data-i18n="hero.vehicle.title">Выберите люксовый автомобиль</h3>
+                                    <div class="hero__vehicle-selection-grid">
+                                        <!-- Карточки автомобилей будут вставлены сюда через JS -->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                 </div>
+                </div>
+            </div>
             </section>
 
             <!-- ============================================= -->
             <!--             СЕКЦИЯ ПРЕИМУЩЕСТВ (BENEFITS)     -->
-            <!-- ============================================= -->
+            <!-- ============================================= 
             <section class="benefits" id="benefits">
-              <div class="container">
-                <h2 class="section-title" data-lang-key="benefits.title">Почему выбирают VIP Transfer?</h2>
-                <div class="benefits__cards">
-                  <!-- Карточка преимущества -->
-                  <div class="benefits__card">
-                    <img src="images/icon-luxury.svg" alt="Иконка роскоши" class="benefits__icon" loading="lazy">
-                    <h3 class="benefits__card-title" data-lang-key="benefits.luxury.title">Элитный автопарк</h3>
-                    <p class="benefits__card-description" data-lang-key="benefits.luxury.description">Только новые автомобили представительского класса, обеспечивающие максимальный комфорт и безопасность.</p>
-                  </div>
-                  <!-- Другие карточки -->
-                  <div class="benefits__card">
-                    <img src="images/icon-driver.svg" alt="Иконка водителя" class="benefits__icon" loading="lazy">
-                    <h3 class="benefits__card-title" data-lang-key="benefits.drivers.title">Профессиональные водители</h3>
-                    <p class="benefits__card-description" data-lang-key="benefits.drivers.description">Опытные, вежливые и пунктуальные водители, знающие каждый маршрут.</p>
-                  </div>
-                  <div class="benefits__card">
-                    <img src="images/icon-punctuality.svg" alt="Иконка пунктуальности" class="benefits__icon" loading="lazy">
-                    <h3 class="benefits__card-title" data-lang-key="benefits.punctuality.title">Гарантированная пунктуальность</h3>
-                    <p class="benefits__card-description" data-lang-key="benefits.punctuality.description">Мы ценим ваше время и всегда прибываем точно в срок.</p>
-                  </div>
-                  <div class="benefits__card">
-                    <img src="images/icon-privacy.svg" alt="Иконка конфиденциальности" class="benefits__icon" loading="lazy">
-                    <h3 class="benefits__card-title" data-lang-key="benefits.privacy.title">Конфиденциальность</h3>
-                    <p class="benefits__card-description" data-lang-key="benefits.privacy.description">Полная конфиденциальность и безопасность ваших поездок.</p>
-                  </div>
+                <div class="container">
+                    <h2 class="section-title" data-lang-key="benefits.title">Почему выбирают VIP Transfer?</h2>
+                    <div class="benefits__cards">
+                   Карточка преимущества 
+                        <div class="benefits__card">
+                            <div class="benefits__icon-wrapper">
+                                <img src="img/icons/benefit-luxury.svg" alt="Иконка роскоши" class="benefits__icon benefits__icon--car" loading="lazy">
+                            </div>
+                            <div class="benefits__title-wrapper">
+                                <h3 class="benefits__card-title benefits__card-title--fleet" data-lang-key="benefits.luxury.title">Элитный автопарк</h3>
+                            </div>
+                            <div class="benefits__description-wrapper">
+                                <p class="benefits__card-description" data-lang-key="benefits.luxury.description">Только новые автомобили представительского класса, обеспечивающие максимальный комфорт и безопасность.</p>
+                            </div>
+                        </div>
+                  Другие карточки 
+                        <div class="benefits__card">
+                            <div class="benefits__icon-wrapper">
+                                <img src="img/icons/benefit-driver.svg" alt="Иконка водителя" class="benefits__icon" loading="lazy">
+                            </div>
+                            <div class="benefits__title-wrapper">
+                                <h3 class="benefits__card-title" data-lang-key="benefits.drivers.title">Профессиональные водители</h3>
+                            </div>
+                            <div class="benefits__description-wrapper">
+                                <p class="benefits__card-description" data-lang-key="benefits.drivers.description">Опытные, вежливые и пунктуальные водители, знающие каждый маршрут.</p>
+                            </div>
+                        </div>
+                        <div class="benefits__card">
+                            <div class="benefits__icon-wrapper">
+                                <img src="img/icons/benefit-punctuality.svg" alt="Иконка пунктуальности" class="benefits__icon" loading="lazy">
+                            </div>
+                            <div class="benefits__title-wrapper">
+                                <h3 class="benefits__card-title" data-lang-key="benefits.punctuality.title">Гарантированная пунктуальность</h3>
+                            </div>
+                            <div class="benefits__description-wrapper">
+                                <p class="benefits__card-description" data-lang-key="benefits.punctuality.description">Мы ценим ваше время и всегда прибываем точно в срок.</p>
+                            </div>
+                        </div>
+                        <div class="benefits__card">
+                            <div class="benefits__icon-wrapper">
+                                <img src="img/icons/benefit-privacy.svg" alt="Иконка конфиденциальности" class="benefits__icon benefits__icon--privacy" loading="lazy">
+                            </div>
+                            <div class="benefits__title-wrapper">
+                                <h3 class="benefits__card-title benefits__card-title--privacy" data-lang-key="benefits.privacy.title">Конфиденциальность</h3>
+                            </div>
+                            <div class="benefits__description-wrapper">
+                                <p class="benefits__card-description" data-lang-key="benefits.privacy.description">Полная конфиденциальность и безопасность ваших поездок.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </section>
+            </section> -->
 
             <!-- ============================================= -->
             <!--             СЕКЦИЯ АВТОПАРК (FLEET)           -->
@@ -291,7 +285,10 @@
                     <div class="vehicles__grid">
                         <!-- Карточка автомобиля -->
                         <div class="vehicles__card" data-vehicle="mercedes-s" role="button" tabindex="0">
-                            <img src="img/mers.webp" alt="Mercedes-Benz S-Class" class="vehicles__image" loading="lazy">
+                            <picture>
+                                <source srcset="img/mers.webp" type="image/webp">
+                                <img src="img/mers.webp" alt="Mercedes-Benz S-Class" class="vehicles__image" loading="lazy">
+                            </picture>
                             <h3 class="vehicles__name" data-lang-key="hero.vehicle.mercedes-s.name">Mercedes-Benz S-Class</h3>
                             <p class="vehicles__description" data-lang-key="hero.vehicle.mercedes-s.description">Флагманский седан, символ роскоши и инноваций.</p>
                         </div>
@@ -328,22 +325,34 @@
             <!-- ============================================= -->
             <!--       МОДАЛЬНОЕ ОКНО С ГАЛЕРЕЕЙ АВТОМОБИЛЕЙ   -->
             <!-- ============================================= -->
-            <div class="gallery-modal gallery-modal--hidden" id="gallery-modal">
-                <div class="gallery-modal__content">
-                    <span class="gallery-modal__close" data-lang-key="gallery.close">×</span>
-                    <div class="gallery-modal__image">
-                        <button class="gallery-modal__prev" data-lang-key="gallery.prev">←</button>
-                        <img class="gallery-modal__main-image" id="gallery-img" src="" alt="">
-                        <button class="gallery-modal__next" data-lang-key="gallery.next">→</button>
-                    </div>
-                    <div class="gallery-modal__thumbnail-container" id="thumbnail-container"></div>
-                    <div class="gallery-modal__info">
-                        <h2 class="gallery-modal__title" id="gallery-title"></h2>
-                        <p class="gallery-modal__description" id="gallery-description"></p>
-                        <ul class="gallery-modal__specs" id="gallery-specs"></ul>
-                    </div>
-                </div>
-            </div>
+  <div class="gallery-modal gallery-modal--hidden" id="gallery-modal">
+    <div class="gallery-modal__content">
+      <button class="gallery-modal__close" aria-label="Закрыть галерею">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="gallery-modal__image">
+        <button class="gallery-modal__prev" aria-label="Предыдущее изображение">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <img class="gallery-modal__main-image" id="gallery-img" src="" alt="">
+        <button class="gallery-modal__next" aria-label="Следующее изображение">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="gallery-modal__thumbnail-container" id="thumbnail-container"></div>
+      <div class="gallery-modal__info">
+        <h2 class="gallery-modal__title" id="gallery-title"></h2>
+        <p class="gallery-modal__description" id="gallery-description"></p>
+        <ul class="gallery-modal__specs" id="gallery-specs"></ul>
+      </div>
+    </div>
+  </div>
 
             <!-- ============================================= -->
             <!--   СЕКЦИЯ ПОПУЛЯРНЫХ МАРШРУТОВ (POPULAR TRANSFERS) -->
@@ -355,28 +364,28 @@
                     <div class="transfers__grid">
                         <!-- Карточка маршрута -->
                         <article class="transfer-card">
+                            <img src="img/zuri.jpg" alt="Трансфер Цюрих - Церматт" class="transfer-card__image" loading="lazy">
                             <h3 class="transfer-card__title" data-lang-key="popular.zurich-zermatt.title">Цюрих - Церматт (Маттерхорн)</h3>
                             <p class="transfer-card__description" data-lang-key="popular.zurich-zermatt.description">Путешествие к подножию легендарного Маттерхорна. Насладитесь живописными видами Швейцарских Альп и комфортной дорогой до знаменитого горнолыжного курорта.</p>
-                            <img src="images/transfer-zermatt.webp" alt="Трансфер Цюрих - Церматт" class="transfer-card__image" loading="lazy">
                             <a href="#" class="transfer-card__link" data-lang-key="popular.learn-more">Узнать больше</a>
                         </article>
                         <!-- Другие карточки -->
                         <article class="transfer-card">
+                            <img src="img/zuri.jpg" alt="Трансфер Цюрих - Церматт" class="transfer-card__image" loading="lazy">
                             <h3 class="transfer-card__title" data-lang-key="popular.zurich-geneva.title">Цюрих - Женева</h3>
                             <p class="transfer-card__description" data-lang-key="popular.zurich-geneva.description">Прямой трансфер между двумя крупнейшими городами Швейцарии. Идеально для деловых поездок или для знакомства с культурными центрами страны.</p>
-                            <img src="images/transfer-geneva.webp" alt="Трансфер Цюрих - Женева" class="transfer-card__image" loading="lazy">
                             <a href="#" class="transfer-card__link" data-lang-key="popular.learn-more">Узнать больше</a>
                         </article>
                         <article class="transfer-card">
+                            <img src="img/zuri.jpg" alt="Трансфер Цюрих - Церматт" class="transfer-card__image" loading="lazy">
                             <h3 class="transfer-card__title" data-lang-key="popular.zurich-stmoritz.title">Цюрих - Санкт-Мориц</h3>
                             <p class="transfer-card__description" data-lang-key="popular.zurich-stmoritz.description">Элитный трансфер в один из самых престижных горнолыжных курортов мира. Насладитесь поездкой по захватывающим горным перевалам.</p>
-                            <img src="images/transfer-stmoritz.webp" alt="Трансфер Цюрих - Санкт-Мориц" class="transfer-card__image" loading="lazy">
                             <a href="#" class="transfer-card__link" data-lang-key="popular.learn-more">Узнать больше</a>
                         </article>
                         <article class="transfer-card">
+                            <img src="img/zuri.jpg" alt="Трансфер Цюрих - Церматт" class="transfer-card__image" loading="lazy">
                             <h3 class="transfer-card__title" data-lang-key="popular.zurich-milan.title">Цюрих - Милан</h3>
                             <p class="transfer-card__description" data-lang-key="popular.zurich-milan.description">Международный трансфер из финансового центра Швейцарии в столицу моды Италии. Путешествуйте с комфортом между странами.</p>
-                            <img src="images/transfer-milan.webp" alt="Трансфер Цюрих - Милан" class="transfer-card__image" loading="lazy">
                             <a href="#" class="transfer-card__link" data-lang-key="popular.learn-more">Узнать больше</a>
                         </article>
                     </div>
@@ -393,9 +402,9 @@
                     <div class="reviews__grid">
                         <!-- Карточка отзыва -->
                         <div class="review-card">
-                            <p class="review-card__text">"Поездка с VIP Transfer была безупречной. Водитель приехал вовремя, автомобиль был в идеальном состоянии, а сам путь прошел незаметно. Настоящий премиум-сервис!"</p>
+                            <p class="review-card__text" data-lang-key="reviews.review1.text">"Поездка с ROYALTRANFER была безупречной. Водитель приехал вовремя, автомобиль был в идеальном состоянии, а сам путь прошел незаметно. Настоящий премиум-сервис!"</p>
                             <div class="review-card__author">
-                                <span class="review-card__name">Анна К.</span>
+                                <span class="review-card__name" data-lang-key="reviews.review1.name">Анна К.</span>
                                 <div class="review-card__stars">
                                     <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
                                     <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
@@ -407,9 +416,9 @@
                         </div>
                         <!-- Другие карточки -->
                         <div class="review-card">
-                            <p class="review-card__text">"Заказывал трансфер из аэропорта Цюриха. Все было на высшем уровне: встреча, помощь с багажом, комфорт в пути. Очень рекомендую этот сервис!"</p>
+                            <p class="review-card__text" data-lang-key="reviews.review2.text">"Заказывал трансфер из аэропорта Цюриха. Все было на высшем уровне: встреча, помощь с багажом, комфорт в пути. Очень рекомендую этот сервис!"</p>
                             <div class="review-card__author">
-                                <span class="review-card__name">Дмитрий М.</span>
+                                <span class="review-card__name" data-lang-key="reviews.review2.name">Дмитрий М.</span>
                                 <div class="review-card__stars">
                                     <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
                                     <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
@@ -420,9 +429,9 @@
                             </div>
                         </div>
                         <div class="review-card">
-                            <p class="review-card__text">"Использовали VIP Transfer для поездки в горы. Машина очень комфортная, водитель аккуратный, а виды за окном просто завораживали. Обязательно воспользуемся снова!"</p>
+                            <p class="review-card__text" data-lang-key="reviews.review3.text">"Использовали ROYALTRANFER для поездки в горы. Машина очень комфортная, водитель аккуратный, а виды за окном просто завораживали. Обязательно воспользуемся снова!"</p>
                             <div class="review-card__author">
-                                <span class="review-card__name">Елена С.</span>
+                                <span class="review-card__name" data-lang-key="reviews.review3.name">Елена С.</span>
                                 <div class="review-card__stars">
                                     <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
                                     <svg class="star" viewBox="0 0 24 24" fill="#FFD700" stroke="#FFD700" stroke-width="0.5"><path d="M12 .587l3.668 7.427 8.204 1.192-5.947 5.795 1.406 8.169L12 18.232l-7.331 3.856 1.406-8.169-5.947-5.795 8.204-1.192L12 .587z"/></svg>
@@ -442,7 +451,6 @@
             <section class="faq" id="faq" aria-labelledby="faqTitle">
                 <div class="container">
                     <h2 id="faqTitle" class="section-title" data-lang-key="faq.title">Часто задаваемые вопросы</h2>
-                    <p class="section-subtitle" data-lang-key="faq.subtitle">Найдите ответы на самые распространенные вопросы о наших услугах.</p>
                     <div class="faq__grid">
                         <!-- Элемент FAQ -->
                         <div class="faq-item">
@@ -486,53 +494,44 @@
         <!-- ============================================= -->
         <footer class="footer" id="contacts">
             <div class="container footer__container">
-                <!-- Блок "О нас" -->
-                <div class="footer__block footer__block--about">
-                    <h3 class="footer__title" data-lang-key="footer.about.title">О VIP Transfer</h3>
-                    <p class="footer__text" data-lang-key="footer.about.text">VIP Transfer — ваш надежный партнер в мире премиальных перевозок. Мы предлагаем безупречный сервис, комфортабельные автомобили и профессиональных водителей для ваших поездок по Швейцарии и Европе.</p>
-                    <div class="footer__socials">
-                        <a href="#" class="footer__social-link" aria-label="VIP Transfer в Facebook"><img src="images/icon-facebook.svg" alt="Facebook" loading="lazy"></a>
-                        <a href="#" class="footer__social-link" aria-label="VIP Transfer в Instagram"><img src="images/icon-instagram.svg" alt="Instagram" loading="lazy"></a>
-                        <a href="#" class="footer__social-link" aria-label="VIP Transfer в Twitter"><img src="images/icon-twitter.svg" alt="Twitter" loading="lazy"></a>
-                        <a href="#" class="footer__social-link" aria-label="VIP Transfer в LinkedIn"><img src="images/icon-linkedin.svg" alt="LinkedIn" loading="lazy"></a>
+                <div class="footer__main">
+                    <!-- Блок "О нас" -->
+                    <div class="footer__block footer__block--about">
+                        <h3 class="footer__title" data-lang-key="footer.about.title">О ROYALTRANFER</h3>
+                        <p class="footer__text" data-lang-key="footer.about.text">ROYALTRANFER — ваш надежный партнер в мире премиальных перевозок. Мы предлагаем безупречный сервис, комфортабельные автомобили и профессиональных водителей для ваших поездок по Швейцарии и Европе.</p>
                     </div>
-                </div>
-                <!-- Блок навигации -->
-                <div class="footer__block footer__block--navigation">
-                    <h3 class="footer__title" data-lang-key="footer.navigation.title">Навигация</h3>
-                    <ul class="footer__list">
-                        <li><a href="#hero" class="footer__link" data-lang-key="nav.home">Главная</a></li>
-                        <li><a href="about-us.html" class="footer__link" data-lang-key="nav.about">О нас</a></li>
-                        <li><a href="#fleet" class="footer__link" data-lang-key="nav.fleet">Автопарк</a></li>
-                        <li><a href="#popular-transfers" class="footer__link" data-lang-key="nav.popular">Популярные трансферы</a></li>
-                        <li><a href="#reviews" class="footer__link" data-lang-key="nav.reviews">Отзывы</a></li>
-                        <li><a href="#faq" class="footer__link" data-lang-key="nav.faq">FAQ</a></li>
-                        <li><a href="#contacts" class="footer__link" data-lang-key="nav.contacts">Контакты</a></li>
-                    </ul>
-                </div>
-                <!-- Блок с контактами -->
-                <div class="footer__block footer__block--contact">
-                    <h3 class="footer__title" data-lang-key="footer.contact.title">Свяжитесь с нами</h3>
-                    <ul class="footer__list">
-                        <li><address class="footer__text" data-lang-key="footer.address">Швейцария, Цюрих, Bahnhofstrasse 123</address></li>
-                        <li><a href="tel:+41797893976" class="footer__link" data-lang-key="footer.phone">+41 79 789 39 76</a></li>
-                        <li><a href="mailto:info@viptransfer.com" class="footer__link" data-lang-key="footer.email">info@viptransfer.com</a></li>
-                        <li class="footer__text" data-lang-key="footer.hours">Пн-Вс: Круглосуточно</li>
-                    </ul>
-                </div>
-                <!-- Блок с юридической информацией -->
-                <div class="footer__block footer__block--legal">
-                    <h3 class="footer__title" data-lang-key="footer.legal.title">Правовая информация</h3>
-                    <ul class="footer__list">
-                        <li><a href="#" class="footer__link" data-lang-key="footer.privacy">Политика конфиденциальности</a></li>
-                        <li><a href="#" class="footer__link" data-lang-key="footer.terms">Условия использования</a></li>
-                        <li><a href="#" class="footer__link" data-lang-key="footer.sitemap">Карта сайта</a></li>
-                    </ul>
+                    <!-- Объединённый блок контактов -->
+                    <div class="footer__block footer__block--right">
+                        <div class="footer__block--contact">
+                            <h3 class="footer__title" data-lang-key="footer.contact.title">Свяжитесь с нами</h3>
+                            <div class="footer__contacts-row">
+                                <div class="footer__contact-item-col">
+                                    <div class="footer__contact-label">Номер</div>
+                                    <a href="tel:+41797893976" class="footer__link" data-lang-key="footer.phone">+41 79 789 39 76</a>
+                                </div>
+                                <div class="footer__contact-item-col">
+                                    <div class="footer__contact-label">Почта</div>
+                                    <a href="mailto:info@viptransfer.com" class="footer__link" data-lang-key="footer.email">info@viptransfer.com</a>
+                                </div>
+                            </div>
+                            <div class="footer__socials">
+                                <a href="https://t.me/yourtelegram" class="footer__social-link" aria-label="Telegram" target="_blank" rel="noopener">
+                                    <img src="img/icons/tg.svg" alt="Telegram" width="40" height="40" loading="lazy">
+                                </a>
+                                <a href="https://wa.me/yourwhatsapp" class="footer__social-link" aria-label="WhatsApp" target="_blank" rel="noopener">
+                                    <img src="img/icons/wa.svg" alt="WhatsApp" width="40" height="40" loading="lazy">
+                                </a>
+                                <a href="https://instagram.com/yourinstagram" class="footer__social-link" aria-label="Instagram" target="_blank" rel="noopener">
+                                    <img src="img/icons/inst.svg" alt="Instagram" width="40" height="40" loading="lazy">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Нижняя часть подвала с копирайтом -->
             <div class="footer__bottom">
-                <p class="footer__copyright" data-lang-key="footer.copyright">&copy; 2025 VIP Transfer. Все права защищены.</p>
+                <p class="footer__copyright" data-lang-key="footer.copyright">&copy; 2025 ROYALTRANFER. Все права защищены.</p>
             </div>
         </footer>
     </div>
