@@ -1,123 +1,337 @@
-/* ==========================================================================
-   Базовые стили (Base)
-   ========================================================================== */
+/* Base styles for RoyalTransfer project */
 
-/*
- * 1. Переменные (CSS Custom Properties)
- *    Определяют основные цвета, шрифты и другие константы для всего сайта.
- *    Это упрощает поддержку и изменение дизайна.
- */
-:root {
-    /* Цветовая палитра */
-    --color-primary: #C8A26A;        /* Золотой/бронзовый акцент */
-    --color-primary-dark: #b38f5a;  /* Затемненный основной цвет для hover-эффектов */
-    --color-secondary: #1A1A1A;       /* Темный фон / основной текст */
-    --color-tertiary: #333333;        /* Более светлый темный для фона, границ */
-    --color-light: #F8F8F8;           /* Светлый фон */
-    --color-text-light: #FFFFFF;      /* Светлый текст на темном фоне */
-    --color-text-dark: #333333;       /* Темный текст на светлом фоне */
-    --color-text-muted: #cccccc;      /* Приглушенный текст для описаний */
-    --color-border: #444444;          /* Цвет границ */
-
-    /* Типографика */
-    --font-heading: 'Playfair Display', serif; /* Шрифт для заголовков */
-    --font-body: 'Montserrat', sans-serif;    /* Шрифт для основного текста */
-
-    /* Прочее */
-    --transition-speed: 0.3s ease-in-out; /* Скорость анимаций */
-    --container-padding-desktop: 20px;
-    --container-padding-tablet: 15px;
-    --container-padding-mobile: 10px;
-}
-
-/*
- * 2. Сброс стилей (Reset) и глобальные настройки
- *    Убирают стандартные отступы и стили браузеров, задают общие правила.
- */
+/* Reset and base styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Всегда включаем padding и border в общую ширину/высоту */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
-html {
-    scroll-behavior: smooth; /* Плавный скролл к якорным ссылкам */
-    scrollbar-color: var(--color-primary) #333; /* Стилизация скроллбара для Firefox */
-    scrollbar-width: thin;
-}
-
+ 
 body {
-    font-family: var(--font-body);
-    color: var(--color-text-dark);
-    background-color: var(--color-light);
-    -webkit-font-smoothing: antialiased; /* Улучшение рендеринга шрифтов в Webkit */
-    -moz-osx-font-smoothing: grayscale; /* Улучшение рендеринга шрифтов в Firefox */
-    line-height: 1.6;
-    min-height: 100vh; /* Минимальная высота для flexbox-футера */
-    display: flex;
-    flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
-a {
-    text-decoration: none;
-    color: var(--color-primary);
-    transition: color var(--transition-speed);
+/* Body and page structure */
+body.page {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-white);
+  background: var(--color-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-a:hover, a:focus {
-    color: var(--color-primary-dark); /* Используем переменную для затемненного цвета */
-    outline: none; /* Убираем стандартный outline, т.к. стилизуем фокус иначе */
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block; /* Убирает лишний отступ под изображением */
+/* Main content area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
 }
 
+/* Section containers */
+.section {
+  padding: var(--spacing-2xl) 0;
+}
+
+/* Typography classes */
+.section__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.section__subtitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.section__text {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Container classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+[hidden] {
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline for links and buttons */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* Remove border on click/active state */
+a:active,
+button:active,
+input:active,
+textarea:active,
+select:active {
+  outline: none;
+  border: none;
+}
+
+/* Remove default button styles */
 button {
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    padding: 0;
-    font-family: inherit; /* Наследуем шрифт от родителя */
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
-/*
- * 3. Вспомогательные классы
- */
-
-/* Скрытый класс для доступности (Accessibility) */
-/* Позволяет скрыть элемент визуально, но оставить его доступным для скринридеров */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+button:focus {
+  outline: none;
 }
 
-/*
- * 4. Стилизация скроллбара для Webkit-браузеров (Chrome, Safari, Edge)
- */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+button:active {
+  outline: none;
+  border: none;
 }
 
-::-webkit-scrollbar-track {
-    background: #333;
-    border-radius: 10px;
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-accent);
+  color: var(--color-white);
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: var(--z-header);
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
-    border-radius: 10px;
+.skip-link:focus {
+  top: 6px;
+} 
+
+/* === ADAPTIVE STYLES - Mobile First Approach === */
+
+/* 1600px and below */
+@media (max-width: 1600px) {
+  .container {
+    max-width: 1400px;
+    padding: 0 var(--spacing-lg);
+  }
+  
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .section__title {
+    font-size: var(--text-3xl);
+  }
+  
+  .section__subtitle {
+    font-size: var(--text-xl);
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary-dark);
+/* 1280px and below */
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 var(--spacing-md);
+  }
+  
+  .section {
+    padding: var(--spacing-lg) 0;
+  }
+  
+  .section__title {
+    font-size: var(--text-2xl);
+  }
+  
+  .section__subtitle {
+    font-size: var(--text-lg);
+  }
 }
+
+/* 1024px and below */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 1000px;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .section {
+    padding: var(--spacing-md) 0;
+  }
+  
+  .section__title {
+    font-size: var(--text-xl);
+  }
+  
+  .section__subtitle {
+    font-size: var(--text-base);
+  }
+  
+  .section__text {
+    font-size: var(--text-sm);
+  }
+}
+
+/* 900px and below */
+@media (max-width: 900px) {
+  .container {
+    max-width: 800px;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .section {
+    padding: var(--spacing-sm) 0;
+  }
+  
+  .section__title {
+    font-size: var(--text-lg);
+  }
+  
+  .section__subtitle {
+    font-size: var(--text-sm);
+  }
+  
+  .section__text {
+    font-size: var(--text-xs);
+  }
+}
+
+/* 768px and below */
+@media (max-width: 768px) {
+  .container {
+    max-width: 600px;
+    padding: 0 var(--spacing-xs);
+  }
+  
+  .section {
+    padding: var(--spacing-xs) 0;
+  }
+  
+  .section__title {
+    font-size: var(--text-base);
+  }
+  
+  .section__subtitle {
+    font-size: var(--text-sm);
+  }
+  
+  .section__text {
+    font-size: var(--text-xs);
+  }
+}
+
+/* 600px and below */
+@media (max-width: 600px) {
+  .container {
+    max-width: 500px;
+    padding: 0 var(--spacing-xs);
+  }
+  
+  .section__title {
+    font-size: var(--text-sm);
+  }
+  
+  .section__subtitle {
+    font-size: var(--text-xs);
+  }
+  
+  .section__text {
+    font-size: var(--text-xs);
+  }
+}
+
+/* 400px and below */
+@media (max-width: 400px) {
+  .container {
+    max-width: 400px;
+    padding: 0 var(--spacing-xs);
+  }
+  
+  .section__title {
+    font-size: var(--text-xs);
+  }
+  
+  .section__subtitle {
+    font-size: var(--text-xs);
+  }
+  
+  .section__text {
+    font-size: var(--text-xs);
+  }
+}
+
+/* 320px and below */
+@media (max-width: 320px) {
+  .container {
+    max-width: 320px;
+    padding: 0 var(--spacing-xs);
+  }
+  
+  .section__title {
+    font-size: var(--text-xs);
+  }
+  
+  .section__subtitle {
+    font-size: var(--text-xs);
+  }
+  
+  .section__text {
+    font-size: var(--text-xs);
+  }
+} 
